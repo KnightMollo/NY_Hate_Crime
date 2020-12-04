@@ -1,1 +1,10 @@
 # Results
+```{r}
+dataset <- read.csv("Hate_Crimes_data_Tidy.csv")
+
+```
+
+```{r}
+dataset %>% filter(type=='Anti_Gender') %>% ggplot(aes(x=Sub.type,y=count,fill=Crime.Type))+geom_col()
+```
+
