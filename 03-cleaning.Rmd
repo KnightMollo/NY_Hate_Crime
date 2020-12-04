@@ -1,1 +1,57 @@
 # Data transformation
+
+```{r}
+library(tidyverse)
+```
+
+
+
+
+```{r}
+dataset <- read.csv("Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv")
+
+data<- dataset %>% pivot_longer(cols = !(colnames(dataset)[1] | colnames(dataset)[2] | colnames(dataset)[3] |colnames(dataset)[42] |colnames(dataset)[43] | colnames(dataset)[44] ), names_to = "Sub-type", values_to = "count")
+
+anti_gender = colnames(dataset)[4:7]
+anti_age = colnames(dataset)[8]
+anti_race = colnames(dataset)[9:15]
+anti_religion = colnames(dataset)[16:34]
+anti_sexual_minority = colnames(dataset)[35:39]
+anti_disability = colnames(dataset)[40:41]
+
+#print(anti_sexual_minority)
+#print(anti_disability)
+vec = c(rep(0,nrow(data)))
+data <- cbind(data, type = vec)
+print(colnames(data))
+
+for( i in 1:nrow(data)){
+  if(data$`Sub-type`[i] %in% anti_gender){
+    data$type[i] = "Anti_Gender"
+  }
+  if(data$`Sub-type`[i] %in% anti_age){
+    data$type[i] = "Anti_Age"
+  }
+  if(data$`Sub-type`[i] %in% anti_race){
+    data$type[i] = "Anti_Race"
+  }
+  if(data$`Sub-type`[i] %in% anti_religion){
+    data$type[i] = "Anti_Religion"
+  }
+  if(data$`Sub-type`[i] %in% anti_sexual_minority){
+    data$type[i] = "Anti_Sexual_Minority"
+  }
+  if(data$`Sub-type`[i] %in% anti_disability){
+    data$type[i] = "Anti_Disability"
+  }
+  
+  
+  
+  
+}
+```
+
+```{r}
+write.csv(data, "Hate_Crimes_data_Tidy.csv" )
+```
+
