@@ -4,13 +4,14 @@
 library(tidyverse)
 ```
 
-
+To get the tidy data, we first drop the last three columns namely Total.Incidents, Total.Victims, Total.Offenders, as we can still calculate them using the remaining data. Then we regard columns 'County','Year' and 'Crime Type' as id columns which means we don't make changes on them . We use the pivot_longer method to gather the rest of columns creating two columns 'Sub-type' and 'Count'. Here Sub-type means each small class of hate crimes such as anti_male, anti_female etc. Count is the corresponding number of cases for each small class. After that, we create a new column 'Type', containing six general classes that are anti_gender, anti_age, anti_race, anti_religion, anti_sexual_minority and anti_disability. For each sub-type, it has a corresponding type. For example, the sub-type 'anti_female' is related with the type 'anti_gender' and the sub-type 'anti_white' is related with the type 'anti_race'. We use the for-loop to fill in the 'Type' column for all rows.
 
 
 ```{r}
 dataset <- read.csv("Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv")
+dataset <- subset(dataset, select=-c(42,43,44))
 
-data<- dataset %>% pivot_longer(cols = !(colnames(dataset)[1] | colnames(dataset)[2] | colnames(dataset)[3] |colnames(dataset)[42] |colnames(dataset)[43] | colnames(dataset)[44] ), names_to = "Sub-type", values_to = "count")
+data<- dataset %>% pivot_longer(cols = !(colnames(dataset)[1] | colnames(dataset)[2] | colnames(dataset)[3]), names_to = "Sub-type", values_to = "count")
 
 anti_gender = colnames(dataset)[4:7]
 anti_age = colnames(dataset)[8]
@@ -19,11 +20,8 @@ anti_religion = colnames(dataset)[16:34]
 anti_sexual_minority = colnames(dataset)[35:39]
 anti_disability = colnames(dataset)[40:41]
 
-#print(anti_sexual_minority)
-#print(anti_disability)
 vec = c(rep(0,nrow(data)))
 data <- cbind(data, type = vec)
-print(colnames(data))
 
 for( i in 1:nrow(data)){
   if(data$`Sub-type`[i] %in% anti_gender){
@@ -51,7 +49,10 @@ for( i in 1:nrow(data)){
 }
 ```
 
+Here are first few rows of our modified data. 
+
 ```{r}
 write.csv(data, "Hate_Crimes_data_Tidy.csv" )
+head(data)
 ```
 
