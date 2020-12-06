@@ -1,2 +1,6 @@
 # Data sources
 
+
+Problem with data source: 
+After doing research on hate crimes laws and how hate crimes are prosecuted, we believe our data set could underestimate the amount of actual hate crimes in NY. In order to prosecute, attorneys must prove the defendant's intent was based on bias, which is notoriously difficult to prove. This added layer of complexity to otherwise straightforward cases of assaults or stealing shun attorneys from doing so, thus resulting in an overall under-reporting of hate crimes. 
+
