@@ -4,14 +4,15 @@
 library(tidyverse)
 ```
 
-To get the tidy data, we first drop the last three columns namely Total.Incidents, Total.Victims, Total.Offenders, as we can still calculate them using the remaining data. Then we regard columns 'County','Year' and 'Crime Type' as id columns which means we don't make changes on them . We use the pivot_longer method to gather the rest of columns creating two columns 'Sub-type' and 'Count'. Here Sub-type means each small class of hate crimes such as anti_male, anti_female etc. Count is the corresponding number of cases for each small class. After that, we create a new column 'Type', containing six general classes that are anti_gender, anti_age, anti_race, anti_religion, anti_sexual_minority and anti_disability. For each sub-type, it has a corresponding type. For example, the sub-type 'anti_female' is related with the type 'anti_gender' and the sub-type 'anti_white' is related with the type 'anti_race'. We use the for-loop to fill in the 'Type' column for all rows.
+To get the tidy data, we first drop the last three columns namely 'Total.Incidents', 'Total.Victims', 'Total.Offenders', as we can still calculate them using the remaining data. Then we regard columns 'County','Year' and 'Crime.Type' as id columns which means we don't make changes on them . We use the pivot_longer method to gather the rest of columns creating two columns 'Subtype' and 'Count'. Here Subtype means each small class of hate crimes such as Anti.Male, Anti.Female etc. Count is the corresponding number of cases for each small class. After that, we create a new column 'Type', containing six general classes that are Anti.Gender, Anti.Age, Anti.Race, Anti.Religion, Anti.Sexual.Minority and Anti.Disability. For each Subtype, it has a corresponding type. For example, the Subtype 'Anti.Female' is related with the type 'Anti.Gender' and the Subtype 'Anti.White' is related with the type 'Anti.Race'. We use the for-loop to fill in the 'Type' column for all rows.
 
 
 ```{r}
 dataset <- read.csv("Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv")
 dataset <- subset(dataset, select=-c(42,43,44))
+names(dataset)[1] <- "County"
 
-data<- dataset %>% pivot_longer(cols = !(colnames(dataset)[1] | colnames(dataset)[2] | colnames(dataset)[3]), names_to = "Sub-type", values_to = "count")
+data<- dataset %>% pivot_longer(cols = !(colnames(dataset)[1] | colnames(dataset)[2] | colnames(dataset)[3]), names_to = "Subtype", values_to = "Count")
 
 anti_gender = colnames(dataset)[4:7]
 anti_age = colnames(dataset)[8]
@@ -21,29 +22,29 @@ anti_sexual_minority = colnames(dataset)[35:39]
 anti_disability = colnames(dataset)[40:41]
 
 vec = c(rep(0,nrow(data)))
-data <- cbind(data, type = vec)
+data <- cbind(data, Type = vec)
 
 for( i in 1:nrow(data)){
-  if(data$`Sub-type`[i] %in% anti_gender){
-    data$type[i] = "Anti_Gender"
+  if(data$`Subtype`[i] %in% anti_gender){
+    data$Type[i] = "Anti.Gender"
   }
-  if(data$`Sub-type`[i] %in% anti_age){
-    data$type[i] = "Anti_Age"
+  if(data$`Subtype`[i] %in% anti_age){
+    data$Type[i] = "Anti.Age"
   }
-  if(data$`Sub-type`[i] %in% anti_race){
-    data$type[i] = "Anti_Race"
+  if(data$`Subtype`[i] %in% anti_race){
+    data$Type[i] = "Anti.Race"
   }
-  if(data$`Sub-type`[i] %in% anti_religion){
-    data$type[i] = "Anti_Religion"
+  if(data$`Subtype`[i] %in% anti_religion){
+    data$Type[i] = "Anti.Religion"
   }
-  if(data$`Sub-type`[i] %in% anti_sexual_minority){
-    data$type[i] = "Anti_Sexual_Minority"
+  if(data$`Subtype`[i] %in% anti_sexual_minority){
+    data$Type[i] = "Anti.Sexual.Minority"
   }
-  if(data$`Sub-type`[i] %in% anti_disability){
-    data$type[i] = "Anti_isability"
+  if(data$`Subtype`[i] %in% anti_disability){
+    data$Type[i] = "Anti.Disability"
   }
   
-  
+
   
   
 }
