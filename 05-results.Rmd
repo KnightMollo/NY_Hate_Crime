@@ -1,5 +1,6 @@
 # Results
 ```{r}
+library(tidyverse)
 dataset <- read.csv("Hate_Crimes_data_Tidy.csv")
 
 ```
