@@ -1,5 +1,17 @@
 # Data sources
 
+The data set is named as "Hate Crimes by County and Bias Type: Beginning 2010" and it is provided by New York Division of Criminal Justice Services. The Office of Justice Research and Performance is responsible for collecting data. 
+
+Link to dataset: [Hate Crimes by County and Bias Type: Beginning 2010](https://data.ny.gov/Public-Safety/Hate-Crimes-by-County-and-Bias-Type-Beginning-2010/6xda-q7ev)
+
+The definition of hate crime is as followed: 
+    
+*Under New York State’s Hate Crime Law (Penal Law Article 485), a person commits a hate crime when one of a specified set of offenses is committed targeting a victim because of a perception or belief about their race, color, national origin, ancestry, gender, religion, religious practice, age, disability, or sexual orientation, or when such an act is committed as a result of that type of perception or belief. These types of crimes can target an individual, a group of individuals, or public or private property.*
+
+The dataset has 44 columns and 548 rows. The variable *County* and *Crime Type* are strings and all others are integers. Most of columns are names of hate crimes, including *Anti-Male*, *Anti-female* and so on. 
+
+The problem with this dataset is many columns are purely names of hate crimes within the same category. For example, *Anti-White*, *Anti-Black*, *Anti-American Indian/Alaskan Native*, *Anti-Asian* and so on are all hate crimes against specific race. And there are many hate crimes against different religions. When handling this dataset, we will need to do some summary about kinds of hate crimes to have better understanding of this dataset. 
+
 
 Problem with data source: 
 After doing research on hate crimes laws and how hate crimes are prosecuted, we believe our data set could underestimate the amount of actual hate crimes in NY. In order to prosecute, attorneys must prove the defendant's intent was based on bias, which is notoriously difficult to prove. This added layer of complexity to otherwise straightforward cases of assaults or stealing shun attorneys from doing so, thus resulting in an overall under-reporting of hate crimes. 
