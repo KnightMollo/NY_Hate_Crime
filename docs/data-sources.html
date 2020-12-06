@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Data sources | YOUR TITLE HERE</title>
-  <meta name="description" content="Chapter 2 Data sources | YOUR TITLE HERE" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <title>Chapter 3 Data sources | Hate Crimes in the State of New York</title>
+  <meta name="description" content="Chapter 3 Data sources | Hate Crimes in the State of New York" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Data sources | YOUR TITLE HERE" />
+  <meta property="og:title" content="Chapter 3 Data sources | Hate Crimes in the State of New York" />
   <meta property="og:type" content="book" />
   
   
@@ -16,24 +16,23 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Data sources | YOUR TITLE HERE" />
+  <meta name="twitter:title" content="Chapter 3 Data sources | Hate Crimes in the State of New York" />
   
   
   
 
-<meta name="author" content="YOUR NAMES HERE" />
+<meta name="author" content="Haichao Yi, Heng Kan, Danyang Han, Zhuoyan Ma" />
 
 
-<meta name="date" content="2020-11-09" />
+<meta name="date" content="2020-12-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
+<link rel="prev" href="why-this-project.html"/>
 <link rel="next" href="data-transformation.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,6 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 
@@ -68,16 +69,17 @@
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">SHORT TITLE HERE</a></li>
+<li><a href="./">NYHateCrime</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
-<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
-<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
-<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
-<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
-<li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
+<li class="chapter" data-level="2" data-path="why-this-project.html"><a href="why-this-project.html"><i class="fa fa-check"></i><b>2</b> Why this Project</a></li>
+<li class="chapter" data-level="3" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>3</b> Data sources</a></li>
+<li class="chapter" data-level="4" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>4</b> Data transformation</a></li>
+<li class="chapter" data-level="5" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>5</b> Missing values</a></li>
+<li class="chapter" data-level="6" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>6</b> Results</a></li>
+<li class="chapter" data-level="7" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>7</b> Interactive component</a></li>
+<li class="chapter" data-level="8" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>8</b> Conclusion</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -89,7 +91,7 @@
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">YOUR TITLE HERE</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Hate Crimes in the State of New York</a>
           </h1>
         </div>
 
@@ -97,8 +99,16 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-sources" class="section level1" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Data sources</h1>
+<div id="data-sources" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Data sources</h1>
+<p>The data set is named as “Hate Crimes by County and Bias Type: Beginning 2010” and it is provided by New York Division of Criminal Justice Services. The Office of Justice Research and Performance is responsible for collecting data.</p>
+<p>Link to dataset: <a href="https://data.ny.gov/Public-Safety/Hate-Crimes-by-County-and-Bias-Type-Beginning-2010/6xda-q7ev">Hate Crimes by County and Bias Type: Beginning 2010</a></p>
+<p>The definition of hate crime is as followed:</p>
+<p><em>Under New York State’s Hate Crime Law (Penal Law Article 485), a person commits a hate crime when one of a specified set of offenses is committed targeting a victim because of a perception or belief about their race, color, national origin, ancestry, gender, religion, religious practice, age, disability, or sexual orientation, or when such an act is committed as a result of that type of perception or belief. These types of crimes can target an individual, a group of individuals, or public or private property.</em></p>
+<p>The dataset has 44 columns and 548 rows. The variable <em>County</em> and <em>Crime Type</em> are strings and all others are integers. Most of columns are names of hate crimes, including <em>Anti-Male</em>, <em>Anti-female</em> and so on.</p>
+<p>The problem with this dataset is many columns are purely names of hate crimes within the same category. For example, <em>Anti-White</em>, <em>Anti-Black</em>, <em>Anti-American Indian/Alaskan Native</em>, <em>Anti-Asian</em> and so on are all hate crimes against specific race. And there are many hate crimes against different religions. When handling this dataset, we will need to do some summary about kinds of hate crimes to have better understanding of this dataset.</p>
+<p>Problem with data source:
+After doing research on hate crimes laws and how hate crimes are prosecuted, we believe our data set could underestimate the amount of actual hate crimes in NY. In order to prosecute, attorneys must prove the defendant’s intent was based on bias, which is notoriously difficult to prove. This added layer of complexity to otherwise straightforward cases of assaults or stealing shun attorneys from doing so, thus resulting in an overall under-reporting of hate crimes.</p>
 
 </div>
             </section>
@@ -106,7 +116,7 @@
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="why-this-project.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="data-transformation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -138,7 +148,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/main/02-data.Rmd",
+"link": "https://github.com/KnightMollo/NY_Hate_Crime/edit/main/02-data.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -146,7 +156,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/main/02-data.Rmd",
+"link": "https://github.com/KnightMollo/NY_Hate_Crime/blob/main/02-data.Rmd",
 "text": null
 },
 "download": null,
