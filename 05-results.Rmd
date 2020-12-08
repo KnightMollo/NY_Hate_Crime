@@ -1,10 +1,76 @@
 # Results
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+#install.packages("ggpubr")
+library(ggpubr)
+require(gridExtra)
+require(cowplot)
+
+```
+
 ```{r}
 dataset <- read.csv("Hate_Crimes_data_Tidy.csv")
 
 ```
 
 ```{r}
-dataset %>% filter(type=='Anti_Gender') %>% ggplot(aes(x=Sub.type,y=count,fill=Crime.Type))+geom_col()
+dataset %>% 
+  ggplot(aes(x = type, y = count, fill = Crime.Type))  + 
+  geom_col() +
+  theme(axis.text.x = element_text(angle = 20, vjust = 0.9))+
+  scale_fill_discrete(name = "Type of Crime")+
+  xlab("Type of Hate Crime")+
+  ggtitle("Hate Crime Incidents in NY State from 2010 to 2018")
+  
+```
+
+
+```{r}
+g1<- dataset %>% filter(type=='Anti_Gender') %>% ggplot(aes(x=Sub.type,y=count,fill=Crime.Type))+geom_col()+
+  #theme(axis.text.x = element_text(angle = 20, vjust = 0.9))+
+  theme(text = element_text(size=8))+
+  coord_flip()
+
+g2<- dataset %>% filter(type=='Anti_Age') %>% ggplot(aes(x=Sub.type,y=count,fill=Crime.Type))+geom_col()+
+  #theme(axis.text.x = element_text(angle = 20, vjust = 0.9))
+  theme(text = element_text(size=8))+
+  coord_flip()
+
+g3 <- dataset %>% filter(type=='Anti_Race') %>% ggplot(aes(x=Sub.type,y=count,fill=Crime.Type))+geom_col()+
+  theme(text = element_text(size=8))+
+  #theme(axis.text.x = element_text(angle = 20, vjust = 0.9))
+  coord_flip()
+
+g4 <- dataset %>% filter(type=='Anti_Religion') %>% ggplot(aes(x=Sub.type,y=count,fill=Crime.Type))+geom_col()+
+  theme(text = element_text(size=8))+
+  #theme(axis.text.x = element_text(angle = 20, vjust = 0.9))
+  coord_flip()
+
+
+g5 <- dataset %>% filter(type=='Anti_Disability') %>% ggplot(aes(x=Sub.type,y=count,fill=Crime.Type))+geom_col()+
+  theme(text = element_text(size=8))+
+#theme(axis.text.x = element_text(angle = 20, vjust = 0.9))
+  coord_flip()
+
+g6 <- dataset %>% filter(type=='Anti_Sexual_Minority') %>%
+  ggplot(aes(x=Sub.type,y=count,fill=Crime.Type))+geom_col()+
+  theme(text = element_text(size=8))+
+  coord_flip()
+  #theme(axis.text.x = element_text(angle = 90, vjust = 0.9))
+
+#g6 
+legend <- get_legend(g1)
+
+g1<- g1 + theme(legend.position = "none") + xlab(NULL)
+g2<- g2 + theme(legend.position = "none")+ xlab(NULL)
+g3<- g3 + theme(legend.position = "none")+ xlab(NULL)
+g4<- g4 + theme(legend.position = "none")+ xlab(NULL)
+g5<- g5 + theme(legend.position = "none")+ xlab(NULL)
+g6<- g6 + theme(legend.position = "none")+ xlab(NULL)
+#g1 
+#grid.arrange( g1, g2, g3, g4, g5, g6, legend,  ncol = 2, nrow =4, heights = 4)
+plot_grid( g1, g2, g3, g4, g5, g6, legend, nrow = 4, ncol = 2, align = "v", rel_heights = c(4/16, 6/16, 4/16, 2/16) )
 ```
 
