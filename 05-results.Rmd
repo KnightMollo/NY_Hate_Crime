@@ -1,11 +1,164 @@
 # Results
-```{r}
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
 library(tidyverse)
-dataset <- read.csv("Hate_Crimes_data_Tidy.csv")
+library(cowplot)
+tidy <- read.csv("Hate_Crimes_data_Tidy.csv")
 
+
+plot_theme<-theme(panel.grid.major.y = element_line(),
+        panel.grid.major.x = element_line(),
+        panel.background = element_blank(),,
+        panel.grid.minor = element_line(),
+        plot.background = element_rect(fill='#FAFAFA'),
+        axis.line = element_line(color='black'),
+        legend.background = element_rect(fill = '#FAFAFA'),
+        legend.position = "bottom",
+        legend.text=element_text(size=6.5))
+
+```
+
+### Question 3
+***
+
+After examing the distributions of hate crimes in different counties, we know take time factor into consideration. In other words, we want to see if total incidents of each type of hate crimes vary cross time. And what's more, we aim to integrate both county and time into the inspection of distribution of hate crimes in New York State.
+
+```{r Line Chart: Time Vs Crime Type1, message=FALSE, warning=FALSE}
+#manipulate the data to make it suitable for time series line chart
+Crime_type<-tidy %>% select(Year,Crime.Type,Count) %>%
+  group_by(Year,Crime.Type) %>% 
+  summarise(Count=sum(Count)) %>% 
+  ungroup() %>% 
+  group_by(Crime.Type) %>%
+  mutate(index = round(100*Count/Count[1], 2)) %>% 
+  ungroup()
+
+Type<-tidy %>% select(Year,Type,Count) %>% 
+  group_by(Year,Type) %>% 
+  summarise(Count=sum(Count)) %>% 
+  mutate(Count = ifelse(Type == "Anti.Age",Count+1, Count)) %>% 
+  ungroup() %>% group_by(Type) %>% 
+  mutate(index = round(100*Count/Count[1], 2)) %>% 
+  ungroup() 
+```
+
+First, we looked at the time trend of two types of crimes in the NY state. In order to draw the line chart, we calculated the numbers of two crime types in different years, without considering the counties and hate crime types. In addition, we also found out an index, which equals to the counts at each year divided by the counts at first year. By doing so, we are able to analyze the relative changes cross years and their overall time trend. 
+
+```{r Line Chart: Time Vs Crime Type2, message=FALSE}
+p1<-ggplot(Crime_type, aes(Year, Count, color = Crime.Type)) +
+  geom_line()+
+  geom_point()+
+  labs(x='Year', y='Number of Incidents', color= 'Crime Type')+
+  ggtitle("Time Series Line Chart","Year VS Crime Type")+
+  plot_theme
+
+p2<-ggplot(Crime_type, aes(Year, index, color = Crime.Type)) +
+  geom_line()+
+  geom_smooth(method = "loess", se = FALSE, lwd =1)+
+  labs(x='Year', y='Index', color= 'Crime Type')+
+  ggtitle("Time Series Line Chart","Year VS Crime Type in Index")+
+  plot_theme
+
+plot_grid(p1,p2,ncol=2,nrow=1,labels=c('A','B'))
+```
+
+In the A plot, year versus the numbers of incidents of each crime type, it's obvious to see that in 2010, the number of crime against persons is much higher than the number of crime against property. And as time goes on, the number of crime against persons starts to decrease and reaches its minimum in 2018, while the numbers of crime against property contains more flutuation. Number of crime against property reaches its maximum in 2012 and then begins to go down until 2015. In recent years, its number shows an increasing tendency. 
+
+In the B plot, we can see the time trend of two crime types in a clearer way as two lines are seperated due to the use of index. Similar conclusion is drawn as A plot: numbers of crime against persons are decreasing while the numbers of crime against property are going up with some cyclical trends. What's new in this plot is that we are able to see the relative changes compared with 2010, not in an aboslute means as we did in A plot. 
+
+```{r message=FALSE}
+p3<-ggplot(Type, aes(Year, Count, color = Type)) +
+  geom_line()+
+  geom_point()+
+  labs(x='Year', y='Number of Incidents', color= 'Type')+
+  ggtitle("Time Series Line Chart","Year VS Hate Crime Type")+
+  plot_theme
+
+p4<-ggplot(Type, aes(Year, index, color = Type)) +
+  geom_line()+
+  geom_smooth(method = "loess", se = FALSE, lwd =1)+
+  labs(x='Year', y='Index', color= 'Hate Crime Type')+
+  ggtitle("Time Series Line Chart","Year VS Hate Crime Type in Index")+
+  plot_theme
+
+
+plot_grid(p3,p4,ncol=2,nrow=1,labels=c('C','D'))
+```
+
+Next, let's move on to exmaine on the time trend of hate crime types in NY state. Similar preprocessing procedure was done with the target data like the way we transformed in the crime type case.
+
+From the C plot, we can say that Anti-Religion is the most common hate crime type from 2010 to 2018. It reaches its maximum in 2012 and for other years, it remains approximately at the same level. Anti-Race is the second common type of hate crime in these years and it indicates an overall decreasing trend. Then, it's the Anti-Sexual, which also demonstrates a general lowering tendency across years. In 2015 and 2016, its numbers come to same level as the numbers of Anti-Race. For the rest of three type of hate crimes: Anti-Gender, Anti-Disability and Anti-Age, they stay at similar level from 2010 and 2018, roughly around 0 to 10. Anti-Gender reaches its highest point in 2016. 
+
+Interestingly, D plot provides much more information about the time trend. Due to the small cases of certain type of hate crimes, some changes across years are hard to view in the C plot, while D plot 'exaggerates' those changes by using the relative change compared with numbers in 2010, especially the Anti-Age and Anti-Gender. From C plot, it's difficult to view any fluctuations in Anti-Age and Anti-Gender across years. But, in D plot, we are able to view the obvious fluctuations in those two types. Specifically, for Anti-Age, it increases first, then goes down, then goes up to significanly high level, reaching its maximum in 2014, later drops a little and increases to the second highest point in 2016. And for Anti-Gender, it goes up for three years, decreases in next two years and then shows a significantly sharp increase from 2015 to 2016. 
+
+Seeing the sharp increase in Anti-Age and Anti-Gender at a particular year, we are curious about which sub-category of these two types causes such increase. As Anti-Age don't have any sub-groups, we focus on the subgroups of Anti-Age.
+
+```{r message=FALSE}
+tidy %>% filter(Type=='Anti.Gender') %>%
+  select(Year,Subtype,Count)%>%
+  group_by(Year,Subtype) %>% 
+  summarise(Count=sum(Count)) %>% 
+  ggplot(aes(Year,Count,color=Subtype))+
+  geom_line()+
+  geom_point()+
+  labs(y='Number of Incidents', color='Subtype of AntiGender')+
+  ggtitle("Time Series Line Chart","Year VS Subtype of AntiGender")+
+  theme(panel.grid.major.y = element_line(),
+        panel.grid.major.x = element_line(),
+        panel.background = element_blank(),,
+        panel.grid.minor = element_line(),
+        plot.background = element_rect(fill='#FAFAFA'),
+        axis.line = element_line(color='black'),
+        legend.background = element_rect(fill = '#FAFAFA'),
+        legend.text=element_text(size=6.5))
+  
+
+```
+
+In order to see, we draw the time series line chart of years versus subgroups of Anti-Gender. From the plot, we discover that the sharp increase in 2016 is largely caused by the sharp increase in Anti-Gender-Indentity-Expression in 2016.
+
+After investing the time impact on the distribution of crimes types and hate crime types, we also want to incorporate county factor into the consideration. In particular,we want to see if location matters in the changes of numbers of incidents happened in these eight years.
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+change_in_county<-tidy %>%
+  filter(Year == c(2010,2018)) %>% 
+  group_by(County,Year) %>% 
+  summarise(Count=sum(Count)) %>% 
+  mutate(change_prop = round((Count-Count[1])/Count[1], 2))%>% 
+  filter(Year==2018) %>%
+  ungroup() %>% 
+  select(County,change_prop)
+
+change_in_county$change_prop[is.nan(change_in_county$change_prop)]<-0
+
+```
+
+Same as before, we first did some transformation of data. Specifically, we find the total number of incidents of each county in 2010 and 2018 and then calculated the change percentage of each county. Because some counties don't have any incidents in both 2010 and 2018, they show NaN in the final change_prop, which we considered them as 0, indicating that their number of incidents stay at the same level. 
+
+```{r include=FALSE}
+library(maps)
+states <- map_data("state")
+counties <- map_data("county")
+NewYork <- subset(states, region == "new york")
+ny_county <- subset(counties, region == "new york")
+
+data1<-ny_county %>% rename(label=subregion) %>% select(long,lat,label,group)
+data2<-change_in_county %>% mutate(label= tolower(County)) %>% select(label,change_prop)
+data<-full_join(data1,data2,by='label')
+
+data$change_prop[is.na(data$change_prop)]<-0
 ```
 
 ```{r}
-dataset %>% filter(Type=='Anti.Gender') %>% ggplot(aes(x=Subtype,y=Count,fill=Crime.Type))+geom_col()
+data %>% ggplot(aes(x=long, y = lat, group=group,fill = change_prop)) + 
+  geom_polygon(color='white')+
+  labs(x='longitude',y='latitude',fill='Shift in proportion')+
+  ggtitle('New York State by Counties','Shift proportions in numbers of total hate crimes')+
+  scale_fill_gradient(low ='#2874A6', high ='#D6EAF8')+
+  theme(panel.background = element_blank())
 ```
 
+To visualize our result, we draw a county map, showing shift in proportion at each county. From the colored map, we noticed that all the counties show some degree of decrease in the total number of incidents. That's why the scale of shift in proportion ranges from 0 to -1. 
+
+Furthermore, we discovered that there are almost no great gaps in the filled color of each county, except the one locates around -75 longitude and 43 latitude. This tells us that neighborhood effect influences the change in the number of total incidents. In other words, counties with large shift tend to connect with each other in at least one direction. Similar for counties with small shift. 
+Also, it's easy to see that counties with relatively large shift locates at 43 latitude or at 74 longitude.Thus, from what we got, we may infer that location does matter in the shift of numbers of incidents from 2010 to 2018. 
