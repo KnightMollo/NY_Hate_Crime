@@ -7,6 +7,7 @@ library(ggplot2)
 library(ggpubr)
 require(gridExtra)
 require(cowplot)
+require(forcats)
 
 ```
 
@@ -17,51 +18,70 @@ dataset <- read.csv("Hate_Crimes_data_Tidy.csv")
 
 ```{r}
 dataset %>% 
-  ggplot(aes(x = type, y = count, fill = Crime.Type))  + 
+  ggplot(aes(x = fct_infreq(type), y = count, fill = Crime.Type))  + 
   geom_col() +
   theme(axis.text.x = element_text(angle = 20, vjust = 0.9))+
   scale_fill_discrete(name = "Type of Crime")+
   xlab("Type of Hate Crime")+
-  ggtitle("Hate Crime Incidents in NY State from 2010 to 2018")
+  ggtitle("Total Hate Crime Incidents in NY State from 2010 to 2018")
   
+
 ```
+Hate Crimes are normally categorized into 6 sub-categories: Anti-Religion, Anti-Race, Anti-Sexual-Orientation, Anti-Gender, Anti-Disability and Anti-Age. 
+The method of crime are further cateogrizse into two types: Crime against persons and property crimes. 
+The bar chart gives us an overview of the relative frequency of each sub-categories of Hate Crimes. 
+The most common type of hate crime is Anti-religion, and about one third of these crimes were conducted against property. The least common type of hate crime is Anti-Age, and it composes of almost entirely of property crimes. 
+It is notable that unlike anti-religion hate crimes and anit-age hate crimes, crimes against persons are more common among other types of hate crimes. Anti-Sexual-Minority hate crimes are particularly high in proportion of crimes against persons. 
 
-
+  aq
 ```{r}
-g1<- dataset %>% filter(type=='Anti_Gender') %>% ggplot(aes(x=Sub.type,y=count,fill=Crime.Type))+geom_col()+
+g1<- dataset %>% filter(type=='Anti_Gender') %>% 
+  ggplot(aes(x= fct_infreq(Sub.type), y = count,fill=Crime.Type))+
+  geom_col()+
   #theme(axis.text.x = element_text(angle = 20, vjust = 0.9))+
   theme(text = element_text(size=8))+
-  coord_flip()
+  coord_flip()+
+  ggtitle("Anti_Gender")
 
-g2<- dataset %>% filter(type=='Anti_Age') %>% ggplot(aes(x=Sub.type,y=count,fill=Crime.Type))+geom_col()+
+g1
+
+g2<- dataset %>% filter(type=='Anti_Age') %>% 
+  ggplot(aes(x=Sub.type,y=count,fill=Crime.Type))+geom_col()+
   #theme(axis.text.x = element_text(angle = 20, vjust = 0.9))
   theme(text = element_text(size=8))+
-  coord_flip()
+  coord_flip()+
+   ggtitle("Anti_Age")
 
-g3 <- dataset %>% filter(type=='Anti_Race') %>% ggplot(aes(x=Sub.type,y=count,fill=Crime.Type))+geom_col()+
+g3 <- dataset %>% filter(type=='Anti_Race') %>% 
+  ggplot(aes(x=fct_infreq(Sub.type),y=count,fill=Crime.Type))+geom_col()+
   theme(text = element_text(size=8))+
   #theme(axis.text.x = element_text(angle = 20, vjust = 0.9))
-  coord_flip()
+  coord_flip()+
+   ggtitle("Anti_Race")
 
 g4 <- dataset %>% filter(type=='Anti_Religion') %>% ggplot(aes(x=Sub.type,y=count,fill=Crime.Type))+geom_col()+
-  theme(text = element_text(size=8))+
+  theme(text = element_text(size=7))+
   #theme(axis.text.x = element_text(angle = 20, vjust = 0.9))
-  coord_flip()
+  coord_flip()+
+  ggtitle("Anti_Religion")
 
 
 g5 <- dataset %>% filter(type=='Anti_Disability') %>% ggplot(aes(x=Sub.type,y=count,fill=Crime.Type))+geom_col()+
   theme(text = element_text(size=8))+
 #theme(axis.text.x = element_text(angle = 20, vjust = 0.9))
-  coord_flip()
+  coord_flip()+
+  ggtitle("Anti_Disability")
 
 g6 <- dataset %>% filter(type=='Anti_Sexual_Minority') %>%
   ggplot(aes(x=Sub.type,y=count,fill=Crime.Type))+geom_col()+
   theme(text = element_text(size=8))+
-  coord_flip()
+  coord_flip()+
+  ggtitle("Anti_Sexual_Minority")
+
   #theme(axis.text.x = element_text(angle = 90, vjust = 0.9))
 
 #g6 
-legend <- get_legend(g1)
+legend <- get_legend(g2 + theme(legend.position="bottom", legend.justification="center" ,legend.box.just = "bottom"))
 
 g1<- g1 + theme(legend.position = "none") + xlab(NULL)
 g2<- g2 + theme(legend.position = "none")+ xlab(NULL)
@@ -71,6 +91,16 @@ g5<- g5 + theme(legend.position = "none")+ xlab(NULL)
 g6<- g6 + theme(legend.position = "none")+ xlab(NULL)
 #g1 
 #grid.arrange( g1, g2, g3, g4, g5, g6, legend,  ncol = 2, nrow =4, heights = 4)
-plot_grid( g1, g2, g3, g4, g5, g6, legend, nrow = 4, ncol = 2, align = "v", rel_heights = c(4/16, 6/16, 4/16, 2/16) )
+
+plot <- plot_grid( g1, g2, g3, g4, g5, g6, nrow = 3, ncol = 2, align = "hv",axis = 'l', rel_heights = c(5/16, 6/16, 4/16, 1/16))
+
+plot_grid(plot, legend, nrow = 2, rel_heights = c(0.9,0.1))
 ```
+What religions, races, gender.etc are most susceptible to Hate Crimes? We answer this questions by investigating into each sub-type of hate crimes. 
+Within the Anti-Gender group, hate crimes against gender identity expression are of the most frequent.There's very small number of hate crimes against male. 
+There are only less then 30 incidences of Anti-Age hate crimes during the 9 year period from 2010 to 2018, and almost all are property crimes. 
+Within the Anti-Race category, vast majority of the hate crimes are against African Americans. It is notable that anti-white hate crimes are ranked 2nd most frequent. 
+Within the Anti-Religion category, vast majority of the hate crimes are against Jewish, within which, vast majority are crimes against property, rather than against persons. 
+The total incidences of Anti-Disability crimes is also very small, with only one incident against property. 
+Anti-Gay Male hate crimes are most common among the Anti-Sexual Minority group, and the majority of these crimes are against persons. 
 
