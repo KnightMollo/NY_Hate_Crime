@@ -42,7 +42,7 @@ for( i in 1:nrow(data)){
     data$type[i] = "Anti_Sexual_Minority"
   }
   if(data$`Sub-type`[i] %in% anti_disability){
-    data$type[i] = "Anti_isability"
+    data$type[i] = "Anti_Disability"
   }
   
   
