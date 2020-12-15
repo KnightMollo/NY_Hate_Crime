@@ -7,7 +7,6 @@ library(cowplot)
 library(ggplot2)
 library(ggpubr)
 library(forcats)
-
 ```
 
 
@@ -22,10 +21,9 @@ dataset %>%
   xlab("Type of Hate Crime")+
   ggtitle("Total Hate Crime Incidents in NY State from 2010 to 2018")
   
-
 ```
-Hate Crimes are normally categorized into 6 sub-categories: Anti-Religion, Anti-Race, Anti-Sexual-Orientation, Anti-Gender, Anti-Disability and Anti-Age. 
-The method of crime are further cateogrizse into two types: Crime against persons and property crimes. 
+Hate Crimes are categorized into 6 sub-categories: Anti-Religion, Anti-Race, Anti-Sexual-Orientation, Anti-Gender, Anti-Disability and Anti-Age. 
+The methods of crime are further categorize into two types: Crime against persons and property crimes. 
 The bar chart gives us an overview of the relative frequency of each sub-categories of Hate Crimes. 
 The most common type of hate crime is Anti-religion, and about one third of these crimes were conducted against property. The least common type of hate crime is Anti-Age, and it composes of almost entirely of property crimes. 
 It is notable that unlike anti-religion hate crimes and anit-age hate crimes, crimes against persons are more common among other types of hate crimes. Anti-Sexual-Minority hate crimes are particularly high in proportion of crimes against persons. 
