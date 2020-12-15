@@ -7,3 +7,16 @@ site: bookdown::bookdown_site
 
 # Introduction
 
+There are many international metropolises around the world, like London, Tokyo and Shanghai. Among those famous cities, New York is the most remarkable one. For example, it's probably the only city where you can live with any languages other than English. However, there are still a number of people from different races, genders, religions etc. backgrounds still suffering from biases and discrimination. Hate Crime, or bias-motivated crime, is one of the most dangerous consequences. 
+
+A hate crime is a "criminal offense against a person or property motivated in whole or in part by an offender's bias against a race, religion, disability, sexual orientation, ethnicity, gender or gender identity." In the simplest terms, a hate crime must include both “hate” and a "crime." Hate crimes have server impact on our society in that damage is not limited to the immediate target of the crime, but to the entire group the victim represents. In light of recent tragedies such as the death of George Floyd, we want to know how much progress, if any, we've made in fighting against bias and discrimination. What populations, besides African Americans are susceptible to biases? In what region do hate crimes occur most frenquently? We resort to the New York Hate Crime data set to find answers. 
+
+In order to have better understanding about hate crimes in New York City, we are looking for answers to these three questions:
+
+a)  What's the most frequent kind of hate crimes (i.e. against religion or race) in the State of New York and in its counties from 2010 to 2018? 
+
+b) Which county in New York State has a relative large number of hate crimes? For each county, what's the proportions of different kinds of hate crimes? If it's different, can it suggest that county influences the distribution of hate crimes?
+  
+c)  What is the trend of hate crimes in numbers and types, in New York State from 2010 to 2018? We will also dive in to look at the trend in each county. 
+
+The answers of these questions can give us very basic understanding of hate crimes in New York State, which can also serve as a good start for people who want to know more about hate crimes in New York State. The records of law enforcement only contain hate crimes investigated, and it's highly possible the real data is way beyond this. Especially given the fact that systemic racism is still common in this country.
