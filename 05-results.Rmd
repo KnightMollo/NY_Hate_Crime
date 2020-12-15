@@ -7,18 +7,6 @@ library(cowplot)
 library(ggplot2)
 library(ggpubr)
 require(forcats)
-tidy <- read.csv("Hate_Crimes_data_Tidy.csv")
-
-
-plot_theme<-theme(panel.grid.major.y = element_line(),
-        panel.grid.major.x = element_line(),
-        panel.background = element_blank(),,
-        panel.grid.minor = element_line(),
-        plot.background = element_rect(fill='#FAFAFA'),
-        axis.line = element_line(color='black'),
-        legend.background = element_rect(fill = '#FAFAFA'),
-        legend.position = "bottom",
-        legend.text=element_text(size=6.5))
 
 ```
 
@@ -52,7 +40,6 @@ g1<- dataset %>% filter(Type=='Anti.Gender') %>%
   coord_flip()+
   ggtitle("Anti_Gender")
 
-g1
 
 g2<- dataset %>% filter(Type=='Anti.Age') %>% 
   ggplot(aes(x=Subtype,y=Count,fill=Crime.Type))+geom_col()+
@@ -117,6 +104,22 @@ Anti-Gay Male hate crimes are most common among the Anti-Sexual Minority group, 
 ***
 
 After examing the distributions of hate crimes in different counties, we know take time factor into consideration. In other words, we want to see if total incidents of each type of hate crimes vary cross time. And what's more, we aim to integrate both county and time into the inspection of distribution of hate crimes in New York State.
+```{r}
+tidy <- read.csv("Hate_Crimes_data_Tidy.csv")
+
+
+plot_theme<-theme(panel.grid.major.y = element_line(),
+        panel.grid.major.x = element_line(),
+        panel.background = element_blank(),,
+        panel.grid.minor = element_line(),
+        plot.background = element_rect(fill='#FAFAFA'),
+        axis.line = element_line(color='black'),
+        legend.background = element_rect(fill = '#FAFAFA'),
+        legend.position = "bottom",
+        legend.text=element_text(size=6.5))
+
+```
+
 
 ```{r Line Chart: Time Vs Crime Type1, message=FALSE, warning=FALSE}
 #manipulate the data to make it suitable for time series line chart
