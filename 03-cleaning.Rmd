@@ -4,13 +4,15 @@
 library(tidyverse)
 ```
 
-
+To get the tidy data, we first drop the last three columns namely *Total.Incidents*, *Total.Victims*, *Total.Offenders*, as we can still calculate them using the remaining data. Then we regard columns *County*, *Year* and *Crime.Type* as ID columns, which means we don't make changes on them. We use the pivot_longer method to gather the rest of columns to create two columns *Subtype* and *Count*. Here Subtype means each small class of hate crimes such as *Anti.Male*, *Anti.Female* etc. *Count* is the corresponding number of cases for each small class. After that, we create a new column *Type*, containing six general classes that are *Anti.Gender*, *Anti.Age*, *Anti.Race*, *Anti.Religion*, *Anti.Sexual.Minority* and *Anti.Disability*. For each Subtype, it has a corresponding type. For example, the Subtype *Anti.Female* is related with the type *Anti.Gender* and the Subtype *Anti.White* is related with the type *Anti.Race'*. We use the for-loop to fill in the *Type* column for all rows.
 
 
 ```{r}
 dataset <- read.csv("Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv")
+dataset <- subset(dataset, select=-c(42,43,44))
+names(dataset)[1] <- "County"
 
-data<- dataset %>% pivot_longer(cols = !(colnames(dataset)[1] | colnames(dataset)[2] | colnames(dataset)[3] |colnames(dataset)[42] |colnames(dataset)[43] | colnames(dataset)[44] ), names_to = "Sub-type", values_to = "count")
+data<- dataset %>% pivot_longer(cols = !(colnames(dataset)[1] | colnames(dataset)[2] | colnames(dataset)[3]), names_to = "Subtype", values_to = "Count")
 
 anti_gender = colnames(dataset)[4:7]
 anti_age = colnames(dataset)[8]
@@ -19,39 +21,39 @@ anti_religion = colnames(dataset)[16:34]
 anti_sexual_minority = colnames(dataset)[35:39]
 anti_disability = colnames(dataset)[40:41]
 
-#print(anti_sexual_minority)
-#print(anti_disability)
 vec = c(rep(0,nrow(data)))
-data <- cbind(data, type = vec)
-print(colnames(data))
+data <- cbind(data, Type = vec)
 
 for( i in 1:nrow(data)){
-  if(data$`Sub-type`[i] %in% anti_gender){
-    data$type[i] = "Anti_Gender"
+  if(data$`Subtype`[i] %in% anti_gender){
+    data$Type[i] = "Anti.Gender"
   }
-  if(data$`Sub-type`[i] %in% anti_age){
-    data$type[i] = "Anti_Age"
+  if(data$`Subtype`[i] %in% anti_age){
+    data$Type[i] = "Anti.Age"
   }
-  if(data$`Sub-type`[i] %in% anti_race){
-    data$type[i] = "Anti_Race"
+  if(data$`Subtype`[i] %in% anti_race){
+    data$Type[i] = "Anti.Race"
   }
-  if(data$`Sub-type`[i] %in% anti_religion){
-    data$type[i] = "Anti_Religion"
+  if(data$`Subtype`[i] %in% anti_religion){
+    data$Type[i] = "Anti.Religion"
   }
-  if(data$`Sub-type`[i] %in% anti_sexual_minority){
-    data$type[i] = "Anti_Sexual_Minority"
+  if(data$`Subtype`[i] %in% anti_sexual_minority){
+    data$Type[i] = "Anti.Sexual.Minority"
   }
-  if(data$`Sub-type`[i] %in% anti_disability){
-    data$type[i] = "Anti_Disability"
+  if(data$`Subtype`[i] %in% anti_disability){
+    data$Type[i] = "Anti.Disability"
   }
   
-  
+
   
   
 }
 ```
 
+Here are first few rows of our modified data. 
+
 ```{r}
 write.csv(data, "Hate_Crimes_data_Tidy.csv" )
+head(data)
 ```
 
