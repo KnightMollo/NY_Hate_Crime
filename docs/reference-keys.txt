@@ -1,5 +1,7 @@
 introduction
 data-sources
+provider
+problems-with-data-source
 data-transformation
 missing-values
 results

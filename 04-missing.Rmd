@@ -1,15 +1,15 @@
 # Missing values
 
-All data are based on data provided by Law Enforcement in New York State. It’s already a summary integrating hate crimes happened in New York States from 2010 to 2018. In other words, the data here represent the numbers of hate crimes. If there is no hate crime of certain category, then the number will be 0. Also, it makes sense that the Law Enforcement Department already performed an initial data cleaning by filtering out the missing values. Therefore, there is no missing value in our dataset.
+All data are based on data provided by Law Enforcement in New York State. It’s already a summary integrating hate crimes happened in New York States from 2010 to 2018. In other words, the data here represent the numbers of hate crimes. If there is no hate crime of certain category, then the number will be 0. Also, it makes sense that the Law Enforcement Department already performed an initial data cleaning by filtering out the missing values. 
 
-Now we show that there is no null value in 'Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv':
+There is no null value in 'Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv':
 
 ```{r, echo = TRUE}
 dataset <- read.csv("Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv")
 any(is.na(dataset))
 ```
 
-Now we show that there is no null value in 'Hate_Crimes_data_Tidy.csv':
+There is no null value in 'Hate_Crimes_data_Tidy.csv':
 
 ```{r, echo=TRUE}
 dataset <- read.csv("Hate_Crimes_data_Tidy.csv")

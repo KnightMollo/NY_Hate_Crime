@@ -137,11 +137,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
+<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a><ul>
+<li class="chapter" data-level="2.1" data-path="data-sources.html"><a href="data-sources.html#provider"><i class="fa fa-check"></i><b>2.1</b> Provider</a></li>
+<li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#problems-with-data-source"><i class="fa fa-check"></i><b>2.2</b> Problems with data source:</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
 <li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a><ul>
-<li class="chapter" data-level="5.0.1" data-path="results.html"><a href="results.html#question-3"><i class="fa fa-check"></i><b>5.0.1</b> Question 3</a></li>
+<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#question-3"><i class="fa fa-check"></i><b>5.1</b> Question 3</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
@@ -166,15 +169,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="data-sources" class="section level1">
 <h1><span class="header-section-number">Chapter 2</span> Data sources</h1>
+<div id="provider" class="section level2">
+<h2><span class="header-section-number">2.1</span> Provider</h2>
 <p>The data set is named as “Hate Crimes by County and Bias Type: Beginning 2010” and it is provided by New York Division of Criminal Justice Services. The Office of Justice Research and Performance is responsible for collecting data.</p>
 <p>Link to dataset: <a href="https://data.ny.gov/Public-Safety/Hate-Crimes-by-County-and-Bias-Type-Beginning-2010/6xda-q7ev">Hate Crimes by County and Bias Type: Beginning 2010</a></p>
 <p>The definition of hate crime is as followed:</p>
 <p><em>Under New York State’s Hate Crime Law (Penal Law Article 485), a person commits a hate crime when one of a specified set of offenses is committed targeting a victim because of a perception or belief about their race, color, national origin, ancestry, gender, religion, religious practice, age, disability, or sexual orientation, or when such an act is committed as a result of that type of perception or belief. These types of crimes can target an individual, a group of individuals, or public or private property.</em></p>
 <p>The dataset has 44 columns and 548 rows. The variable <em>County</em> and <em>Crime Type</em> are strings and all others are integers. Most of columns are names of hate crimes, including <em>Anti-Male</em>, <em>Anti-female</em> and so on.</p>
 <p>The problem with this dataset is many columns are purely names of hate crimes within the same category. For example, <em>Anti-White</em>, <em>Anti-Black</em>, <em>Anti-American Indian/Alaskan Native</em>, <em>Anti-Asian</em> and so on are all hate crimes against specific race. And there are many hate crimes against different religions. When handling this dataset, we will need to do some summary about kinds of hate crimes to have better understanding of this dataset.</p>
-<p>Problem with data source:
-After doing research on hate crimes laws and how hate crimes are prosecuted, we believe our data set could underestimate the amount of actual hate crimes in NY. In order to prosecute, attorneys must prove the defendant’s intent was based on bias, which is notoriously difficult to prove. This added layer of complexity to otherwise straightforward cases of assaults or stealing shun attorneys from doing so, thus resulting in an overall under-reporting of hate crimes.</p>
+</div>
+<div id="problems-with-data-source" class="section level2">
+<h2><span class="header-section-number">2.2</span> Problems with data source:</h2>
+<p>After doing research on hate crimes laws and how hate crimes are prosecuted, we believe our data set could underestimate the amount of actual hate crimes in NY. In order to prosecute, attorneys must prove the defendant’s intent was based on bias, which is notoriously difficult to prove. This added layer of complexity to otherwise straightforward cases of assaults or stealing shun attorneys from doing so, thus resulting in an overall under-reporting of hate crimes.</p>
+<p>What’s more, the data is based on law enforcement’s records, which means it’s hard to involve all possible prejudice-motivated
+illegal activities. The statistics doesn’t guarantee all hate crimes are documented.</p>
 
+</div>
 </div>
             </section>
 

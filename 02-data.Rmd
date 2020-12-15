@@ -1,5 +1,7 @@
 # Data sources
 
+## Provider
+
 The data set is named as "Hate Crimes by County and Bias Type: Beginning 2010" and it is provided by New York Division of Criminal Justice Services. The Office of Justice Research and Performance is responsible for collecting data. 
 
 Link to dataset: [Hate Crimes by County and Bias Type: Beginning 2010](https://data.ny.gov/Public-Safety/Hate-Crimes-by-County-and-Bias-Type-Beginning-2010/6xda-q7ev)
@@ -13,6 +15,9 @@ The dataset has 44 columns and 548 rows. The variable *County* and *Crime Type* 
 The problem with this dataset is many columns are purely names of hate crimes within the same category. For example, *Anti-White*, *Anti-Black*, *Anti-American Indian/Alaskan Native*, *Anti-Asian* and so on are all hate crimes against specific race. And there are many hate crimes against different religions. When handling this dataset, we will need to do some summary about kinds of hate crimes to have better understanding of this dataset. 
 
 
-Problem with data source: 
+## Problems with data source: 
+
 After doing research on hate crimes laws and how hate crimes are prosecuted, we believe our data set could underestimate the amount of actual hate crimes in NY. In order to prosecute, attorneys must prove the defendant's intent was based on bias, which is notoriously difficult to prove. This added layer of complexity to otherwise straightforward cases of assaults or stealing shun attorneys from doing so, thus resulting in an overall under-reporting of hate crimes. 
 
+What's more, the data is based on law enforcement's records, which means it's hard to involve all possible prejudice-motivated
+illegal activities. The statistics doesn't guarantee all hate crimes are documented.
