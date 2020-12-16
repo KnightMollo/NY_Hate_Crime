@@ -108,7 +108,7 @@ Anti-Gay Male hate crimes are most common among the Anti-Sexual Minority group, 
 
 After investigating the overall distribution of all kinds of hate crimes, we now consider the distribution of different types of hate crimes in different counties. That is, we want to know if for some certain type of hate crimes, the total number of incicents corresponding to it vary in counties or not. Also, it is worth checking whether the distribution in counties changes among various kinds of hate crimes. Here total number of incidents of some type of hate crimes includes the whole time period from 2010 to 2018 and both crime types which are person and property.
 
-We draw a heatmap of total number of incidents in New York faceted by types of hate crimes.
+We draw  heatmaps of total number of incidents in New York for different types of hate crimes.
 
 ```{r echo=FALSE}
 states <- map_data("state")
@@ -158,10 +158,10 @@ q6<- data%>%filter(Type== 'Anti.Sexual.Minority') %>% ggplot(aes(x=long,y=lat,gr
   ggtitle('Anti.Sexual.Minority')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
   scale_fill_viridis_c(direction=-1)+
-  theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5))   
-grid.arrange(q1, q2, nrow = 2,top='Heatmaps of total incidents of different hate types')
-grid.arrange(q3,q4, nrow = 2)
-grid.arrange(q5,q6, nrow = 2)
+  theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5)) 
+grid.arrange(q1,q2,nrow=2, top= 'Total Incidents for Different Types of Hate Crimes')
+grid.arrange(q3,q4,nrow=2)
+grid.arrange(q5,q6,nrow=2)
 ```
 
 Now we have six plots of heatmaps where each heatmap corresponds to a certain type of hate crimes.
