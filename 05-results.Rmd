@@ -187,10 +187,6 @@ In conclusion,  for a certain type of hate crimes, the total number of incicents
 There is a point that some counties in the heatmaps don't have any value (or color). That is because in the original dataset, there is no data of these counties as the author has previously filtered out all missing values.Therefore, we don't have to deal with missing values in the dataset.
 
 
-## Question 3
-***
-
-After examing the distributions of hate crimes in different counties, we know take time factor into consideration. In other words, we want to see if total incidents of each type of hate crimes vary cross time. And what's more, we aim to integrate both county and time into the inspection of distribution of hate crimes in New York State.
 ```{r}
 tidy <- read.csv("Hate_Crimes_data_Tidy.csv")
 
