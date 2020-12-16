@@ -98,9 +98,6 @@ plot_grid(g3,g4, nrow = 2,align = "hv",axis = 'l' )
 plot_grid(g5,g6, legend, nrow = 3,align = "hv",axis = 'l' , rel_heights = c(0.45, 0.45, 0.1))
 ```
 
-plot <- plot_grid( g1, g2, g3, g4, g5, g6, nrow = 3, ncol = 2, align = "hv",axis = 'l', rel_heights = c(5/16, 6/16, 4/16, 1/16))
-
-plot_grid(plot, legend, nrow = 2, rel_heights = c(0.9,0.1))
 ```
 What religions, races, gender.etc are most susceptible to Hate Crimes? We answer this questions by investigating into each sub-type of hate crimes. 
 Within the Anti-Gender group, hate crimes against gender identity expression are of the most frequent.There's very small number of hate crimes against male. 
