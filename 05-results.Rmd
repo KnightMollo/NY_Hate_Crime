@@ -161,6 +161,7 @@ q1 <- data%>%filter(Type== 'Anti.Age') %>%
   geom_polygon(color='white')+
   ggtitle('Distribution of Anti-Age')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
+  annotate('text',x= -74,y=40.71, label='NY', color= 'red',hjust=1)+
   scale_fill_viridis_c(direction=-1)+
   theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5))
 
@@ -171,6 +172,7 @@ q2 <- data%>%filter(Type== 'Anti.Gender') %>% ggplot(aes(x=long,y=lat,group=grou
   geom_polygon(color='white')+
   ggtitle('Distribution of Anti-Gender')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
+  annotate('text',x= -74,y=40.71, label='NY', color= 'red',hjust=1)+
   scale_fill_viridis_c(direction=-1)+
   theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5))  
 
@@ -178,6 +180,7 @@ q3 <- data%>%filter(Type== 'Anti.Race') %>% ggplot(aes(x=long,y=lat,group=group,
   geom_polygon(color='white')+
   ggtitle('Distribution of Anti-Race')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
+  annotate('text',x= -74,y=40.71, label='NY', color= 'red',hjust=1)+
   scale_fill_viridis_c(direction=-1)+
   theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5))  
 
@@ -185,6 +188,7 @@ q4 <- data%>%filter(Type== 'Anti.Religion') %>% ggplot(aes(x=long,y=lat,group=gr
   geom_polygon(color='white')+
   ggtitle('Distribution of Anti-Religion')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
+  annotate('text',x= -74,y=40.71, label='NY', color= 'red',hjust=1)+
   scale_fill_viridis_c(direction=-1)+
   theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5)) 
 
@@ -192,6 +196,7 @@ q5 <- data%>%filter(Type== 'Anti.Disability') %>% ggplot(aes(x=long,y=lat,group=
   geom_polygon(color='white')+
   ggtitle('Distribution of Anti-Disability')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
+  annotate('text',x= -74,y=40.71, label='NY', color= 'red',hjust=1)+
   scale_fill_viridis_c(direction=-1)+
   theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5)) 
 
@@ -199,6 +204,7 @@ q6<- data%>%filter(Type== 'Anti.Sexual.Minority') %>% ggplot(aes(x=long,y=lat,gr
   geom_polygon(color='white')+
   ggtitle('Distribution of Anti-Sexual-Minority')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
+  annotate('text',x= -74,y=40.71, label='NY', color= 'red',hjust=1)+
   scale_fill_viridis_c(direction=-1)+
   theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5)) 
 ```
@@ -228,6 +234,8 @@ Regarding Anti.Disability, the maximum value is just 3, which means this type oc
 Regarding Anti.Sexual.Minority, a few counties have values other than 0. We can see that the very small county mentioned many times which is in the southeast side of New York has a maximum value 250. And almost all large values appear in the southeast corner. 
 
 In conclusion,  for a certain type of hate crimes, the total number of incicents corresponding to it vary in counties. Also, the distribution in counties changes among various kinds of hate crimes. We have to pay attention to two areas: one is the county in the left side of New York which is mentioned more than once and the other one is the southeast corner of New York, as these two areas have many large values for more than one type of hate crimes.
+
+We also annotate the location of New York city with text 'NY' on six plots. We can see that New York city is located in the southeast corner of New York state, a place we have to pay attention to. That is, for us Columbia students, we should be careful with these possible dangerous situations.
 
 There is a point that some counties in the heatmaps don't have any value (or color). That is because in the original dataset, there is no data of these counties as the author has previously filtered out all missing values.Therefore, we don't have to deal with missing values in the dataset.
 
