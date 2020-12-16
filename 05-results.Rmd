@@ -35,6 +35,8 @@ It is notable that unlike anti-religion hate crimes and anit-age hate crimes, cr
 
 
 ```{r}
+
+
 g1<- dataset %>% filter(Type=='Anti.Gender') %>% 
   ggplot(aes(x= fct_infreq(Subtype), y = Count,fill=Crime.Type))+
   geom_col()+
@@ -42,7 +44,6 @@ g1<- dataset %>% filter(Type=='Anti.Gender') %>%
   theme(text = element_text(size=8))+
   coord_flip()+
   ggtitle("Anti_Gender")
-
 
 g2<- dataset %>% filter(Type=='Anti.Age') %>% 
   ggplot(aes(x=Subtype,y=Count,fill=Crime.Type))+geom_col()+
@@ -57,6 +58,7 @@ g3 <- dataset %>% filter(Type=='Anti.Race') %>%
   #theme(axis.text.x = element_text(angle = 20, vjust = 0.9))
   coord_flip()+
    ggtitle("Anti_Race")
+g3
 
 g4 <- dataset %>% filter(Type=='Anti.Religion') %>% ggplot(aes(x=Subtype,y=Count,fill=Crime.Type))+geom_col()+
   theme(text = element_text(size=7))+
@@ -91,9 +93,11 @@ g6<- g6 + theme(legend.position = "none")+ xlab(NULL)
 #g1 
 #grid.arrange( g1, g2, g3, g4, g5, g6, legend,  ncol = 2, nrow =4, heights = 4)
 
-plot <- plot_grid( g1, g2, g3, g4, g5, g6, nrow = 3, ncol = 2, align = "hv",axis = 'l', rel_heights = c(5/16, 6/16, 4/16, 1/16))
+plot_grid(g1,g2, nrow = 2,align = "hv",axis = 'l' )
+plot_grid(g3,g4, nrow = 2,align = "hv",axis = 'l' )
+plot_grid(g5,g6, legend, nrow = 3,align = "hv",axis = 'l' , rel_heights = c(0.45, 0.45, 0.1))
+```
 
-plot_grid(plot, legend, nrow = 2, rel_heights = c(0.9,0.1))
 ```
 What religions, races, gender.etc are most susceptible to Hate Crimes? We answer this questions by investigating into each sub-type of hate crimes. 
 Within the Anti-Gender group, hate crimes against gender identity expression are of the most frequent.There's very small number of hate crimes against male. 
