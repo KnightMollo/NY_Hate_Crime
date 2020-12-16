@@ -1,8 +1,6 @@
 # Results
 
-
-
-```{r message=FALSE, warning=FALSE, include=FALSE}
+```{r message=FALSE, warning=FALSE, echo=TRUE}
 library(tidyverse)
 library(cowplot)
 library(ggplot2)
@@ -10,107 +8,129 @@ library(ggpubr)
 library(forcats)
 library(maps)
 library(gridExtra)
+
+dataset <- read.csv("Hate_Crimes_data_Tidy.csv")
+
+plot_theme<-theme(panel.grid.major.y = element_line(),
+        panel.grid.major.x = element_line(),
+        panel.background = element_blank(),,
+        panel.grid.minor = element_line(),
+        plot.background = element_rect(fill='#FAFAFA'),
+        axis.line = element_line(color='black'),
+        legend.background = element_rect(fill = '#FAFAFA'),
+        legend.text=element_text(size=6.5))
 ```
 
+These are the packages, data and the main theme that we are going to apply in the following exploratory data analysis.
 
 ## Question 1
 ***
-How many hate crimes are taking place in NY state? Who are the people most affected? The bar chart below provides us a clear initial view.
+How many hate crimes are taking place in NY state? Who are the people most affected? The stacked bar chart below provides us a clear initial view.
+
 ```{r}
-dataset <- read.csv("Hate_Crimes_data_Tidy.csv")
 dataset %>% 
-  ggplot(aes(x = fct_infreq(Type), y = Count, fill = Crime.Type))  + 
-  geom_col() +
+  ggplot(aes(x = fct_infreq(Type),y=Count,fill = Crime.Type))  + geom_bar(position="stack", stat="identity") +
+  labs(x= "Type of Hate Crime",y="Number of Incidents",fill= "Type of Crime") +
+  ggtitle("Stacked Bar Chart","Total Hate Crime Incidents in NY State from 2010 to 2018")+
   theme(axis.text.x = element_text(angle = 20, vjust = 0.9))+
-  scale_fill_discrete(name = "Type of Crime")+
-  xlab("Type of Hate Crime")+
-  ggtitle("Total Hate Crime Incidents in NY State from 2010 to 2018")
+  plot_theme
   
 ```
 
 Hate Crimes are categorized into 6 sub-categories: Anti-Religion, Anti-Race, Anti-Sexual-Orientation, Anti-Gender, Anti-Disability and Anti-Age. 
-The methods of crime are further categorize into two types: Crime against persons and property crimes. 
-The bar chart gives us an overview of the relative frequency of each sub-categories of Hate Crimes. 
-The most common type of hate crime is Anti-religion, and about one third of these crimes were conducted against property. The least common type of hate crime is Anti-Age, and it composes of almost entirely of property crimes. 
-It is notable that unlike anti-religion hate crimes and anit-age hate crimes, crimes against persons are more common among other types of hate crimes. Anti-Sexual-Minority hate crimes are particularly high in proportion of crimes against persons. 
 
+The methods of crime are further categorize into two types: Crime against persons and property crimes. 
+The stacked bar chart gives us an overview of the relative frequency of each sub-categories of Hate Crimes happened in NY states from 2010 to 2018.
+
+The most common type of hate crime is Anti-religion, and more than half of this type were conducted against property.Then is the Anti-race, Anti-Sexual-Minority, Anti-Gender and Anti-Disability. The least common type of hate crime is Anti-Age, and it composes of almost crimes against property.
+
+It is notable that unlike anti-religion hate crimes and anit-age hate crimes, crimes against persons are more common among other types of hate crimes. Anti-Sexual-Minority hate crimes are particularly high in proportion of crimes against persons.
+
+After having a general picture of frequencies of different types of hate crimes happened in NY states, we continue to dive in to look at frequencies of sub-categories of each type of hate crimes.
 
 ```{r}
-d1 = dataset %>% filter(Type=='Anti.Gender') 
-d1$Subtype <- factor(d$Subtype, levels = c("Anti.Gender.Identity.Expression", "Anti.Transgender", "Anti.Female", 	"Anti.Male"))
-
-g1<-  d %>% 
-  ggplot(aes(x = fct_rev(Subtype), y = Count, fill = Crime.Type))  + 
-  geom_col() +
+g1<- dataset %>% 
+  filter(Type=='Anti.Gender') %>% 
+  ggplot(aes(x= reorder(Subtype,Count), y = Count,fill=Crime.Type))+
+  geom_col()+
   theme(text = element_text(size=8))+
-  scale_fill_discrete(name = "Type of Crime")+
   coord_flip()+
-  ggtitle("Anti_Gender")
+  labs(x= 'Subtype of Anti-Gender',y='Number of incidents', fill= 'Type of Crime')+
+  ggtitle('Stacked Bar Chart','Anti-Gender')+
+  plot_theme
+```
 
-  
+We also used stacked bar chart here to not only indicate the counts of subcatories of Anti-Gender but also demonstate the its division in crimes against person or property. Similar code was applied to other types of hate crimes. Eventually, we gained 6 stacked bar charts.
+
+```{r echo=FALSE}
 g2<- dataset %>% filter(Type=='Anti.Age') %>% 
-  ggplot(aes(x=Subtype,y=Count,fill=Crime.Type))+geom_col()+
-  #theme(axis.text.x = element_text(angle = 20, vjust = 0.9))
+  ggplot(aes(x=reorder(Subtype,Count),y=Count,fill=Crime.Type))+
+  geom_col()+
   theme(text = element_text(size=8))+
   coord_flip()+
-   ggtitle("Anti_Age")
-
+  labs(x= 'Subtype of Anti-Age',y='Number of incidents', fill= 'Type of Crime')+
+  ggtitle('Stacked Bar Chart','Anti-Age')+
+  plot_theme
 
 g3 <- dataset %>% filter(Type=='Anti.Race') %>% 
-  ggplot(aes(x= reorder(Subtype, Count, sum),y=Count,fill=Crime.Type))+geom_col()+
+  ggplot(aes(x=reorder(Subtype,Count),y=Count,fill=Crime.Type))+
+  geom_col()+
   theme(text = element_text(size=8))+
-  #theme(axis.text.x = element_text(angle = 20, vjust = 0.9))
   coord_flip()+
-   ggtitle("Anti_Race")
+  labs(x= 'Subtype of Anti-Race',y='Number of incidents', fill= 'Type of Crime')+
+  ggtitle('Stacked Bar Chart','Anti-Race')+
+  plot_theme
 
-
-g4 <- dataset %>% filter(Type=='Anti.Religion') %>% 
-  ggplot(aes(x=reorder(Subtype, Count, sum) ,y=Count,fill=Crime.Type))+geom_col()+
+g4 <- dataset %>% filter(Type=='Anti.Religion') %>% ggplot(aes(x=reorder(Subtype,Count),y=Count,fill=Crime.Type))+
+  geom_col()+
   theme(text = element_text(size=7))+
-  #theme(axis.text.x = element_text(angle = 20, vjust = 0.9))
   coord_flip()+
-  ggtitle("Anti_Religion")
+  labs(x= 'Subtype of Anti-Religion',y='Number of incidents', fill= 'Type of Crime')+
+  ggtitle('Stacked Bar Chart','Anti-Religion')+
+  plot_theme
 
 
-g5 <- dataset %>% filter(Type=='Anti.Disability') %>% 
-  ggplot(aes(x=reorder(Subtype, Count, sum),y=Count,fill=Crime.Type))+geom_col()+
+g5 <- dataset %>% filter(Type=='Anti.Disability') %>% ggplot(aes(x=reorder(Subtype,Count),y=Count,fill=Crime.Type))+
+  geom_col()+
   theme(text = element_text(size=8))+
-#theme(axis.text.x = element_text(angle = 20, vjust = 0.9))
   coord_flip()+
-  ggtitle("Anti_Disability")
+  labs(x= 'Subtype of Anti-Disability',y='Number of incidents', fill= 'Type of Crime')+
+  ggtitle('Stacked Bar Chart','Anti-Disability')+
+  plot_theme
 
 g6 <- dataset %>% filter(Type=='Anti.Sexual.Minority') %>%
-  ggplot(aes(x=reorder(Subtype, Count, sum),y=Count,fill=Crime.Type))+geom_col()+
+  ggplot(aes(x=reorder(Subtype,Count),y=Count,fill=Crime.Type))+
+  geom_col()+
   theme(text = element_text(size=8))+
   coord_flip()+
-  ggtitle("Anti_Sexual_Minority")
+  labs(x= 'Subtype of Anti-Sexual-Minority',y='Number of incidents', fill= 'Type of Crime')+
+  ggtitle('Stacked Bar Chart','Anti-Sexual-Minority')+
+  plot_theme
 
-  #theme(axis.text.x = element_text(angle = 90, vjust = 0.9))
-
-
-legend <- get_legend(g1 + theme(legend.position="bottom", legend.justification="center" ,legend.box.just = "bottom"))
-title <- ggdraw() + draw_label("Hate Crime Incidents by Sub-category")
 g1<- g1 + theme(legend.position = "none") + xlab(NULL)
 g2<- g2 + theme(legend.position = "none")+ xlab(NULL)
 g3<- g3 + theme(legend.position = "none")+ xlab(NULL)
 g4<- g4 + theme(legend.position = "none")+ xlab(NULL)
 g5<- g5 + theme(legend.position = "none")+ xlab(NULL)
-g6<- g6 + theme(legend.position = "none")+ xlab(NULL)
-#g1 
-#grid.arrange( g1, g2, g3, g4, g5, g6, legend,  ncol = 2, nrow =4, heights = 4)
+g6<- g6 + theme(legend.position = "bottom")+ xlab(NULL)
 
-plot_grid(title, g1,g2, nrow = 3,align = "hv",axis = 'l', rel_heights = c(0.1, 0.45, 0.45))
-plot_grid(g3,g4, nrow = 2,align = "hv",axis = 'l' )
-plot_grid(g5,g6, legend, nrow = 3,align = "hv",axis = 'l' , rel_heights = c(0.45, 0.45, 0.1))
+plot_grid(g1,g2, nrow = 2,align = "hv",axis = 'l' )
+plot_grid(g3,g4,nrow = 2,align = "hv",axis = 'l' )
+plot_grid(g5,g6, nrow = 2,align = "hv",axis = 'l' )
 ```
 
-
 What religions, races, gender.etc are most susceptible to Hate Crimes? We answer this questions by investigating into each sub-type of hate crimes. 
+
 Within the Anti-Gender group, hate crimes against gender identity expression are of the most frequent.There's very small number of hate crimes against male. 
+
 There are only less then 30 incidences of Anti-Age hate crimes during the 9 year period from 2010 to 2018, and almost all are property crimes. 
+
 Within the Anti-Race category, vast majority of the hate crimes are against African Americans. It is notable that anti-white hate crimes are ranked 2nd most frequent. 
+
 Within the Anti-Religion category, vast majority of the hate crimes are against Jewish, within which, vast majority are crimes against property, rather than against persons. 
+
 The total incidences of Anti-Disability crimes is also very small, with only one incident against property. 
+
 Anti-Gay Male hate crimes are most common among the Anti-Sexual Minority group, and the majority of these crimes are against persons.
 
 ## Question 2
@@ -118,63 +138,75 @@ Anti-Gay Male hate crimes are most common among the Anti-Sexual Minority group, 
 
 After investigating the overall distribution of all kinds of hate crimes, we now consider the distribution of different types of hate crimes in different counties. That is, we want to know if for some certain type of hate crimes, the total number of incicents corresponding to it vary in counties or not. Also, it is worth checking whether the distribution in counties changes among various kinds of hate crimes. Here total number of incidents of some type of hate crimes includes the whole time period from 2010 to 2018 and both crime types which are person and property.
 
-We draw  heatmaps of total number of incidents in New York for different types of hate crimes.
+We draw  heatmaps of total number of incidents in New York for different types of hate crimes. Here for simplicity, we used heatmap of Anti-Age as an exmple for code demostration.
 
-```{r echo=FALSE}
+```{r echo=FALSE, message=FALSE}
 states <- map_data("state")
 counties <- map_data("county")
 NewYork <- subset(states, region == "new york")
 ny_county <- subset(counties, region == "new york")
 data1 <- ny_county%>%rename(County = subregion)%>%select(long,lat,County,group)
 
-tidy <- read.csv("Hate_Crimes_data_Tidy.csv")
-data2 <- tidy %>% select(County,Type,Count) %>%
+data2 <- dataset %>% select(County,Type,Count) %>%
        group_by(County,Type)%>%
        summarise(Count = sum(Count))%>%
        mutate(County= tolower(County)) 
 data<-full_join(data1,data2,by='County')
-q1 <- data%>%filter(Type== 'Anti.Age') %>% ggplot(aes(x=long,y=lat,group=group,fill=Count))+
+```
+
+```{r}
+
+q1 <- data%>%filter(Type== 'Anti.Age') %>%
+  ggplot(aes(x=long,y=lat,group=group,fill=Count))+
   geom_polygon(color='white')+
-  ggtitle('Anti.Age')+
+  ggtitle('Distribution of Anti-Age')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
   scale_fill_viridis_c(direction=-1)+
   theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5))
+
+```
+
+```{r echo=FALSE}
 q2 <- data%>%filter(Type== 'Anti.Gender') %>% ggplot(aes(x=long,y=lat,group=group,fill=Count))+
   geom_polygon(color='white')+
-  ggtitle('Anti.Gender')+
+  ggtitle('Distribution of Anti-Gender')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
   scale_fill_viridis_c(direction=-1)+
-  theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5))       
+  theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5))  
+
 q3 <- data%>%filter(Type== 'Anti.Race') %>% ggplot(aes(x=long,y=lat,group=group,fill=Count))+
   geom_polygon(color='white')+
-  ggtitle('Anti.Race')+
+  ggtitle('Distribution of Anti-Race')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
   scale_fill_viridis_c(direction=-1)+
-  theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5))   
+  theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5))  
+
 q4 <- data%>%filter(Type== 'Anti.Religion') %>% ggplot(aes(x=long,y=lat,group=group,fill=Count))+
   geom_polygon(color='white')+
-  ggtitle('Anti.Religion')+
-  labs(x='longitude',y='latitude',fill='Total incidents')+
-  scale_fill_viridis_c(direction=-1)+
-  theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5))   
-q5 <- data%>%filter(Type== 'Anti.Disability') %>% ggplot(aes(x=long,y=lat,group=group,fill=Count))+
-  geom_polygon(color='white')+
-  ggtitle('Anti.Disability')+
-  labs(x='longitude',y='latitude',fill='Total incidents')+
-  scale_fill_viridis_c(direction=-1)+
-  theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5))   
-q6<- data%>%filter(Type== 'Anti.Sexual.Minority') %>% ggplot(aes(x=long,y=lat,group=group,fill=Count))+
-  geom_polygon(color='white')+
-  ggtitle('Anti.Sexual.Minority')+
+  ggtitle('Distribution of Anti-Religion')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
   scale_fill_viridis_c(direction=-1)+
   theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5)) 
-grid.arrange(q1,nrow=1, top= 'Total Incidents for Different Types of Hate Crimes')
-q2
-q3
-q4
-q5
-q6
+
+q5 <- data%>%filter(Type== 'Anti.Disability') %>% ggplot(aes(x=long,y=lat,group=group,fill=Count))+
+  geom_polygon(color='white')+
+  ggtitle('Distribution of Anti-Disability')+
+  labs(x='longitude',y='latitude',fill='Total incidents')+
+  scale_fill_viridis_c(direction=-1)+
+  theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5)) 
+
+q6<- data%>%filter(Type== 'Anti.Sexual.Minority') %>% ggplot(aes(x=long,y=lat,group=group,fill=Count))+
+  geom_polygon(color='white')+
+  ggtitle('Distribution of Anti-Sexual-Minority')+
+  labs(x='longitude',y='latitude',fill='Total incidents')+
+  scale_fill_viridis_c(direction=-1)+
+  theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5)) 
+```
+
+```{r}
+grid.arrange(q1,q2,nrow=2,top= 'New York County Heatmap for different types of hate crimes')
+grid.arrange(q3,q4,nrow=2)
+grid.arrange(q5,q6,nrow=2)
 ```
 
 Now we have six plots of heatmaps where each heatmap corresponds to a certain type of hate crimes.
@@ -199,34 +231,15 @@ In conclusion,  for a certain type of hate crimes, the total number of incicents
 
 There is a point that some counties in the heatmaps don't have any value (or color). That is because in the original dataset, there is no data of these counties as the author has previously filtered out all missing values.Therefore, we don't have to deal with missing values in the dataset.
 
-
-
-
-
-
-
-```{r message=FALSE, warning=FALSE, include=FALSE}
-plot_theme<-theme(panel.grid.major.y = element_line(),
-        panel.grid.major.x = element_line(),
-        panel.background = element_blank(),,
-        panel.grid.minor = element_line(),
-        plot.background = element_rect(fill='#FAFAFA'),
-        axis.line = element_line(color='black'),
-        legend.background = element_rect(fill = '#FAFAFA'),
-        legend.position = "bottom",
-        legend.text=element_text(size=6.5))
-
-```
-
 ## Question 3
 ***
 
 After examing the distributions of hate crimes in different counties, we know take time factor into consideration. In other words, we want to see if total incidents of each type of hate crimes vary cross time. And what's more, we aim to integrate both county and time into the inspection of distribution of hate crimes in New York State.
 
 
-```{r Line Chart: Time Vs Crime Type1, message=FALSE, warning=FALSE}
+```{r  message=FALSE, warning=FALSE}
 #manipulate the data to make it suitable for time series line chart
-Crime_type<-tidy %>% select(Year,Crime.Type,Count) %>%
+Crime_type<-dataset %>% select(Year,Crime.Type,Count) %>%
   group_by(Year,Crime.Type) %>% 
   summarise(Count=sum(Count)) %>% 
   ungroup() %>% 
@@ -234,7 +247,7 @@ Crime_type<-tidy %>% select(Year,Crime.Type,Count) %>%
   mutate(index = round(100*Count/Count[1], 2)) %>% 
   ungroup()
 
-Type<-tidy %>% select(Year,Type,Count) %>% 
+Type<-dataset%>% select(Year,Type,Count) %>% 
   group_by(Year,Type) %>% 
   summarise(Count=sum(Count)) %>% 
   mutate(Count = ifelse(Type == "Anti.Age",Count+1, Count)) %>% 
@@ -251,14 +264,18 @@ p1<-ggplot(Crime_type, aes(Year, Count, color = Crime.Type)) +
   geom_point()+
   labs(x='Year', y='Number of Incidents', color= 'Crime Type')+
   ggtitle("Time Series Line Chart","Year VS Crime Type")+
-  plot_theme
+  plot_theme+
+  theme(legend.position = 'bottom',
+        legend.title = element_blank())
 
 p2<-ggplot(Crime_type, aes(Year, index, color = Crime.Type)) +
   geom_line()+
   geom_smooth(method = "loess", se = FALSE, lwd =1)+
   labs(x='Year', y='Index', color= 'Crime Type')+
   ggtitle("Time Series Line Chart","Year VS Crime Type in Index")+
-  plot_theme
+  plot_theme+
+  theme(legend.position = 'bottom',
+        legend.title = element_blank())
 
 plot_grid(p1,p2,ncol=2,nrow=1,labels=c('A','B'))
 ```
@@ -273,14 +290,18 @@ p3<-ggplot(Type, aes(Year, Count, color = Type)) +
   geom_point()+
   labs(x='Year', y='Number of Incidents', color= 'Type')+
   ggtitle("Time Series Line Chart","Year VS Hate Crime Type")+
-  plot_theme
+  plot_theme+
+  theme(legend.position = 'bottom',
+        legend.title = element_blank())
 
 p4<-ggplot(Type, aes(Year, index, color = Type)) +
   geom_line()+
   geom_smooth(method = "loess", se = FALSE, lwd =1)+
   labs(x='Year', y='Index', color= 'Hate Crime Type')+
   ggtitle("Time Series Line Chart","Year VS Hate Crime Type in Index")+
-  plot_theme
+  plot_theme+
+  theme(legend.position = 'bottom',
+        legend.title = element_blank())
 
 
 plot_grid(p3,p4,ncol=2,nrow=1,labels=c('C','D'))
@@ -295,7 +316,7 @@ Interestingly, D plot provides much more information about the time trend. Due t
 Seeing the sharp increase in Anti-Age and Anti-Gender at a particular year, we are curious about which sub-category of these two types causes such increase. As Anti-Age don't have any sub-groups, we focus on the subgroups of Anti-Age.
 
 ```{r message=FALSE}
-tidy %>% filter(Type=='Anti.Gender') %>%
+dataset %>% filter(Type=='Anti.Gender') %>%
   select(Year,Subtype,Count)%>%
   group_by(Year,Subtype) %>% 
   summarise(Count=sum(Count)) %>% 
@@ -303,16 +324,7 @@ tidy %>% filter(Type=='Anti.Gender') %>%
   geom_line()+
   geom_point()+
   labs(y='Number of Incidents', color='Subtype of AntiGender')+
-  ggtitle("Time Series Line Chart","Year VS Subtype of AntiGender")+
-  theme(panel.grid.major.y = element_line(),
-        panel.grid.major.x = element_line(),
-        panel.background = element_blank(),,
-        panel.grid.minor = element_line(),
-        plot.background = element_rect(fill='#FAFAFA'),
-        axis.line = element_line(color='black'),
-        legend.background = element_rect(fill = '#FAFAFA'),
-        legend.text=element_text(size=6.5))
-  
+  ggtitle("Time Series Line Chart","Year VS Subtype of AntiGender")
 
 ```
 
@@ -320,8 +332,8 @@ In order to see, we draw the time series line chart of years versus subgroups of
 
 After investing the time impact on the distribution of crimes types and hate crime types, we also want to incorporate county factor into the consideration. In particular,we want to see if location matters in the changes of numbers of incidents happened in these eight years.
 
-```{r echo=TRUE, message=FALSE, warning=FALSE}
-change_in_county<-tidy %>%
+```{r message=FALSE, warning=FALSE}
+change_in_county<-dataset %>%
   filter(Year == c(2010,2018)) %>% 
   group_by(County,Year) %>% 
   summarise(Count=sum(Count)) %>% 
