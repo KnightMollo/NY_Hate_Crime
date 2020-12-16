@@ -43,6 +43,7 @@ g1<-  d %>%
   ggplot(aes(x = fct_rev(Subtype), y = Count, fill = Crime.Type))  + 
   geom_col() +
   theme(text = element_text(size=8))+
+  scale_fill_discrete(name = "Type of Crime")+
   coord_flip()+
   ggtitle("Anti_Gender")
 
@@ -87,7 +88,7 @@ g6 <- dataset %>% filter(Type=='Anti.Sexual.Minority') %>%
   #theme(axis.text.x = element_text(angle = 90, vjust = 0.9))
 
 
-legend <- get_legend(g2 + theme(legend.position="bottom", legend.justification="center" ,legend.box.just = "bottom"))
+legend <- get_legend(g1 + theme(legend.position="bottom", legend.justification="center" ,legend.box.just = "bottom"))
 title <- ggdraw() + draw_label("Hate Crime Incidents by Sub-category")
 g1<- g1 + theme(legend.position = "none") + xlab(NULL)
 g2<- g2 + theme(legend.position = "none")+ xlab(NULL)
