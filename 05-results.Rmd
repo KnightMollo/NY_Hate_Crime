@@ -1,6 +1,6 @@
 # Results
 
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE,echo=TRUE}
 library(tidyverse)
 library(cowplot)
 library(ggplot2)
