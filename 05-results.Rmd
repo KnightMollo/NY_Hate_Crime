@@ -15,7 +15,7 @@ library(gridExtra)
 
 ## Question 1
 ***
-
+How many hate crimes are taking place in NY state? Who are the people most affected? The bar chart below provides us a clear initial view.
 ```{r}
 dataset <- read.csv("Hate_Crimes_data_Tidy.csv")
 dataset %>% 
@@ -36,16 +36,17 @@ It is notable that unlike anti-religion hate crimes and anit-age hate crimes, cr
 
 
 ```{r}
+d1 = dataset %>% filter(Type=='Anti.Gender') 
+d1$Subtype <- factor(d$Subtype, levels = c("Anti.Gender.Identity.Expression", "Anti.Transgender", "Anti.Female", 	"Anti.Male"))
 
-
-g1<- dataset %>% filter(Type=='Anti.Gender') %>% 
-  ggplot(aes(x= fct_infreq(Subtype), y = Count,fill=Crime.Type))+
-  geom_col()+
-  #theme(axis.text.x = element_text(angle = 20, vjust = 0.9))+
+g1<-  d %>% 
+  ggplot(aes(x = fct_rev(Subtype), y = Count, fill = Crime.Type))  + 
+  geom_col() +
   theme(text = element_text(size=8))+
   coord_flip()+
   ggtitle("Anti_Gender")
 
+  
 g2<- dataset %>% filter(Type=='Anti.Age') %>% 
   ggplot(aes(x=Subtype,y=Count,fill=Crime.Type))+geom_col()+
   #theme(axis.text.x = element_text(angle = 20, vjust = 0.9))
@@ -53,38 +54,41 @@ g2<- dataset %>% filter(Type=='Anti.Age') %>%
   coord_flip()+
    ggtitle("Anti_Age")
 
+
 g3 <- dataset %>% filter(Type=='Anti.Race') %>% 
-  ggplot(aes(x=fct_infreq(Subtype),y=Count,fill=Crime.Type))+geom_col()+
+  ggplot(aes(x= reorder(Subtype, Count, sum),y=Count,fill=Crime.Type))+geom_col()+
   theme(text = element_text(size=8))+
   #theme(axis.text.x = element_text(angle = 20, vjust = 0.9))
   coord_flip()+
    ggtitle("Anti_Race")
-g3
 
-g4 <- dataset %>% filter(Type=='Anti.Religion') %>% ggplot(aes(x=Subtype,y=Count,fill=Crime.Type))+geom_col()+
+
+g4 <- dataset %>% filter(Type=='Anti.Religion') %>% 
+  ggplot(aes(x=reorder(Subtype, Count, sum) ,y=Count,fill=Crime.Type))+geom_col()+
   theme(text = element_text(size=7))+
   #theme(axis.text.x = element_text(angle = 20, vjust = 0.9))
   coord_flip()+
   ggtitle("Anti_Religion")
 
 
-g5 <- dataset %>% filter(Type=='Anti.Disability') %>% ggplot(aes(x=Subtype,y=Count,fill=Crime.Type))+geom_col()+
+g5 <- dataset %>% filter(Type=='Anti.Disability') %>% 
+  ggplot(aes(x=reorder(Subtype, Count, sum),y=Count,fill=Crime.Type))+geom_col()+
   theme(text = element_text(size=8))+
 #theme(axis.text.x = element_text(angle = 20, vjust = 0.9))
   coord_flip()+
   ggtitle("Anti_Disability")
 
 g6 <- dataset %>% filter(Type=='Anti.Sexual.Minority') %>%
-  ggplot(aes(x=Subtype,y=Count,fill=Crime.Type))+geom_col()+
+  ggplot(aes(x=reorder(Subtype, Count, sum),y=Count,fill=Crime.Type))+geom_col()+
   theme(text = element_text(size=8))+
   coord_flip()+
   ggtitle("Anti_Sexual_Minority")
 
   #theme(axis.text.x = element_text(angle = 90, vjust = 0.9))
 
-#g6 
-legend <- get_legend(g2 + theme(legend.position="bottom", legend.justification="center" ,legend.box.just = "bottom"))
 
+legend <- get_legend(g2 + theme(legend.position="bottom", legend.justification="center" ,legend.box.just = "bottom"))
+title <- ggdraw() + draw_label("Hate Crime Incidents by Sub-category")
 g1<- g1 + theme(legend.position = "none") + xlab(NULL)
 g2<- g2 + theme(legend.position = "none")+ xlab(NULL)
 g3<- g3 + theme(legend.position = "none")+ xlab(NULL)
@@ -94,7 +98,7 @@ g6<- g6 + theme(legend.position = "none")+ xlab(NULL)
 #g1 
 #grid.arrange( g1, g2, g3, g4, g5, g6, legend,  ncol = 2, nrow =4, heights = 4)
 
-plot_grid(g1,g2, nrow = 2,align = "hv",axis = 'l' )
+plot_grid(title, g1,g2, nrow = 3,align = "hv",axis = 'l', rel_heights = c(0.1, 0.45, 0.45))
 plot_grid(g3,g4, nrow = 2,align = "hv",axis = 'l' )
 plot_grid(g5,g6, legend, nrow = 3,align = "hv",axis = 'l' , rel_heights = c(0.45, 0.45, 0.1))
 ```
