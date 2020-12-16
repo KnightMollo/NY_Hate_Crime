@@ -210,9 +210,12 @@ q6<- data%>%filter(Type== 'Anti.Sexual.Minority') %>% ggplot(aes(x=long,y=lat,gr
 ```
 
 ```{r}
-grid.arrange(q1,q2,nrow=2,top= 'New York County Heatmap for different types of hate crimes')
-grid.arrange(q3,q4,nrow=2)
-grid.arrange(q5,q6,nrow=2)
+grid.arrange(q1,top= 'New York County Heatmap for different types of hate crimes')
+q2
+q3
+q4
+q5
+q6
 ```
 
 Now we have six plots of heatmaps where each heatmap corresponds to a certain type of hate crimes.
@@ -235,7 +238,7 @@ Regarding Anti.Sexual.Minority, a few counties have values other than 0. We can 
 
 In conclusion,  for a certain type of hate crimes, the total number of incicents corresponding to it vary in counties. Also, the distribution in counties changes among various kinds of hate crimes. We have to pay attention to two areas: one is the county in the left side of New York which is mentioned more than once and the other one is the southeast corner of New York, as these two areas have many large values for more than one type of hate crimes.
 
-We also annotate the location of New York city with text 'NY' on six plots. We can see that New York city is located in the southeast corner of New York state, a place we have to pay attention to. That is, for us Columbia students, we should be careful with these possible dangerous situations.
+We also annotate the location of New York city with text 'NY' on six plots. We can see that New York city is located in the southeast corner of New York state, a place we have to pay attention to.It's notable that compared to other regions in NY states, New York City tends to have more incidents of all types of hate crimes. This is probably due to the significantly large and diverse population residing in the NYC than in other regions. For us, Columbia students, we should be careful with these possible  dangerous situations and pay more attention to surroundings.
 
 There is a point that some counties in the heatmaps don't have any value (or color). That is because in the original dataset, there is no data of these counties as the author has previously filtered out all missing values.Therefore, we don't have to deal with missing values in the dataset.
 
@@ -371,7 +374,9 @@ data$change_prop[is.na(data$change_prop)]<-0
 ```
 
 ```{r}
-data %>% ggplot(aes(x=long, y = lat, group=group,fill = change_prop)) + 
+data %>% filter(label != 'wyoming') %>% 
+  filter(label != 'yates') %>% 
+  ggplot(aes(x=long, y = lat, group=group,fill = change_prop)) + 
   geom_polygon(color='white')+
   labs(x='longitude',y='latitude',fill='Shift in proportion')+
   ggtitle('New York State by Counties','Shift proportions in numbers of total hate crimes')+
