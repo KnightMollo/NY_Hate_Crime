@@ -14,6 +14,8 @@ library(gridExtra)
 
 
 ## Question 1
+***
+
 ```{r}
 dataset <- read.csv("Hate_Crimes_data_Tidy.csv")
 dataset %>% 
@@ -102,6 +104,7 @@ The total incidences of Anti-Disability crimes is also very small, with only one
 Anti-Gay Male hate crimes are most common among the Anti-Sexual Minority group, and the majority of these crimes are against persons.
 
 ## Question 2
+***
 
 After investigating the overall distribution of all kinds of hate crimes, we now consider the distribution of different types of hate crimes in different counties. That is, we want to know if for some certain type of hate crimes, the total number of incicents corresponding to it vary in counties or not. Also, it is worth checking whether the distribution in counties changes among various kinds of hate crimes. Here total number of incidents of some type of hate crimes includes the whole time period from 2010 to 2018 and both crime types which are person and property.
 
