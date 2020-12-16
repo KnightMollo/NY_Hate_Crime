@@ -27,6 +27,7 @@ dataset %>%
   ggtitle("Total Hate Crime Incidents in NY State from 2010 to 2018")
   
 ```
+
 Hate Crimes are categorized into 6 sub-categories: Anti-Religion, Anti-Race, Anti-Sexual-Orientation, Anti-Gender, Anti-Disability and Anti-Age. 
 The methods of crime are further categorize into two types: Crime against persons and property crimes. 
 The bar chart gives us an overview of the relative frequency of each sub-categories of Hate Crimes. 
@@ -98,7 +99,7 @@ plot_grid(g3,g4, nrow = 2,align = "hv",axis = 'l' )
 plot_grid(g5,g6, legend, nrow = 3,align = "hv",axis = 'l' , rel_heights = c(0.45, 0.45, 0.1))
 ```
 
-```
+
 What religions, races, gender.etc are most susceptible to Hate Crimes? We answer this questions by investigating into each sub-type of hate crimes. 
 Within the Anti-Gender group, hate crimes against gender identity expression are of the most frequent.There's very small number of hate crimes against male. 
 There are only less then 30 incidences of Anti-Age hate crimes during the 9 year period from 2010 to 2018, and almost all are property crimes. 
@@ -163,9 +164,12 @@ q6<- data%>%filter(Type== 'Anti.Sexual.Minority') %>% ggplot(aes(x=long,y=lat,gr
   labs(x='longitude',y='latitude',fill='Total incidents')+
   scale_fill_viridis_c(direction=-1)+
   theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5)) 
-grid.arrange(q1,q2,nrow=2, top= 'Total Incidents for Different Types of Hate Crimes')
-grid.arrange(q3,q4,nrow=2)
-grid.arrange(q5,q6,nrow=2)
+grid.arrange(q1,nrow=1, top= 'Total Incidents for Different Types of Hate Crimes')
+q2
+q3
+q4
+q5
+q6
 ```
 
 Now we have six plots of heatmaps where each heatmap corresponds to a certain type of hate crimes.
