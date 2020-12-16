@@ -36,8 +36,8 @@ It is notable that unlike anti-religion hate crimes and anit-age hate crimes, cr
 
 
 ```{r}
-d1 = dataset %>% filter(Type=='Anti.Gender') 
-d1$Subtype <- factor(d$Subtype, levels = c("Anti.Gender.Identity.Expression", "Anti.Transgender", "Anti.Female", 	"Anti.Male"))
+d = dataset %>% filter(Type=='Anti.Gender') 
+d$Subtype <- factor(d$Subtype, levels = c("Anti.Gender.Identity.Expression", "Anti.Transgender", "Anti.Female", 	"Anti.Male"))
 
 g1<-  d %>% 
   ggplot(aes(x = fct_rev(Subtype), y = Count, fill = Crime.Type))  + 
