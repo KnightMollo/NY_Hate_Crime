@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Results | Hate Crimes in the State of New York</title>
   <meta name="description" content="Chapter 5 Results | Hate Crimes in the State of New York" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Results | Hate Crimes in the State of New York" />
   <meta property="og:type" content="book" />
@@ -50,15 +50,12 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -67,16 +64,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -85,9 +80,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -171,39 +166,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="results" class="section level1">
 <h1><span class="header-section-number">Chapter 5</span> Results</h1>
+<p>These are the packages, data and the main theme that we are going to apply in the following exploratory data analysis.</p>
 <div id="question-1" class="section level2">
 <h2><span class="header-section-number">5.1</span> Question 1</h2>
 <hr />
-<p><img src="finalproj_files/figure-html/unnamed-chunk-12-1.png" width="672" />
-Hate Crimes are categorized into 6 sub-categories: Anti-Religion, Anti-Race, Anti-Sexual-Orientation, Anti-Gender, Anti-Disability and Anti-Age.
-The methods of crime are further categorize into two types: Crime against persons and property crimes.
-The bar chart gives us an overview of the relative frequency of each sub-categories of Hate Crimes.
-The most common type of hate crime is Anti-religion, and about one third of these crimes were conducted against property. The least common type of hate crime is Anti-Age, and it composes of almost entirely of property crimes.
-It is notable that unlike anti-religion hate crimes and anit-age hate crimes, crimes against persons are more common among other types of hate crimes. Anti-Sexual-Minority hate crimes are particularly high in proportion of crimes against persons.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-13-1.png" width="672" />
-What religions, races, gender.etc are most susceptible to Hate Crimes? We answer this questions by investigating into each sub-type of hate crimes.
-Within the Anti-Gender group, hate crimes against gender identity expression are of the most frequent.There’s very small number of hate crimes against male.
-There are only less then 30 incidences of Anti-Age hate crimes during the 9 year period from 2010 to 2018, and almost all are property crimes.
-Within the Anti-Race category, vast majority of the hate crimes are against African Americans. It is notable that anti-white hate crimes are ranked 2nd most frequent.
-Within the Anti-Religion category, vast majority of the hate crimes are against Jewish, within which, vast majority are crimes against property, rather than against persons.
-The total incidences of Anti-Disability crimes is also very small, with only one incident against property.
-Anti-Gay Male hate crimes are most common among the Anti-Sexual Minority group, and the majority of these crimes are against persons.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Hate Crimes are categorized into 6 sub-categories: Anti-Religion, Anti-Race, Anti-Sexual-Orientation, Anti-Gender, Anti-Disability and Anti-Age.</p>
+<p>The methods of crime are further categorize into two types: Crime against persons and property crimes.
+The stacked bar chart gives us an overview of the relative frequency of each sub-categories of Hate Crimes happened in NY states from 2010 to 2018.</p>
+<p>The most common type of hate crime is Anti-religion, and more than half of this type were conducted against property.Then is the Anti-race, Anti-Sexual-Minority, Anti-Gender and Anti-Disability. The least common type of hate crime is Anti-Age, and it composes of almost crimes against property.</p>
+<p>It is notable that unlike anti-religion hate crimes and anit-age hate crimes, crimes against persons are more common among other types of hate crimes. Anti-Sexual-Minority hate crimes are particularly high in proportion of crimes against persons.</p>
+<p>After having a general picture of frequencies of different types of hate crimes happened in NY states, we continue to dive in to look at frequencies of sub-categories of each type of hate crimes.</p>
+<p>We also used stacked bar chart here to not only indicate the counts of subcatories of Anti-Gender but also demonstate the its division in crimes against person or property. Similar code was applied to other types of hate crimes. Eventually, we gained 6 stacked bar charts.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-11-1.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-11-2.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-11-3.png" width="672" /></p>
+<p>What religions, races, gender.etc are most susceptible to Hate Crimes? We answer this questions by investigating into each sub-type of hate crimes.</p>
+<p>Within the Anti-Gender group, hate crimes against gender identity expression are of the most frequent.There’s very small number of hate crimes against male.</p>
+<p>There are only less then 30 incidences of Anti-Age hate crimes during the 9 year period from 2010 to 2018, and almost all are property crimes.</p>
+<p>Within the Anti-Race category, vast majority of the hate crimes are against African Americans. It is notable that anti-white hate crimes are ranked 2nd most frequent.</p>
+<p>Within the Anti-Religion category, vast majority of the hate crimes are against Jewish, within which, vast majority are crimes against property, rather than against persons.</p>
+<p>The total incidences of Anti-Disability crimes is also very small, with only one incident against property.</p>
+<p>Anti-Gay Male hate crimes are most common among the Anti-Sexual Minority group, and the majority of these crimes are against persons.</p>
 </div>
 <div id="question-2" class="section level2">
 <h2><span class="header-section-number">5.2</span> Question 2</h2>
 <hr />
-<p>After investigating the overall distribution of all kinds of hate crimes, we now consider the distribution of different types of hate crimes in different counties. That is, we want to know if for some certain type of hate crimes, the total number of incicents corresponding to it vary in counties or not. Also, it is worth checking whether the distribution in counties changes among various kinds of hate crimes. Here total number of incidents of some type of hate crimes includes the whole time period from 2010 to 2018 and both crime types which are person and property.</p>
-<p>We draw a heatmap of total number of incidents in New York faceted by types of hate crimes.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-14-1.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-14-2.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-14-3.png" width="672" /></p>
+<p>After investigating the overall distribution of all kinds of hate crimes, we now consider the distribution of different types of hate crimes in different counties. That is, we want to know if for some certain type of hate crimes, the total number of incicents corresponding to it vary in counties or not. Also, it is worth checking whether the distribution in counties changes among various kinds of hate crimes. At this stage, total number of incidents of some type of hate crimes includes the whole time period from 2010 to 2018 and both crime types which are person and property.</p>
+<p>We draw heatmaps of total number of incidents in New York for different types of hate crimes. Here for simplicity, we used heatmap of Anti-Age as an exmple for code demostration.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-15-1.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-15-2.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-15-3.png" width="672" /></p>
 <p>Now we have six plots of heatmaps where each heatmap corresponds to a certain type of hate crimes.</p>
-<p>First we can see that for Anti.Age, Anti.Gender and Anti.Disability, the maximum numbers of total incidents in each county are very small (less than 20), which means that these three types of hate crimes occur rarely in New York. On the other hand, for Anti.Race, Anti.Religion, and Anti.Sexual.Minority, the maximum numbers of total incidents in each county are rather large (150, 800 and 200), which means these three types of hate crimes might occur more frequently in New York compared to the other three types.</p>
+<p>First we can see that for Anti-Age, Anti-Gender and Anti-Disability, the maximum numbers of total incidents in each county are very small (less than 20), which means that these three types of hate crimes occur rarely in New York. On the other hand, for Anti-Race, Anti-Religion, and Anti-Sexual-Minority, the maximum numbers of total incidents in each county are rather large (150, 800 and 200), which means these three types of hate crimes might occur more frequently in New York compared to the other three types.</p>
 <p>Next we examine each type of hate crimes in detail.</p>
-<p>Regarding Anti.Age, almost every county has no incidents. There are only few counties with values around 3, and there are two counties which are located in the southeast corner of New York with values 6 and 12.</p>
-<p>Regarding Anti.Gender, more counties have values greater than 0 compared to Anti.Age, which means that the Anti.Gender type might occur more frequently in New York. There is a county in the left side of New York and a county in the southeast of New York with a value around 8, and some counties in the middle of New York have values around 5, and a very small county in the southeast corner of New York has a value greater than 10, which should be noticed.</p>
-<p>Regarding Anti.Race, almost every county has a value greater than 0. The county in the left side of New York which is mentioned exactly just now has the maximum value 150, and almost all counties in the southeast corner of New York have relatively large values.</p>
-<p>Regarding Anti.Religion, almost all large values appear in the southeast corner of New York and most of the other counties have values around 0. Again, the very small county in the southeast corner of New York which is mentioned before has the maximum value 800. We can notice that values in all other counties are far less than 800.</p>
-<p>Regarding Anti.Disability, the maximum value is just 3, which means this type occurs more rarely than Anti.Age and Anti.Gender. Almost every county has a value 0. Few counties in the left side of New York and some counties in the southeast of New york have values other than 0.</p>
-<p>Regarding Anti.Sexual.Minority, a few counties have values other than 0. We can see that the very small county mentioned many times which is in the southeast side of New York has a maximum value 250. And almost all large values appear in the southeast corner.</p>
+<p>Regarding Anti-Age, almost every county has no incidents. There are only few counties with values around 3, and there are two counties which are located in the southeast corner of New York with values 6 and 12.</p>
+<p>Regarding Anti-Gender, more counties have values greater than 0 compared to Anti.Age, which means that the Anti.Gender type might occur more frequently in New York. There is a county in the left side of New York and a county in the southeast of New York with a value around 8, and some counties in the middle of New York have values around 5, and a very small county in the southeast corner of New York has a value greater than 10, which should be noticed.</p>
+<p>Regarding Anti-Race, almost every county has a value greater than 0. The county in the left side of New York which is mentioned exactly just now has the maximum value 150, and almost all counties in the southeast corner of New York have relatively large values.</p>
+<p>Regarding Anti-Religion, almost all large values appear in the southeast corner of New York and most of the other counties have values around 0. Again, the very small county in the southeast corner of New York which is mentioned before has the maximum value 800. We can notice that values in all other counties are far less than 800.</p>
+<p>Regarding Anti-Disability, the maximum value is just 3, which means this type occurs more rarely than Anti.Age and Anti.Gender. Almost every county has a value 0. Few counties in the left side of New York and some counties in the southeast of New york have values other than 0.</p>
+<p>Regarding Anti-Sexual-Minority, a few counties have values other than 0. We can see that the very small county mentioned many times which is in the southeast side of New York has a maximum value 250. And almost all large values appear in the southeast corner.</p>
 <p>In conclusion, for a certain type of hate crimes, the total number of incicents corresponding to it vary in counties. Also, the distribution in counties changes among various kinds of hate crimes. We have to pay attention to two areas: one is the county in the left side of New York which is mentioned more than once and the other one is the southeast corner of New York, as these two areas have many large values for more than one type of hate crimes.</p>
 <p>There is a point that some counties in the heatmaps don’t have any value (or color). That is because in the original dataset, there is no data of these counties as the author has previously filtered out all missing values.Therefore, we don’t have to deal with missing values in the dataset.</p>
 </div>
@@ -212,29 +210,19 @@ Anti-Gay Male hate crimes are most common among the Anti-Sexual Minority group, 
 <hr />
 <p>After examing the distributions of hate crimes in different counties, we know take time factor into consideration. In other words, we want to see if total incidents of each type of hate crimes vary cross time. And what’s more, we aim to integrate both county and time into the inspection of distribution of hate crimes in New York State.</p>
 <p>First, we looked at the time trend of two types of crimes in the NY state. In order to draw the line chart, we calculated the numbers of two crime types in different years, without considering the counties and hate crime types. In addition, we also found out an index, which equals to the counts at each year divided by the counts at first year. By doing so, we are able to analyze the relative changes cross years and their overall time trend.</p>
-<p><img src="finalproj_files/figure-html/Line%20Chart:%20Time%20Vs%20Crime%20Type2-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>In the A plot, year versus the numbers of incidents of each crime type, it’s obvious to see that in 2010, the number of crime against persons is much higher than the number of crime against property. And as time goes on, the number of crime against persons starts to decrease and reaches its minimum in 2018, while the numbers of crime against property contains more flutuation. Number of crime against property reaches its maximum in 2012 and then begins to go down until 2015. In recent years, its number shows an increasing tendency.</p>
 <p>In the B plot, we can see the time trend of two crime types in a clearer way as two lines are seperated due to the use of index. Similar conclusion is drawn as A plot: numbers of crime against persons are decreasing while the numbers of crime against property are going up with some cyclical trends. What’s new in this plot is that we are able to see the relative changes compared with 2010, not in an aboslute means as we did in A plot.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <p>Next, let’s move on to exmaine on the time trend of hate crime types in NY state. Similar preprocessing procedure was done with the target data like the way we transformed in the crime type case.</p>
 <p>From the C plot, we can say that Anti-Religion is the most common hate crime type from 2010 to 2018. It reaches its maximum in 2012 and for other years, it remains approximately at the same level. Anti-Race is the second common type of hate crime in these years and it indicates an overall decreasing trend. Then, it’s the Anti-Sexual, which also demonstrates a general lowering tendency across years. In 2015 and 2016, its numbers come to same level as the numbers of Anti-Race. For the rest of three type of hate crimes: Anti-Gender, Anti-Disability and Anti-Age, they stay at similar level from 2010 and 2018, roughly around 0 to 10. Anti-Gender reaches its highest point in 2016.</p>
 <p>Interestingly, D plot provides much more information about the time trend. Due to the small cases of certain type of hate crimes, some changes across years are hard to view in the C plot, while D plot ‘exaggerates’ those changes by using the relative change compared with numbers in 2010, especially the Anti-Age and Anti-Gender. From C plot, it’s difficult to view any fluctuations in Anti-Age and Anti-Gender across years. But, in D plot, we are able to view the obvious fluctuations in those two types. Specifically, for Anti-Age, it increases first, then goes down, then goes up to significanly high level, reaching its maximum in 2014, later drops a little and increases to the second highest point in 2016. And for Anti-Gender, it goes up for three years, decreases in next two years and then shows a significantly sharp increase from 2015 to 2016.</p>
 <p>Seeing the sharp increase in Anti-Age and Anti-Gender at a particular year, we are curious about which sub-category of these two types causes such increase. As Anti-Age don’t have any sub-groups, we focus on the subgroups of Anti-Age.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <p>In order to see, we draw the time series line chart of years versus subgroups of Anti-Gender. From the plot, we discover that the sharp increase in 2016 is largely caused by the sharp increase in Anti-Gender-Indentity-Expression in 2016.</p>
 <p>After investing the time impact on the distribution of crimes types and hate crime types, we also want to incorporate county factor into the consideration. In particular,we want to see if location matters in the changes of numbers of incidents happened in these eight years.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="results.html#cb6-1"></a>change_in_county&lt;-tidy <span class="op">%&gt;%</span></span>
-<span id="cb6-2"><a href="results.html#cb6-2"></a><span class="st">  </span><span class="kw">filter</span>(Year <span class="op">==</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2010</span>,<span class="dv">2018</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb6-3"><a href="results.html#cb6-3"></a><span class="st">  </span><span class="kw">group_by</span>(County,Year) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb6-4"><a href="results.html#cb6-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Count=</span><span class="kw">sum</span>(Count)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb6-5"><a href="results.html#cb6-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">change_prop =</span> <span class="kw">round</span>((Count<span class="op">-</span>Count[<span class="dv">1</span>])<span class="op">/</span>Count[<span class="dv">1</span>], <span class="dv">2</span>))<span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb6-6"><a href="results.html#cb6-6"></a><span class="st">  </span><span class="kw">filter</span>(Year<span class="op">==</span><span class="dv">2018</span>) <span class="op">%&gt;%</span></span>
-<span id="cb6-7"><a href="results.html#cb6-7"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb6-8"><a href="results.html#cb6-8"></a><span class="st">  </span><span class="kw">select</span>(County,change_prop)</span>
-<span id="cb6-9"><a href="results.html#cb6-9"></a></span>
-<span id="cb6-10"><a href="results.html#cb6-10"></a>change_in_county<span class="op">$</span>change_prop[<span class="kw">is.nan</span>(change_in_county<span class="op">$</span>change_prop)]&lt;-<span class="dv">0</span></span></code></pre></div>
 <p>Same as before, we first did some transformation of data. Specifically, we find the total number of incidents of each county in 2010 and 2018 and then calculated the change percentage of each county. Because some counties don’t have any incidents in both 2010 and 2018, they show NaN in the final change_prop, which we considered them as 0, indicating that their number of incidents stay at the same level.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <p>To visualize our result, we draw a county map, showing shift in proportion at each county. From the colored map, we noticed that all the counties show some degree of decrease in the total number of incidents. That’s why the scale of shift in proportion ranges from 0 to -1.</p>
 <p>Furthermore, we discovered that there are almost no great gaps in the filled color of each county, except the one locates around -75 longitude and 43 latitude. This tells us that neighborhood effect influences the change in the number of total incidents. In other words, counties with large shift tend to connect with each other in at least one direction. Similar for counties with small shift.
 Also, it’s easy to see that counties with relatively large shift locates at 43 latitude or at 74 longitude.Thus, from what we got, we may infer that location does matter in the shift of numbers of incidents from 2010 to 2018.</p>
