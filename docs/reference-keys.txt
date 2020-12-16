@@ -5,6 +5,9 @@ problems-with-data-source
 data-transformation
 missing-values
 results
+question-1
+question-2
 question-3
+question-3-1
 interactive-component
 conclusion
