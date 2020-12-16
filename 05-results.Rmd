@@ -187,32 +187,12 @@ In conclusion,  for a certain type of hate crimes, the total number of incicents
 There is a point that some counties in the heatmaps don't have any value (or color). That is because in the original dataset, there is no data of these counties as the author has previously filtered out all missing values.Therefore, we don't have to deal with missing values in the dataset.
 
 
-```{r}
-tidy <- read.csv("Hate_Crimes_data_Tidy.csv")
 
-
-plot_theme<-theme(panel.grid.major.y = element_line(),
-        panel.grid.major.x = element_line(),
-        panel.background = element_blank(),,
-        panel.grid.minor = element_line(),
-        plot.background = element_rect(fill='#FAFAFA'),
-        axis.line = element_line(color='black'),
-        legend.background = element_rect(fill = '#FAFAFA'),
-        legend.position = "bottom",
-        legend.text=element_text(size=6.5))
-
-```
 
 
 
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
-library(tidyverse)
-library(cowplot)
-library(ggplot2)
-tidy <- read.csv("Hate_Crimes_data_Tidy.csv")
-
-
 plot_theme<-theme(panel.grid.major.y = element_line(),
         panel.grid.major.x = element_line(),
         panel.background = element_blank(),,
@@ -252,7 +232,7 @@ Type<-tidy %>% select(Year,Type,Count) %>%
 
 First, we looked at the time trend of two types of crimes in the NY state. In order to draw the line chart, we calculated the numbers of two crime types in different years, without considering the counties and hate crime types. In addition, we also found out an index, which equals to the counts at each year divided by the counts at first year. By doing so, we are able to analyze the relative changes cross years and their overall time trend. 
 
-```{r Line Chart: Time Vs Crime Type2, message=FALSE}
+```{r message=FALSE}
 p1<-ggplot(Crime_type, aes(Year, Count, color = Crime.Type)) +
   geom_line()+
   geom_point()+
