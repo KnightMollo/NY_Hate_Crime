@@ -173,13 +173,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 3</span> Data transformation</h1>
 <p>To get the tidy data, we first drop the last three columns namely <em>Total.Incidents</em>, <em>Total.Victims</em>, <em>Total.Offenders</em>, as we can still calculate them using the remaining data. Then we regard columns <em>County</em>, <em>Year</em> and <em>Crime.Type</em> as ID columns, which means we don’t make changes on them. We use the pivot_longer method to gather the rest of columns to create two columns <em>Subtype</em> and <em>Count</em>. Here Subtype means each small class of hate crimes such as <em>Anti.Male</em>, <em>Anti.Female</em> etc. <em>Count</em> is the corresponding number of cases for each small class. After that, we create a new column <em>Type</em>, containing six general classes that are <em>Anti.Gender</em>, <em>Anti.Age</em>, <em>Anti.Race</em>, <em>Anti.Religion</em>, <em>Anti.Sexual.Minority</em> and <em>Anti.Disability</em>. For each Subtype, it has a corresponding type. For example, the Subtype <em>Anti.Female</em> is related with the type <em>Anti.Gender</em> and the Subtype <em>Anti.White</em> is related with the type <em>Anti.Race’</em>. We use the for-loop to fill in the <em>Type</em> column for all rows.</p>
 <p>Here are first few rows of our modified data.</p>
-<pre><code>##   County Year             Crime.Type                         Subtype Count        Type
-## 1 Albany 2018 Crimes Against Persons                       Anti.Male     0 Anti.Gender
-## 2 Albany 2018 Crimes Against Persons                     Anti.Female     0 Anti.Gender
-## 3 Albany 2018 Crimes Against Persons                Anti.Transgender     0 Anti.Gender
-## 4 Albany 2018 Crimes Against Persons Anti.Gender.Identity.Expression     0 Anti.Gender
-## 5 Albany 2018 Crimes Against Persons                       Anti.Age.     0    Anti.Age
-## 6 Albany 2018 Crimes Against Persons                      Anti.White     1   Anti.Race</code></pre>
+<pre><code>##   County Year             Crime.Type                         Subtype Count
+## 1 Albany 2018 Crimes Against Persons                       Anti.Male     0
+## 2 Albany 2018 Crimes Against Persons                     Anti.Female     0
+## 3 Albany 2018 Crimes Against Persons                Anti.Transgender     0
+## 4 Albany 2018 Crimes Against Persons Anti.Gender.Identity.Expression     0
+## 5 Albany 2018 Crimes Against Persons                       Anti.Age.     0
+## 6 Albany 2018 Crimes Against Persons                      Anti.White     1
+##          Type
+## 1 Anti.Gender
+## 2 Anti.Gender
+## 3 Anti.Gender
+## 4 Anti.Gender
+## 5    Anti.Age
+## 6   Anti.Race</code></pre>
 
 </div>
             </section>
