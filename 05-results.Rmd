@@ -242,7 +242,7 @@ There is a point that some counties in the heatmaps don't have any value (or col
 ## Question 3
 ***
 
-After examing the distributions of hate crimes in different counties, we know take time factor into consideration. In other words, we want to see if total incidents of each type of hate crimes vary cross time. And what's more, we aim to integrate both county and time into the inspection of distribution of hate crimes in New York State.
+After examing the distributions of hate crimes in different counties, we know take time factor into consideration. In other words, we want to see if total incidents of each type of hate crimes vary cross time. And what's more, we aim to integrate both county and time factors into the inspection of distribution of hate crimes in New York State.
 
 
 ```{r  message=FALSE, warning=FALSE}
@@ -264,7 +264,7 @@ Type<-dataset%>% select(Year,Type,Count) %>%
   ungroup() 
 ```
 
-First, we looked at the time trend of two types of crimes in the NY state. In order to draw the line chart, we calculated the numbers of two crime types in different years, without considering the counties and hate crime types. In addition, we also found out an index, which equals to the counts at each year divided by the counts at first year. By doing so, we are able to analyze the relative changes cross years and their overall time trend. 
+First, we looked at the time trend of two types of crimes in the NY state. In order to draw the line chart, we calculated the number of two crime types in different years, without considering the counties and hate crime types. In addition, we also found out an index, which equals to the counts at each year divided by the counts at first year. By doing so, we are able to analyze the relative changes cross years and their overall time trend. 
 
 ```{r message=FALSE}
 p1<-ggplot(Crime_type, aes(Year, Count, color = Crime.Type)) +
@@ -288,9 +288,9 @@ p2<-ggplot(Crime_type, aes(Year, index, color = Crime.Type)) +
 plot_grid(p1,p2,ncol=2,nrow=1,labels=c('A','B'))
 ```
 
-In the A plot, year versus the numbers of incidents of each crime type, it's obvious to see that in 2010, the number of crime against persons is much higher than the number of crime against property. And as time goes on, the number of crime against persons starts to decrease and reaches its minimum in 2018, while the numbers of crime against property contains more flutuation. Number of crime against property reaches its maximum in 2012 and then begins to go down until 2015. In recent years, its number shows an increasing tendency. 
+In the A plot, year versus the number of incidents of each crime type, it's obvious to see that in 2010, the number of crime against persons is much higher than the number of crime against property. And as time goes on, the number of crime against persons starts to decrease and reaches its minimum in 2018, while the number of crime against property contains more flutuation. Number of crime against property reaches its maximum in 2012 and then begins to go down until 2015. In recent years, its number shows an increasing tendency. 
 
-In the B plot, we can see the time trend of two crime types in a clearer way as two lines are seperated due to the use of index. Similar conclusion is drawn as A plot: numbers of crime against persons are decreasing while the numbers of crime against property are going up with some cyclical trends. What's new in this plot is that we are able to see the relative changes compared with 2010, not in an aboslute means as we did in A plot. 
+In the B plot, we can see the time trend of two crime types in a clearer way as two lines are seperated due to the use of index. Similar conclusion is drawn as A plot: number of crime against persons is decreasing while the number of crime against property is going up with some cyclical trends. What's new in this plot is that we are able to see the relative changes compared with 2010, not in an aboslute means as we did in A plot. 
 
 ```{r message=FALSE}
 p3<-ggplot(Type, aes(Year, Count, color = Type)) +
@@ -317,11 +317,11 @@ plot_grid(p3,p4,ncol=2,nrow=1,labels=c('C','D'))
 
 Next, let's move on to exmaine on the time trend of hate crime types in NY state. Similar preprocessing procedure was done with the target data like the way we transformed in the crime type case.
 
-From the C plot, we can say that Anti.Religion is the most common hate crime type from 2010 to 2018. It reaches its maximum in 2012 and for other years, it remains approximately at the same level. Anti.Race is the second common type of hate crime in these years and it indicates an overall decreasing trend. Then, it's the Anti.Sexual, which also demonstrates a general lowering tendency across years. In 2015 and 2016, its numbers come to same level as the numbers of Anti.Race. For the rest of three type of hate crimes: Anti.Gender, Anti.Disability and Anti.Age, they stay at similar level from 2010 and 2018, roughly around 0 to 10. Anti.Gender reaches its highest point in 2016. 
+From the C plot, we can say that Anti.Religion is the most common hate crime type from 2010 to 2018. It reaches its maximum in 2012 and for other years, it remains approximately at the same level. Anti.Race is the second common type of hate crime in these years and it indicates an overall decreasing trend. Then, it's the Anti.Sexual.Minority, which also demonstrates a general lowering tendency across years. In 2015 and 2016, its number comes to same level as the number of Anti.Race. For the rest of three type of hate crimes: Anti.Gender, Anti.Disability and Anti.Age, they stay at similar level from 2010 and 2018, roughly around 0 to 10. Anti.Gender reaches its highest point in 2016. 
 
 Interestingly, D plot provides much more information about the time trend. Due to the small cases of certain type of hate crimes, some changes across years are hard to view in the C plot, while D plot 'exaggerates' those changes by using the relative change compared with numbers in 2010, especially the Anti.Age and Anti.Gender. From C plot, it's difficult to view any fluctuations in Anti.Age and Anti.Gender across years. But, in D plot, we are able to view the obvious fluctuations in those two types. Specifically, for Anti.Age, it increases first, then goes down, then goes up to significanly high level, reaching its maximum in 2014, later drops a little and increases to the second highest point in 2016. And for Anti.Gender, it goes up for three years, decreases in next two years and then shows a significantly sharp increase from 2015 to 2016. 
 
-Seeing the sharp increase in Anti.Age and Anti.Gender at a particular year, we are curious about which sub-category of these two types causes such increase. As Anti.Age don't have any sub-groups, we focus on the subgroups of Anti.Age.
+Seeing the sharp increase in Anti.Age and Anti.Gender at a particular year, we are curious about which subtype of these two types causes such increase. As Anti.Age doesn't have any subgroups, we focus on the subgroups of Anti.Gender.
 
 ```{r message=FALSE}
 dataset %>% filter(Type=='Anti.Gender') %>%
@@ -336,9 +336,9 @@ dataset %>% filter(Type=='Anti.Gender') %>%
 
 ```
 
-In order to see, we draw the time series line chart of years versus subgroups of Anti-Gender. From the plot, we discover that the sharp increase in 2016 is largely caused by the sharp increase in Anti-Gender-Indentity-Expression in 2016.
+In order to see, we draw the time series line chart of years for subgroups of Anti.Gender. From the plot, we discover that the sharp increase in 2016 is largely caused by the sharp increase in Anti.Gender.Indentity.Expression in 2016.
 
-After investing the time impact on the distribution of crimes types and hate crime types, we also want to incorporate county factor into the consideration. In particular,we want to see if location matters in the changes of numbers of incidents happened in these eight years.
+After investigating the time impact on the distribution of crimes types and hate crime types, we also want to incorporate county factor into the consideration. In particular,we want to see if location matters in the changes of numbers of incidents happened in these eight years.
 
 ```{r message=FALSE, warning=FALSE}
 change_in_county<-dataset %>%
@@ -354,7 +354,7 @@ change_in_county$change_prop[is.nan(change_in_county$change_prop)]<-0
 
 ```
 
-Same as before, we first did some transformation of data. Specifically, we find the total number of incidents of each county in 2010 and 2018 and then calculated the change percentage of each county. Because some counties don't have any incidents in both 2010 and 2018, they show NaN in the final change_prop, which we considered them as 0, indicating that their number of incidents stay at the same level. 
+Same as before, we first did some transformation of data. Specifically, we find the total number of incidents of each county in 2010 and 2018 and then calculated the change percentage of each county. Because some counties don't have any incidents in both 2010 and 2018, they show NaN in the final change_prop, which we considered as 0, indicating that their numbers of incidents stay at the same level. 
 
 ```{r include=FALSE}
 library(maps)
