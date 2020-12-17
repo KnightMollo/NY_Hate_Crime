@@ -25,7 +25,7 @@ These are the packages, data and the main theme that we are going to apply in th
 
 ## Question 1
 ***
-How many hate crimes are taking place in NY state? Who are the people most affected? The stacked bar chart below provides us a clear initial view.
+How many hate crimes are taking place in NY state? Who are the people most affected? The stacked bar chart below provides us with a clear initial view.
 
 ```{r}
 dataset %>% 
@@ -123,7 +123,7 @@ What religions, races, gender.etc are most susceptible to hate crimes? We answer
 
 Within the Anti.Gender group, hate crimes against gender identity expression are of the most frequent.There's a very small number of hate crimes against male. 
 
-There are only less then 30 incidents of Anti.Age hate crimes during the 9 year period from 2010 to 2018, and about 70% are property crimes. 
+There are only less then 30 incidents of Anti.Age hate crimes during the 9 year period from 2010 to 2018, and about 83% are property crimes. 
 
 Within the Anti.Race category, vast majority of the hate crimes are against African Americans. It is notable that Anti.White hate crimes are ranked 2nd most frequent. 
 
@@ -138,7 +138,7 @@ Anti.Gay.Male hate crimes are most common among the Anti.Sexual.Minority group, 
 
 After investigating the overall distribution of all kinds of hate crimes, we now consider the distribution of different types of hate crimes in different counties. That is, we want to know if for some certain type of hate crimes, the total number of incicents corresponding to it vary in counties or not. Also, it is worth checking whether the distribution in counties changes among various kinds of hate crimes. Here total number of incidents of some type of hate crimes includes the whole time period from 2010 to 2018 and both crime types which are person and property.
 
-We draw  heatmaps of total number of incidents in New York for different types of hate crimes. Here for simplicity, we used heatmap of Anti-Age as an exmple for code demostration.
+We draw  heatmaps of total number of incidents in New York for different types of hate crimes.
 
 ```{r echo=FALSE, message=FALSE}
 states <- map_data("state")
@@ -154,23 +154,20 @@ data2 <- dataset %>% select(County,Type,Count) %>%
 data<-full_join(data1,data2,by='County')
 ```
 
-```{r}
+```{r echo=FALSE}
 
 q1 <- data%>%filter(Type== 'Anti.Age') %>%
   ggplot(aes(x=long,y=lat,group=group,fill=Count))+
   geom_polygon(color='white')+
-  ggtitle('Distribution of Anti-Age')+
+  ggtitle('Distribution of Anti.Age')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
   annotate('text',x= -74,y=40.71, label='NY', color= 'red',hjust=1)+
   scale_fill_viridis_c(direction=-1)+
   theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5))
 
-```
-
-```{r echo=FALSE}
 q2 <- data%>%filter(Type== 'Anti.Gender') %>% ggplot(aes(x=long,y=lat,group=group,fill=Count))+
   geom_polygon(color='white')+
-  ggtitle('Distribution of Anti-Gender')+
+  ggtitle('Distribution of Anti.Gender')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
   annotate('text',x= -74,y=40.71, label='NY', color= 'red',hjust=1)+
   scale_fill_viridis_c(direction=-1)+
@@ -178,7 +175,7 @@ q2 <- data%>%filter(Type== 'Anti.Gender') %>% ggplot(aes(x=long,y=lat,group=grou
 
 q3 <- data%>%filter(Type== 'Anti.Race') %>% ggplot(aes(x=long,y=lat,group=group,fill=Count))+
   geom_polygon(color='white')+
-  ggtitle('Distribution of Anti-Race')+
+  ggtitle('Distribution of Anti.Race')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
   annotate('text',x= -74,y=40.71, label='NY', color= 'red',hjust=1)+
   scale_fill_viridis_c(direction=-1)+
@@ -186,7 +183,7 @@ q3 <- data%>%filter(Type== 'Anti.Race') %>% ggplot(aes(x=long,y=lat,group=group,
 
 q4 <- data%>%filter(Type== 'Anti.Religion') %>% ggplot(aes(x=long,y=lat,group=group,fill=Count))+
   geom_polygon(color='white')+
-  ggtitle('Distribution of Anti-Religion')+
+  ggtitle('Distribution of Anti.Religion')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
   annotate('text',x= -74,y=40.71, label='NY', color= 'red',hjust=1)+
   scale_fill_viridis_c(direction=-1)+
@@ -194,7 +191,7 @@ q4 <- data%>%filter(Type== 'Anti.Religion') %>% ggplot(aes(x=long,y=lat,group=gr
 
 q5 <- data%>%filter(Type== 'Anti.Disability') %>% ggplot(aes(x=long,y=lat,group=group,fill=Count))+
   geom_polygon(color='white')+
-  ggtitle('Distribution of Anti-Disability')+
+  ggtitle('Distribution of Anti.Disability')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
   annotate('text',x= -74,y=40.71, label='NY', color= 'red',hjust=1)+
   scale_fill_viridis_c(direction=-1)+
@@ -202,7 +199,7 @@ q5 <- data%>%filter(Type== 'Anti.Disability') %>% ggplot(aes(x=long,y=lat,group=
 
 q6<- data%>%filter(Type== 'Anti.Sexual.Minority') %>% ggplot(aes(x=long,y=lat,group=group,fill=Count))+
   geom_polygon(color='white')+
-  ggtitle('Distribution of Anti-Sexual-Minority')+
+  ggtitle('Distribution of Anti.Sexual.Minority')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
   annotate('text',x= -74,y=40.71, label='NY', color= 'red',hjust=1)+
   scale_fill_viridis_c(direction=-1)+
@@ -220,27 +217,27 @@ q6
 
 Now we have six plots of heatmaps where each heatmap corresponds to a certain type of hate crimes.
 
-First we can see that for Anti.Age, Anti.Gender and Anti.Disability, the maximum numbers of total incidents in each county are very small (less than 20), which means that these three types of hate crimes occur rarely in New York. On the other hand, for Anti.Race, Anti.Religion, and Anti.Sexual.Minority, the maximum numbers of total incidents in each county are rather large (150, 800 and 200), which means these three types of hate crimes might occur more frequently in New York compared to the other three types.
+First we can see that for Anti.Age, Anti.Gender and Anti.Disability, the maximum numbers of total incidents in each county are very small (less than 20), which means that these three types of hate crimes occur rarely in New York state. On the other hand, for Anti.Race, Anti.Religion, and Anti.Sexual.Minority, the maximum numbers of total incidents in each county are rather large (150, 800 and 200), which means these three types of hate crimes might occur more frequently in New York state compared to the other three types.
 
 Next we examine each type of hate crimes in detail. 
 
-Regarding Anti.Age, almost every county has no incidents. There are only few counties with values around 3, and there are two counties which are located in the southeast corner of New York with values 6 and 12. 
+Regarding Anti.Age, almost every county has no incidents. There are only few counties with values around 3, and there are two counties which are located in the southeast corner of New York with values 6 and 12. (We can check in data that these counties are Queens and Suffolk) 
 
-Regarding Anti.Gender, more counties have values greater than 0 compared to Anti.Age, which means that the Anti.Gender type might occur more frequently in New York. There is a county in the left side of New York and a county in the southeast of New York with a value around 8, and some counties in the middle of New York have values around 5, and a very small county in the southeast corner of New York has a value greater than 10, which should be noticed. 
+Regarding Anti.Gender, more counties have values greater than 0 compared to Anti.Age, which means that the Anti.Gender type might occur more frequently in New York. There is a county called Erie in the west side of New York and a county called Bronx in the southeast of New York with values around 8, and some counties in the middle of New York have values around 4, and the very small county New York in the southeast corner of New York state has a maximum value greater than 15, which should be noticed. (The names of counties can be checked in data, it is the same for the following analysis.)
 
-Regarding Anti.Race, almost every county has a value greater than 0. The county in the left side of New York which is mentioned exactly just now has the maximum value 150, and almost all counties in the southeast corner of New York have relatively large values. 
+Regarding Anti.Race, almost every county has a value greater than 0. The county Erie in the west side of New York has the maximum value 150, and almost all counties in the southeast corner of New York have relatively large values. 
 
-Regarding Anti.Religion, almost all large values appear in the southeast corner of New York and most of the other counties have values around 0. Again, the very small county in the southeast corner of New York which is mentioned before has the maximum value 800. We can notice that values in all other counties are far less than 800. 
+Regarding Anti.Religion, almost all large values appear in the southeast corner of New York and most of the other counties have values around 0. A county called Kings in the southeast corner of New York has the maximum value 800. We can notice that values in all other counties are far less than 800. 
 
-Regarding Anti.Disability, the maximum value is just 3, which means this type occurs more rarely than Anti.Age and Anti.Gender. Almost every county has a value 0. Few counties in the left side of New York and some counties in the southeast of New york have values other than 0.
+Regarding Anti.Disability, the maximum value is just 3, which means this type occurs more rarely than Anti.Age and Anti.Gender. Almost every county has a value 0. Few counties in the west side of New York and some counties in the southeast of New york have values other than 0.
 
-Regarding Anti.Sexual.Minority, a few counties have values other than 0. We can see that the very small county mentioned many times which is in the southeast side of New York has a maximum value 250. And almost all large values appear in the southeast corner. 
+Regarding Anti.Sexual.Minority, a few counties have values other than 0. We can see that New York county and Kings which are in the southeast side of New York have maximum values 250. And almost all other large values appear in the southeast corner. The county Erie also has a relatively large value.
 
-In conclusion,  for a certain type of hate crimes, the total number of incicents corresponding to it vary in counties. Also, the distribution in counties changes among various kinds of hate crimes. We have to pay attention to two areas: one is the county in the left side of New York which is mentioned more than once and the other one is the southeast corner of New York, as these two areas have many large values for more than one type of hate crimes.
+In conclusion, for a certain type of hate crimes, the total number of incicents corresponding to it vary in counties. Also, the distribution in counties changes among various kinds of hate crimes. We have to pay attention to two areas: one is the county Erie in the west side of New York and the other one is the southeast corner of New York, as these two areas have many large values for more than one type of hate crimes.
 
-We also annotate the location of New York city with text 'NY' on six plots. We can see that New York city is located in the southeast corner of New York state, a place we have to pay attention to.It's notable that compared to other regions in NY states, New York City tends to have more incidents of all types of hate crimes. This is probably due to the significantly large and diverse population residing in the NYC than in other regions. For us, Columbia students, we should be careful with these possible  dangerous situations and pay more attention to surroundings.
+We also annotate the location of New York city with text 'NY' on six plots. We know that New York city is located in the southeast corner of New York state, a place we have to pay attention to. It's notable that compared to other regions in New York state, New York city tends to have more incidents of all types of hate crimes. This is probably due to the significantly large and diverse population residing in the New York city than in other regions. For us, Columbia students, we should be careful with these possible dangerous situations and pay more attention to surroundings.
 
-There is a point that some counties in the heatmaps don't have any value (or color). That is because in the original dataset, there is no data of these counties as the author has previously filtered out all missing values.Therefore, we don't have to deal with missing values in the dataset.
+There is a point that some counties in the heatmaps don't have any value (or color). In the Missing Value chapter, we know these counties are Wyoming county and Yates county.
 
 ## Question 3
 ***
