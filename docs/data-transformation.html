@@ -206,26 +206,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb1-33" data-line-number="33">  <span class="cf">if</span>(data<span class="op">$</span><span class="st">`</span><span class="dt">Subtype</span><span class="st">`</span>[i] <span class="op">%in%</span><span class="st"> </span>anti_disability){</a>
 <a class="sourceLine" id="cb1-34" data-line-number="34">    data<span class="op">$</span>Type[i] =<span class="st"> &quot;Anti.Disability&quot;</span></a>
 <a class="sourceLine" id="cb1-35" data-line-number="35">  }</a>
-<a class="sourceLine" id="cb1-36" data-line-number="36">  </a>
-<a class="sourceLine" id="cb1-37" data-line-number="37"></a>
-<a class="sourceLine" id="cb1-38" data-line-number="38">  </a>
-<a class="sourceLine" id="cb1-39" data-line-number="39">  </a>
-<a class="sourceLine" id="cb1-40" data-line-number="40">}</a></code></pre></div>
+<a class="sourceLine" id="cb1-36" data-line-number="36">}</a></code></pre></div>
 <p>Here are first few rows of our modified data. And we save our modified data as a csv file called ‘Hate_Crimes_data_Tidy.csv’.</p>
-<pre><code>##   County Year             Crime.Type                         Subtype Count
-## 1 Albany 2018 Crimes Against Persons                       Anti.Male     0
-## 2 Albany 2018 Crimes Against Persons                     Anti.Female     0
-## 3 Albany 2018 Crimes Against Persons                Anti.Transgender     0
-## 4 Albany 2018 Crimes Against Persons Anti.Gender.Identity.Expression     0
-## 5 Albany 2018 Crimes Against Persons                       Anti.Age.     0
-## 6 Albany 2018 Crimes Against Persons                      Anti.White     1
-##          Type
-## 1 Anti.Gender
-## 2 Anti.Gender
-## 3 Anti.Gender
-## 4 Anti.Gender
-## 5    Anti.Age
-## 6   Anti.Race</code></pre>
+<pre><code>##   County Year             Crime.Type                         Subtype
+## 1 Albany 2018 Crimes Against Persons                       Anti.Male
+## 2 Albany 2018 Crimes Against Persons                     Anti.Female
+## 3 Albany 2018 Crimes Against Persons                Anti.Transgender
+## 4 Albany 2018 Crimes Against Persons Anti.Gender.Identity.Expression
+## 5 Albany 2018 Crimes Against Persons                       Anti.Age.
+## 6 Albany 2018 Crimes Against Persons                      Anti.White
+##   Count        Type
+## 1     0 Anti.Gender
+## 2     0 Anti.Gender
+## 3     0 Anti.Gender
+## 4     0 Anti.Gender
+## 5     0    Anti.Age
+## 6     1   Anti.Race</code></pre>
 
 </div>
             </section>
