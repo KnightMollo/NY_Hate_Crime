@@ -1,6 +1,6 @@
 # Missing values
 
-All data are based on data provided by Law Enforcement in New York State. It’s already a summary integrating hate crimes happened in New York States from 2010 to 2018. In other words, the data here represent the numbers of hate crimes. If there is no hate crime of certain category, then the number will be 0. Also, it makes sense that the Law Enforcement Department already performed an initial data cleaning by filtering out the missing values. 
+All data are based on data provided by Law Enforcement in New York State. It’s already a summary integrating hate crimes happened in New York States from 2010 to 2018. In other words, the data here represent the numbers of hate crimes. If there is no hate crime of certain category, then the number will be 0.  
 
 There is no null value in 'Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv':
 
@@ -16,4 +16,4 @@ dataset <- read.csv("Hate_Crimes_data_Tidy.csv")
 any(is.na(dataset))
 ```
 
-Therefore, there is no missing value in both datasets.
+Also, it makes sense that the Law Enforcement Department already performed an initial data cleaning by filtering out the missing values. Though there is no `NA` in datasets, we do found that two counties are not included in the original dataset, which are Wyoming County and Yates County. Given the fact that there are over 60 counties in New York State, we believe these two missing counties can be ignored. There may not be any missing pattern regarding these two counties, but there is still an interesting point that these two counties are both located in the west side of New York State and very close to each other.

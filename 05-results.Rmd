@@ -37,101 +37,101 @@ dataset %>%
   
 ```
 
-Hate Crimes are categorized into 6 sub-categories: Anti-Religion, Anti-Race, Anti-Sexual-Orientation, Anti-Gender, Anti-Disability and Anti-Age. 
+Hate crimes are categorized into 6 categories: Anti.Religion, Anti.Race, Anti.Sexual.Minority, Anti.Gender, Anti.Disability and Anti.Age. 
 
-The methods of crime are further categorize into two types: Crime against persons and property crimes. 
-The stacked bar chart gives us an overview of the relative frequency of each sub-categories of Hate Crimes happened in NY states from 2010 to 2018.
+The methods of crime are further categorized into two types: crime against persons and property crimes. 
 
-The most common type of hate crime is Anti-religion, and more than half of this type were conducted against property.Then is the Anti-race, Anti-Sexual-Minority, Anti-Gender and Anti-Disability. The least common type of hate crime is Anti-Age, and it composes of almost crimes against property.
+The stacked bar chart gives us an overview of the relative frequency of each category of hate crimes happened in NY states from 2010 to 2018.
 
-It is notable that unlike anti-religion hate crimes and anit-age hate crimes, crimes against persons are more common among other types of hate crimes. Anti-Sexual-Minority hate crimes are particularly high in proportion of crimes against persons.
+The most common type of hate crime is Anti.Religion, and more than half of this type were conducted against property.Then is the Anti.Race, Anti.Sexual.Minority, Anti.Gender and Anti.Disability. The least common type of hate crime is Anti.Age, and it is composed of almost crimes against property.
 
-After having a general picture of frequencies of different types of hate crimes happened in NY states, we continue to dive in to look at frequencies of sub-categories of each type of hate crimes.
+It is notable that unlike Anti.Religion hate crimes and Anti.Age hate crimes, crimes against persons are more common among other types of hate crimes. Anti.Sexual.Minority hate crimes have a particularly high value for the proportion of crimes against persons.
+
+After having a general picture of frequencies of different types of hate crimes happened in NY state, we continue to dive in to look at frequencies of subcategories of each type of hate crimes.
 
 ```{r}
 g1<- dataset %>% 
   filter(Type=='Anti.Gender') %>% 
   ggplot(aes(x= reorder(Subtype,Count), y = Count,fill=Crime.Type))+
   geom_col()+
-  theme(text = element_text(size=8))+
+  theme(text = element_text(size=8),legend.position = "none")+
   coord_flip()+
-  labs(x= 'Subtype of Anti-Gender',y='Number of incidents', fill= 'Type of Crime')+
-  ggtitle('Stacked Bar Chart','Anti-Gender')+
+  labs(y='Number of incidents', fill= 'Type of Crime')+
+  ggtitle('Stacked Bar Chart','Anti.Gender')+
+  xlab(NULL)+
   plot_theme
 ```
 
-We also used stacked bar chart here to not only indicate the counts of subcatories of Anti-Gender but also demonstate the its division in crimes against person or property. Similar code was applied to other types of hate crimes. Eventually, we gained 6 stacked bar charts.
+We also use stacked bar chart here to not only indicate the counts of subcategories of Anti.Gender but also demonstrate their divisions in crimes against person or property. Similar code was applied to other types of hate crimes. Eventually, we gained 6 stacked bar charts.
 
 ```{r echo=FALSE}
 g2<- dataset %>% filter(Type=='Anti.Age') %>% 
   ggplot(aes(x=reorder(Subtype,Count),y=Count,fill=Crime.Type))+
   geom_col()+
-  theme(text = element_text(size=8))+
+  theme(text = element_text(size=8),legend.position = "none")+
   coord_flip()+
-  labs(x= 'Subtype of Anti-Age',y='Number of incidents', fill= 'Type of Crime')+
-  ggtitle('Stacked Bar Chart','Anti-Age')+
+  labs(y='Number of incidents', fill= 'Type of Crime')+
+  ggtitle('Stacked Bar Chart','Anti.Age')+
+  xlab(NULL)+
   plot_theme
 
 g3 <- dataset %>% filter(Type=='Anti.Race') %>% 
   ggplot(aes(x=reorder(Subtype,Count),y=Count,fill=Crime.Type))+
   geom_col()+
-  theme(text = element_text(size=8))+
+  theme(text = element_text(size=8),legend.position = "none")+
   coord_flip()+
-  labs(x= 'Subtype of Anti-Race',y='Number of incidents', fill= 'Type of Crime')+
-  ggtitle('Stacked Bar Chart','Anti-Race')+
+  labs(y='Number of incidents', fill= 'Type of Crime')+
+  ggtitle('Stacked Bar Chart','Anti.Race')+
+  xlab(NULL)+
   plot_theme
 
 g4 <- dataset %>% filter(Type=='Anti.Religion') %>% ggplot(aes(x=reorder(Subtype,Count),y=Count,fill=Crime.Type))+
   geom_col()+
-  theme(text = element_text(size=7))+
+  theme(text = element_text(size=7),legend.position = "none")+
   coord_flip()+
-  labs(x= 'Subtype of Anti-Religion',y='Number of incidents', fill= 'Type of Crime')+
-  ggtitle('Stacked Bar Chart','Anti-Religion')+
+  labs(y='Number of incidents', fill= 'Type of Crime')+
+  ggtitle('Stacked Bar Chart','Anti.Religion')+
+  xlab(NULL)+
   plot_theme
 
 
 g5 <- dataset %>% filter(Type=='Anti.Disability') %>% ggplot(aes(x=reorder(Subtype,Count),y=Count,fill=Crime.Type))+
   geom_col()+
-  theme(text = element_text(size=8))+
+  theme(text = element_text(size=8),legend.position = "none")+
   coord_flip()+
-  labs(x= 'Subtype of Anti-Disability',y='Number of incidents', fill= 'Type of Crime')+
-  ggtitle('Stacked Bar Chart','Anti-Disability')+
+  labs(y='Number of incidents', fill= 'Type of Crime')+
+  ggtitle('Stacked Bar Chart','Anti.Disability')+
+  xlab(NULL)+
   plot_theme
 
 g6 <- dataset %>% filter(Type=='Anti.Sexual.Minority') %>%
   ggplot(aes(x=reorder(Subtype,Count),y=Count,fill=Crime.Type))+
   geom_col()+
-  theme(text = element_text(size=8))+
+  theme(text = element_text(size=8),legend.position = "bottom")+
   coord_flip()+
-  labs(x= 'Subtype of Anti-Sexual-Minority',y='Number of incidents', fill= 'Type of Crime')+
-  ggtitle('Stacked Bar Chart','Anti-Sexual-Minority')+
+  labs(y='Number of incidents', fill= 'Type of Crime')+
+  ggtitle('Stacked Bar Chart','Anti.Sexual.Minority')+
+  xlab(NULL)+
   plot_theme
-
-g1<- g1 + theme(legend.position = "none") + xlab(NULL)
-g2<- g2 + theme(legend.position = "none")+ xlab(NULL)
-g3<- g3 + theme(legend.position = "none")+ xlab(NULL)
-g4<- g4 + theme(legend.position = "none")+ xlab(NULL)
-g5<- g5 + theme(legend.position = "none")+ xlab(NULL)
-g6<- g6 + theme(legend.position = "bottom")+ xlab(NULL)
 
 plot_grid(g1,g2, nrow = 2,align = "hv",axis = 'l' )
 plot_grid(g3,g4,nrow = 2,align = "hv",axis = 'l' )
 plot_grid(g5,g6, nrow = 2,align = "hv",axis = 'l' )
 ```
 
-What religions, races, gender.etc are most susceptible to Hate Crimes? We answer this questions by investigating into each sub-type of hate crimes. 
+What religions, races, gender.etc are most susceptible to hate crimes? We answer this question by investigating into each subtype of hate crimes. 
 
-Within the Anti-Gender group, hate crimes against gender identity expression are of the most frequent.There's very small number of hate crimes against male. 
+Within the Anti.Gender group, hate crimes against gender identity expression are of the most frequent.There's a very small number of hate crimes against male. 
 
-There are only less then 30 incidences of Anti-Age hate crimes during the 9 year period from 2010 to 2018, and almost all are property crimes. 
+There are only less then 30 incidents of Anti.Age hate crimes during the 9 year period from 2010 to 2018, and about 70% are property crimes. 
 
-Within the Anti-Race category, vast majority of the hate crimes are against African Americans. It is notable that anti-white hate crimes are ranked 2nd most frequent. 
+Within the Anti.Race category, vast majority of the hate crimes are against African Americans. It is notable that Anti.White hate crimes are ranked 2nd most frequent. 
 
-Within the Anti-Religion category, vast majority of the hate crimes are against Jewish, within which, vast majority are crimes against property, rather than against persons. 
+Within the Anti.Religion category, vast majority of the hate crimes are against Jewish, within which, vast majority are crimes against property, rather than against persons. 
 
-The total incidences of Anti-Disability crimes is also very small, with only one incident against property. 
+The number of total incidents of Anti.Disability crimes is also very small, with only one incident against property. 
 
-Anti-Gay Male hate crimes are most common among the Anti-Sexual Minority group, and the majority of these crimes are against persons.
+Anti.Gay.Male hate crimes are most common among the Anti.Sexual.Minority group, and the majority of these crimes are against persons.
 
 ## Question 2
 ***
@@ -161,6 +161,7 @@ q1 <- data%>%filter(Type== 'Anti.Age') %>%
   geom_polygon(color='white')+
   ggtitle('Distribution of Anti-Age')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
+  annotate('text',x= -74,y=40.71, label='NY', color= 'red',hjust=1)+
   scale_fill_viridis_c(direction=-1)+
   theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5))
 
@@ -171,6 +172,7 @@ q2 <- data%>%filter(Type== 'Anti.Gender') %>% ggplot(aes(x=long,y=lat,group=grou
   geom_polygon(color='white')+
   ggtitle('Distribution of Anti-Gender')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
+  annotate('text',x= -74,y=40.71, label='NY', color= 'red',hjust=1)+
   scale_fill_viridis_c(direction=-1)+
   theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5))  
 
@@ -178,6 +180,7 @@ q3 <- data%>%filter(Type== 'Anti.Race') %>% ggplot(aes(x=long,y=lat,group=group,
   geom_polygon(color='white')+
   ggtitle('Distribution of Anti-Race')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
+  annotate('text',x= -74,y=40.71, label='NY', color= 'red',hjust=1)+
   scale_fill_viridis_c(direction=-1)+
   theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5))  
 
@@ -185,6 +188,7 @@ q4 <- data%>%filter(Type== 'Anti.Religion') %>% ggplot(aes(x=long,y=lat,group=gr
   geom_polygon(color='white')+
   ggtitle('Distribution of Anti-Religion')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
+  annotate('text',x= -74,y=40.71, label='NY', color= 'red',hjust=1)+
   scale_fill_viridis_c(direction=-1)+
   theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5)) 
 
@@ -192,6 +196,7 @@ q5 <- data%>%filter(Type== 'Anti.Disability') %>% ggplot(aes(x=long,y=lat,group=
   geom_polygon(color='white')+
   ggtitle('Distribution of Anti-Disability')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
+  annotate('text',x= -74,y=40.71, label='NY', color= 'red',hjust=1)+
   scale_fill_viridis_c(direction=-1)+
   theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5)) 
 
@@ -199,14 +204,18 @@ q6<- data%>%filter(Type== 'Anti.Sexual.Minority') %>% ggplot(aes(x=long,y=lat,gr
   geom_polygon(color='white')+
   ggtitle('Distribution of Anti-Sexual-Minority')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
+  annotate('text',x= -74,y=40.71, label='NY', color= 'red',hjust=1)+
   scale_fill_viridis_c(direction=-1)+
   theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5)) 
 ```
 
 ```{r}
-grid.arrange(q1,q2,nrow=2,top= 'New York County Heatmap for different types of hate crimes')
-grid.arrange(q3,q4,nrow=2)
-grid.arrange(q5,q6,nrow=2)
+grid.arrange(q1,top= 'New York County Heatmap for different types of hate crimes')
+q2
+q3
+q4
+q5
+q6
 ```
 
 Now we have six plots of heatmaps where each heatmap corresponds to a certain type of hate crimes.
@@ -228,6 +237,8 @@ Regarding Anti.Disability, the maximum value is just 3, which means this type oc
 Regarding Anti.Sexual.Minority, a few counties have values other than 0. We can see that the very small county mentioned many times which is in the southeast side of New York has a maximum value 250. And almost all large values appear in the southeast corner. 
 
 In conclusion,  for a certain type of hate crimes, the total number of incicents corresponding to it vary in counties. Also, the distribution in counties changes among various kinds of hate crimes. We have to pay attention to two areas: one is the county in the left side of New York which is mentioned more than once and the other one is the southeast corner of New York, as these two areas have many large values for more than one type of hate crimes.
+
+We also annotate the location of New York city with text 'NY' on six plots. We can see that New York city is located in the southeast corner of New York state, a place we have to pay attention to.It's notable that compared to other regions in NY states, New York City tends to have more incidents of all types of hate crimes. This is probably due to the significantly large and diverse population residing in the NYC than in other regions. For us, Columbia students, we should be careful with these possible  dangerous situations and pay more attention to surroundings.
 
 There is a point that some counties in the heatmaps don't have any value (or color). That is because in the original dataset, there is no data of these counties as the author has previously filtered out all missing values.Therefore, we don't have to deal with missing values in the dataset.
 
@@ -363,7 +374,9 @@ data$change_prop[is.na(data$change_prop)]<-0
 ```
 
 ```{r}
-data %>% ggplot(aes(x=long, y = lat, group=group,fill = change_prop)) + 
+data %>% filter(label != 'wyoming') %>% 
+  filter(label != 'yates') %>% 
+  ggplot(aes(x=long, y = lat, group=group,fill = change_prop)) + 
   geom_polygon(color='white')+
   labs(x='longitude',y='latitude',fill='Shift in proportion')+
   ggtitle('New York State by Counties','Shift proportions in numbers of total hate crimes')+
