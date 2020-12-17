@@ -24,7 +24,7 @@
 <meta name="author" content="Haichao Yi, Heng Kan, Danyang Han, Zhuoyan Ma" />
 
 
-<meta name="date" content="2020-12-16" />
+<meta name="date" content="2020-12-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -148,7 +148,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#question-2"><i class="fa fa-check"></i><b>5.2</b> Question 2</a></li>
 <li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#question-3"><i class="fa fa-check"></i><b>5.3</b> Question 3</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
+<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a><ul>
+<li class="chapter" data-level="6.1" data-path="interactive-component.html"><a href="interactive-component.html#new-york-state-county-level-map"><i class="fa fa-check"></i><b>6.1</b> New York State County-level Map</a></li>
+</ul></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -171,6 +173,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="interactive-component" class="section level1">
 <h1><span class="header-section-number">Chapter 6</span> Interactive component</h1>
+<div id="new-york-state-county-level-map" class="section level2">
+<h2><span class="header-section-number">6.1</span> New York State County-level Map</h2>
+<p>This map contains hate crimes data of counties in New York State. An interactive map has the advantanges to show geological locations and statistical data at the same time, which is hard to achieve with traditional charts.</p>
 <script src="https://d3js.org/d3.v6.min.js"></script>
 <div id="map">
 <svg xmlns="&amp;ns_svg;" xmlns:xlink="&amp;ns_xlink;" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" width="900" height="475.573242" viewBox="0 0 900 475.573242" style="overflow:visible;enable-background:new 0 0 800 475.573242" xml:space="preserve">
@@ -4650,7 +4655,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     .select("svg")
     .append("text")
     .attr("id", "county")
-    .attr("x", "775")
+    .attr("x", x)
     .attr("y", "0")
     .text("- County")
     .attr("fill", "black")
@@ -4660,7 +4665,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   d3.select("#map")
     .select("svg")
     .append("text")
-    .attr("x", "775")
+    .attr("x", x)
     .attr("y", "40")
     .text("Total Hate Crimes")
     .attr("fill", "black")
@@ -4671,8 +4676,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     .select("svg")
     .append("text")
     .attr("id", "total")
-    .attr("x", "775")
-    .attr("y", "73")
+    .attr("x", x)
+    .attr("y", "70")
     .text(0)
     .attr("fill", "black")
     .style("font-size", "25px")
@@ -4681,8 +4686,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   d3.select("#map")
     .select("svg")
     .append("text")
-    .attr("x", "775")
-    .attr("y", "106")
+    .attr("x",x)
+    .attr("y", "100")
     .text("Anti Age")
     .attr("fill", "black")
     .style("font-size", "20px")
@@ -4692,8 +4697,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     .select("svg")
     .append("text")
     .attr("id", "age")
-    .attr("x", "775")
-    .attr("y", "135")
+    .attr("x", x)
+    .attr("y", "125")
     .text(0)
     .attr("fill", "black")
     .style("font-size", "20px")
@@ -4702,8 +4707,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   d3.select("#map")
     .select("svg")
     .append("text")
-    .attr("x", "775")
-    .attr("y", "174")
+    .attr("x", x)
+    .attr("y", "150")
     .text("Anti Disability")
     .attr("fill", "black")
     .style("font-size", "20px")
@@ -4713,8 +4718,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     .select("svg")
     .append("text")
     .attr("id", "disability")
-    .attr("x", "775")
-    .attr("y", "203")
+    .attr("x", x)
+    .attr("y", "175")
     .text(0)
     .attr("fill", "black")
     .style("font-size", "20px")
@@ -4723,8 +4728,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   d3.select("#map")
     .select("svg")
     .append("text")
-    .attr("x", "775")
-    .attr("y", "232")
+    .attr("x", x)
+    .attr("y", "200")
     .text("Anti Gender")
     .attr("fill", "black")
     .style("font-size", "20px")
@@ -4734,8 +4739,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     .select("svg")
     .append("text")
     .attr("id", "gender")
-    .attr("x", "775")
-    .attr("y", "261")
+    .attr("x", x)
+    .attr("y", "225")
     .text(0)
     .attr("fill", "black")
     .style("font-size", "20px")
@@ -4744,8 +4749,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   d3.select("#map")
     .select("svg")
     .append("text")
-    .attr("x", "775")
-    .attr("y", "290")
+    .attr("x", x)
+    .attr("y", "250")
     .text("Anti Race")
     .attr("fill", "black")
     .style("font-size", "20px")
@@ -4755,8 +4760,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     .select("svg")
     .append("text")
     .attr("id", "race")
-    .attr("x", "775")
-    .attr("y", "319")
+    .attr("x", x)
+    .attr("y", "275")
     .text(0)
     .attr("fill", "black")
     .style("font-size", "20px")
@@ -4765,8 +4770,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   d3.select("#map")
     .select("svg")
     .append("text")
-    .attr("x", "775")
-    .attr("y", "348")
+    .attr("x", x)
+    .attr("y", "300")
     .text("Anti Religion")
     .attr("fill", "black")
     .style("font-size", "20px")
@@ -4776,8 +4781,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     .select("svg")
     .append("text")
     .attr("id", "religion")
-    .attr("x", "775")
-    .attr("y", "377")
+    .attr("x", x)
+    .attr("y", "325")
     .text(0)
     .attr("fill", "black")
     .style("font-size", "20px")
@@ -4786,8 +4791,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   d3.select("#map")
     .select("svg")
     .append("text")
-    .attr("x", "775")
-    .attr("y", "406")
+    .attr("x", x)
+    .attr("y", "350")
     .text("Anti Sexual Minority")
     .attr("fill", "black")
     .style("font-size", "20px")
@@ -4797,8 +4802,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     .select("svg")
     .append("text")
     .attr("id", "sexual")
-    .attr("x", "775")
-    .attr("y", "435")
+    .attr("x", x)
+    .attr("y", "375")
     .text(0)
     .attr("fill", "black")
     .style("font-size", "20px")
@@ -4893,7 +4898,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     });
     
 </script>
+<p>The map data is provided on <a href="https://commons.wikimedia.org/wiki/File:Map_of_New_York_County_Outlines.svg">Wikimedia Commons</a>. It was created using US Census Data and Adobe Illustrator. However, some counties are created as “polygon” and some are “path”. Therefore, it’s hard to color them as use D3 functions at the same time. I am still in the progress of learning D3, and I will make it in better view in the future.</p>
 
+</div>
 </div>
             </section>
 
