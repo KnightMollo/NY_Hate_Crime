@@ -16,4 +16,4 @@ dataset <- read.csv("Hate_Crimes_data_Tidy.csv")
 any(is.na(dataset))
 ```
 
-Also, it makes sense that the Law Enforcement Department already performed an initial data cleaning by filtering out the missing values. Though this no `NA` in datasets, we do found there two counties are not included, which are Wyoming County and Yates County. Given the fact that there are over 60 counties in New York State, we believe theses two missing counties can be ignored.
+Also, it makes sense that the Law Enforcement Department already performed an initial data cleaning by filtering out the missing values. Though there is no `NA` in datasets, we do found that two counties are not included in the original dataset, which are Wyoming County and Yates County. Given the fact that there are over 60 counties in New York State, we believe these two missing counties can be ignored. There may not be any missing pattern regarding these two counties, but there is still an interesting point that these two counties are both located in the west side of New York State and very close to each other.
