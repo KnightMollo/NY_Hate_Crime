@@ -161,7 +161,7 @@ q1 <- data%>%filter(Type== 'Anti.Age') %>%
   geom_polygon(color='white')+
   ggtitle('Distribution of Anti.Age')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
-  annotate('text',x= -74,y=40.71, label='NY', color= 'red',hjust=1)+
+  annotate('text',x= -74,y=40.71, label='NYC', color= 'red',hjust=1)+
   scale_fill_viridis_c(direction=-1)+
   theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5))
 
@@ -169,7 +169,7 @@ q2 <- data%>%filter(Type== 'Anti.Gender') %>% ggplot(aes(x=long,y=lat,group=grou
   geom_polygon(color='white')+
   ggtitle('Distribution of Anti.Gender')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
-  annotate('text',x= -74,y=40.71, label='NY', color= 'red',hjust=1)+
+  annotate('text',x= -74,y=40.71, label='NYC', color= 'red',hjust=1)+
   scale_fill_viridis_c(direction=-1)+
   theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5))  
 
@@ -177,7 +177,7 @@ q3 <- data%>%filter(Type== 'Anti.Race') %>% ggplot(aes(x=long,y=lat,group=group,
   geom_polygon(color='white')+
   ggtitle('Distribution of Anti.Race')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
-  annotate('text',x= -74,y=40.71, label='NY', color= 'red',hjust=1)+
+  annotate('text',x= -74,y=40.71, label='NYC', color= 'red',hjust=1)+
   scale_fill_viridis_c(direction=-1)+
   theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5))  
 
@@ -185,7 +185,7 @@ q4 <- data%>%filter(Type== 'Anti.Religion') %>% ggplot(aes(x=long,y=lat,group=gr
   geom_polygon(color='white')+
   ggtitle('Distribution of Anti.Religion')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
-  annotate('text',x= -74,y=40.71, label='NY', color= 'red',hjust=1)+
+  annotate('text',x= -74,y=40.71, label='NYC', color= 'red',hjust=1)+
   scale_fill_viridis_c(direction=-1)+
   theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5)) 
 
@@ -193,7 +193,7 @@ q5 <- data%>%filter(Type== 'Anti.Disability') %>% ggplot(aes(x=long,y=lat,group=
   geom_polygon(color='white')+
   ggtitle('Distribution of Anti.Disability')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
-  annotate('text',x= -74,y=40.71, label='NY', color= 'red',hjust=1)+
+  annotate('text',x= -74,y=40.71, label='NYC', color= 'red',hjust=1)+
   scale_fill_viridis_c(direction=-1)+
   theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5)) 
 
@@ -201,7 +201,7 @@ q6<- data%>%filter(Type== 'Anti.Sexual.Minority') %>% ggplot(aes(x=long,y=lat,gr
   geom_polygon(color='white')+
   ggtitle('Distribution of Anti.Sexual.Minority')+
   labs(x='longitude',y='latitude',fill='Total incidents')+
-  annotate('text',x= -74,y=40.71, label='NY', color= 'red',hjust=1)+
+  annotate('text',x= -74,y=40.71, label='NYC', color= 'red',hjust=1)+
   scale_fill_viridis_c(direction=-1)+
   theme(panel.background = element_blank(),plot.title = element_text(hjust=0.5)) 
 ```
@@ -235,7 +235,7 @@ Regarding Anti.Sexual.Minority, a few counties have values other than 0. We can 
 
 In conclusion, for a certain type of hate crimes, the total number of incicents corresponding to it vary in counties. Also, the distribution in counties changes among various kinds of hate crimes. We have to pay attention to two areas: one is the county Erie in the west side of New York and the other one is the southeast corner of New York, as these two areas have many large values for more than one type of hate crimes.
 
-We also annotate the location of New York city with text 'NY' on six plots. We know that New York city is located in the southeast corner of New York state, a place we have to pay attention to. It's notable that compared to other regions in New York state, New York city tends to have more incidents of all types of hate crimes. This is probably due to the significantly large and diverse population residing in the New York city than in other regions. For us, Columbia students, we should be careful with these possible dangerous situations and pay more attention to surroundings.
+We also annotate the location of New York city with text 'NYC' on six plots. We know that New York city is located in the southeast corner of New York state, a place we have to pay attention to. It's notable that compared to other regions in New York state, New York city tends to have more incidents of all types of hate crimes. This is probably due to the significantly large and diverse population residing in the New York city than in other regions. For us, Columbia students, we should be careful with these possible dangerous situations and pay more attention to surroundings.
 
 There is a point that some counties in the heatmaps don't have any value (or color). In the Missing Value chapter, we know these counties are Wyoming county and Yates county.
 
@@ -378,10 +378,14 @@ data %>% filter(label != 'wyoming') %>%
   labs(x='longitude',y='latitude',fill='Shift in proportion')+
   ggtitle('New York State by Counties','Shift proportions in numbers of total hate crimes')+
   scale_fill_gradient(low ='#2874A6', high ='#D6EAF8')+
+  annotate('text',x= -74,y=40.71, label='NYC', color= 'red',hjust=1)+
   theme(panel.background = element_blank())
 ```
 
 To visualize our result, we draw a county map, showing shift in proportion at each county. From the colored map, we noticed that all the counties show some degree of decrease in the total number of incidents. That's why the scale of shift in proportion ranges from 0 to -1. 
 
-Furthermore, we discovered that there are almost no great gaps in the filled color of each county, except the one locates around -75 longitude and 43 latitude. This tells us that neighborhood effect is related to the change in the number of total incidents. In other words, counties with large shift tend to connect with each other in at least one direction. Similar for counties with small shift. 
-Also, it's easy to see that counties with relatively large shift locate at 43 latitude or at 74 longitude.Thus, from what we got, we may infer that location is associated with the shift of numbers of incidents from 2010 to 2018. 
+Furthermore, we discovered that there are almost no great gaps in the filled color of each county, except the one locates around -75 longitude and 43 latitude. In other words, counties with large shift tend to connect with each other in at least one direction. Similar for counties with small shift.Such results seems plausible because people are moving between close counties. When one county start to make some improvements on hate crimes, such as using education to decreasing discrimination and increasing police force, its actions not only reduce the number of incidents in its area but also bring positive changes to its neighborhoods. 
+
+Also, it's easy to see that counties with relatively large shift locates at 43 latitude or at 74 longitude.Thus, from what we got, we may infer that location does matter in the shift of numbers of incidents from 2010 to 2018. 
+
+Finally, we also annotated the location of NYC in the heatmap as we did in the question 2. We can see that from 2010 to 2018, the number of total incidents in NYC and its surrouding areas goes down significantly. As columbia students, we are glad to see such changes as it's safer than before. We are thankful to everyone who works to relieve the hate, misconcept and discrimination in this city. And more importantly, we understand this problem requires all of us to actively engage. Although we cannot stop the hate crimes like the police do, we are able to use our knowledge as the weapon to stop the spread of bias, thus helping to build a better society. 
