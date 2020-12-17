@@ -47,10 +47,6 @@ for( i in 1:nrow(data)){
   if(data$`Subtype`[i] %in% anti_disability){
     data$Type[i] = "Anti.Disability"
   }
-  
-
-  
-  
 }
 ```
 
