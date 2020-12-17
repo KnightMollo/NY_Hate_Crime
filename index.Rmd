@@ -6,19 +6,19 @@ site: bookdown::bookdown_site
 ---
 
 # Introduction
-All members of the Columbia community benefit from our diverse student body. We value and advocate for diversity, equity and inclusion. However, in recent months, the shocking deaths of George Floyd and numerous others black individuals have prompted us—as well as the nation—to learn more about racism and discrimination of all kinds, and to facilitate a collective effort to identify actionable solutions. The black community is not the only victim: it is only the tip of the iceberg. Discrimination and prejudice are real, serious problems that touch the lives of everyone in society, and particularly affect marginalized communities. In this project, we look into hate crimes, the most extreme form of prejudice.
+All members of the Columbia community benefit from our diverse student body. We value and advocate for diversity, equity and inclusion. However, in recent months, the shocking deaths of George Floyd and numerous other black individuals have prompted us as well as the nation to learn more about racism and discrimination of all kinds, and to facilitate a collective effort to identify actionable solutions. The black community is not the only victim: it is only the tip of the iceberg. Discrimination and prejudice are real, serious problems that touch the lives of everyone in society, and particularly affect marginalized communities. In this project, we look into hate crimes, the most extreme form of prejudice.
 
 A hate crime is defined as any "criminal offense against a person or property motivated in whole or in part by an offender's bias against a race, religion, disability, sexual orientation, ethnicity, gender or gender identity." Hate crimes exert a grave impact on our society, because the damage they do not only targets the immediate victim of the crime, but is inflicted upon the entire group the victim represents.
 
 
 The tragic events of this summer have cast light on the odiousness and pervasiveness of systemic racism against black people in America. Moreover, the problem seems virtually insurmountable, as bias is often embedded into the fabric of culture and institutions, and many Americans with biases may not be aware of their own prejudice. We sought to peer deeper into the scope and dimensions of racially motivated hate crimes in the United States. What populations besides African Americans are susceptible to bias? How much progress have we made in fighting against bias and discrimination? Indeed, have we made any progress at all in combating hate? In what region do hate crimes occur most frequently? We turned to the New York Hate Crime data set to find answers to these difficult questions. 
 
-Our aim is acquire a better understanding of hate crimes in New York State. To accomplish this, we developed the following three questions to serve as touchstones: 
+Our aim is to acquire a better understanding of hate crimes in New York State. To accomplish this, we developed the following three questions to serve as touchstones: 
 
-a) What kind of hate crime (i.e. a crime motivated by the religion or racial identity of the victim) occurred most frequently in the State of New York and in its constituent counties from 2010 to 2018? 
+a) What kind of hate crime (i.e. a crime motivated by the religion or racial identity of the victim) occurred most frequently in the State of New York from 2010 to 2018? 
 
 
-b) In which New York county have a relatively large number of hate crimes occurred? What are the relative proportions of different kinds of hate crimes in each county? If some types of hate crimes occur more or less frequently than others, might that suggest that certain attributes of a specific county influence the distribution of hate crimes there?
+b) For different kind of hate crimes, does the distribution of total number of incidents in counties vary a lot or not? Which type of hate crimes might occur more frequently and which area might have more incidents than others?
 
   
 c) How have the numbers and types of hate crimes in New York State changed in from 2010 to 2018? What is the overall trend? We will also address these questions at the county level. 
