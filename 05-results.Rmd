@@ -58,6 +58,7 @@ g1<- dataset %>%
   coord_flip()+
   labs(y='Number of incidents', fill= 'Type of Crime')+
   ggtitle('Stacked Bar Chart','Anti.Gender')+
+  xlab(NULL)+
   plot_theme
 ```
 
@@ -71,6 +72,7 @@ g2<- dataset %>% filter(Type=='Anti.Age') %>%
   coord_flip()+
   labs(y='Number of incidents', fill= 'Type of Crime')+
   ggtitle('Stacked Bar Chart','Anti.Age')+
+  xlab(NULL)+
   plot_theme
 
 g3 <- dataset %>% filter(Type=='Anti.Race') %>% 
@@ -80,6 +82,7 @@ g3 <- dataset %>% filter(Type=='Anti.Race') %>%
   coord_flip()+
   labs(y='Number of incidents', fill= 'Type of Crime')+
   ggtitle('Stacked Bar Chart','Anti.Race')+
+  xlab(NULL)+
   plot_theme
 
 g4 <- dataset %>% filter(Type=='Anti.Religion') %>% ggplot(aes(x=reorder(Subtype,Count),y=Count,fill=Crime.Type))+
@@ -88,6 +91,7 @@ g4 <- dataset %>% filter(Type=='Anti.Religion') %>% ggplot(aes(x=reorder(Subtype
   coord_flip()+
   labs(y='Number of incidents', fill= 'Type of Crime')+
   ggtitle('Stacked Bar Chart','Anti.Religion')+
+  xlab(NULL)+
   plot_theme
 
 
@@ -97,6 +101,7 @@ g5 <- dataset %>% filter(Type=='Anti.Disability') %>% ggplot(aes(x=reorder(Subty
   coord_flip()+
   labs(y='Number of incidents', fill= 'Type of Crime')+
   ggtitle('Stacked Bar Chart','Anti.Disability')+
+  xlab(NULL)+
   plot_theme
 
 g6 <- dataset %>% filter(Type=='Anti.Sexual.Minority') %>%
@@ -106,6 +111,7 @@ g6 <- dataset %>% filter(Type=='Anti.Sexual.Minority') %>%
   coord_flip()+
   labs(y='Number of incidents', fill= 'Type of Crime')+
   ggtitle('Stacked Bar Chart','Anti.Sexual.Minority')+
+  xlab(NULL)+
   plot_theme
 
 plot_grid(g1,g2, nrow = 2,align = "hv",axis = 'l' )
