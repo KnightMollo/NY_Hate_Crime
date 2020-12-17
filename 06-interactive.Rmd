@@ -2,7 +2,7 @@
 
 ## New York State County-level Map
 
-This map contains hate crimes data of counties in New York State. An interactive map has the advantanges to show geological locations and statistical data at the same time, which is hard to achieve with traditional charts. 
+This map contains hate crimes data of counties in New York State. An interactive map has the advantanges to show geological locations and statistical data at the same time, which are hard to achieve with traditional statistical charts. 
 
 <script src="https://d3js.org/d3.v6.min.js"></script>
 <div id="map">
