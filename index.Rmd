@@ -6,21 +6,23 @@ site: bookdown::bookdown_site
 ---
 
 # Introduction
+All members of the Columbia community benefit from our diverse student body. We value and advocate for diversity, equity and inclusion. However, in recent months, the shocking deaths of George Floyd and numerous others black individuals have prompted us—as well as the nation—to learn more about racism and discrimination of all kinds, and to facilitate a collective effort to identify actionable solutions. The black community is not the only victim: it is only the tip of the iceberg. Discrimination and prejudice are real, serious problems that touch the lives of everyone in society, and particularly affect marginalized communities. In this project, we look into hate crimes, the most extreme form of prejudice.
 
-As members of Columbia community, we benefit from our diversified student body. We value and advocate for diversity, equity and inclusion. However, in recent months, the deaths of George Floyde and numerous black individuals have reached the mainstream media and we see the need to learn more about social prejudice and discrimination, and to facilitate collective effort to identify actionable solutions. Black community is not the only victim: it is only a tip of the ice-burg. Discrimination and prejudice can be a real and distressing problem that affects everyone. In this project, we look into hate crimes, the most extreme form of prejudice.
+A hate crime is defined as any "criminal offense against a person or property motivated in whole or in part by an offender's bias against a race, religion, disability, sexual orientation, ethnicity, gender or gender identity." Hate crimes exert a grave impact on our society, because the damage they do not only targets the immediate victim of the crime, but is inflicted upon the entire group the victim represents.
 
-A hate crime is a "criminal offense against a person or property motivated in whole or in part by an offender's bias against a race, religion, disability, sexual orientation, ethnicity, gender or gender identity." Hate crimes have server impact on our society in that damage is not limited to the immediate target of the crime, but to the entire group the victim represents.
 
-What populations, besides African Americans are susceptible to biases? How much progress, if any, we've made in fighting against bias and discrimination.  In what region do hate crimes occur most frequently? We resort to the New York Hate Crime data set to find answers. 
+The tragic events of this summer have cast light on the odiousness and pervasiveness of systemic racism against black people in America. Moreover, the problem seems virtually insurmountable, as bias is often embedded into the fabric of culture and institutions, and many Americans with biases may not be aware of their own prejudice. We sought to peer deeper into the scope and dimensions of racially motivated hate crimes in the United States. What populations besides African Americans are susceptible to bias? How much progress have we made in fighting against bias and discrimination? Indeed, have we made any progress at all in combating hate? In what region do hate crimes occur most frequently? We turned to the New York Hate Crime data set to find answers to these difficult questions. 
 
-In order to have better understanding on hate crimes in New York State, we are looking for answers to these three questions:
+Our aim is acquire a better understanding of hate crimes in New York State. To accomplish this, we developed the following three questions to serve as touchstones: 
 
-a)  What's the most frequent kind of hate crimes (i.e. against religion or race) in the State of New York from 2010 to 2018? 
+a) What kind of hate crime (i.e. a crime motivated by the religion or racial identity of the victim) occurred most frequently in the State of New York and in its constituent counties from 2010 to 2018? 
 
-b)  For different kind of hate crimes, does the distribution of total number of incidents in counties vary a lot or not? Which type of hate crimes might occur more frequently and which area might have more incidents than others?
+
+b) In which New York county have a relatively large number of hate crimes occurred? What are the relative proportions of different kinds of hate crimes in each county? If some types of hate crimes occur more or less frequently than others, might that suggest that certain attributes of a specific county influence the distribution of hate crimes there?
+
   
-c)  What is the trend of hate crimes in numbers and types, in New York State from 2010 to 2018? We will also dive in to look at the trend in each county. 
+c) How have the numbers and types of hate crimes in New York State changed in from 2010 to 2018? What is the overall trend? We will also address these questions at the county level. 
 
-The answers of these questions can give us very basic understanding of hate crimes in New York State, which can also serve as a good start for people who want to know more about hate crimes in New York State. The records of law enforcement only contain hate crimes investigated, and it's highly possible that the real data is way beyond this, especially given the fact that systemic racism is still common in this country.
+The answers to these questions can give us a very basic understanding of hate crimes in New York State. This basic understanding can also serve as a solid foundation for further research on hate crimes in New York State for those who are interested in doing so. Law enforcement agencies’ records only contain hate crimes that are investigated, and it is entirely possible, if not likely, that the real data—that is, the true number of hate crimes committed—vastly exceeds the number of cases investigated by law enforcement. The fact that systemic racism is still common in this country suggests that this could be the case.
 
 
