@@ -182,7 +182,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="missing-values.html#cb4-1"></a>dataset &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Hate_Crimes_data_Tidy.csv&quot;</span>)</span>
 <span id="cb4-2"><a href="missing-values.html#cb4-2"></a><span class="kw">any</span>(<span class="kw">is.na</span>(dataset))</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<p>Also, it makes sense that the Law Enforcement Department already performed an initial data cleaning by filtering out the missing values. Though this no <code>NA</code> in datasets, we do found there two counties are not included, which are Wyoming County and Yates County. Given the fact that there are over 60 counties in New York State, we believe theses two missing counties can be ignored.</p>
+<p>Also, it makes sense that the Law Enforcement Department already performed an initial data cleaning by filtering out the missing values. Though there is no <code>NA</code> in datasets, we do found that two counties are not included in the original dataset, which are Wyoming county and Yates county. Given the fact that there are over 60 counties in New York state, we believe these two missing counties can be ignored. There may not be any missing pattern regarding these two counties, but there is still an interesting point that these two counties are both located in the west side of New York state and very close to each other.</p>
 
 </div>
             </section>
