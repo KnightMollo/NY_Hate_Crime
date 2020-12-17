@@ -37,101 +37,95 @@ dataset %>%
   
 ```
 
-Hate Crimes are categorized into 6 sub-categories: Anti-Religion, Anti-Race, Anti-Sexual-Orientation, Anti-Gender, Anti-Disability and Anti-Age. 
+Hate crimes are categorized into 6 categories: Anti.Religion, Anti.Race, Anti.Sexual.Minority, Anti.Gender, Anti.Disability and Anti.Age. 
 
-The methods of crime are further categorize into two types: Crime against persons and property crimes. 
-The stacked bar chart gives us an overview of the relative frequency of each sub-categories of Hate Crimes happened in NY states from 2010 to 2018.
+The methods of crime are further categorized into two types: crime against persons and property crimes. 
 
-The most common type of hate crime is Anti-religion, and more than half of this type were conducted against property.Then is the Anti-race, Anti-Sexual-Minority, Anti-Gender and Anti-Disability. The least common type of hate crime is Anti-Age, and it composes of almost crimes against property.
+The stacked bar chart gives us an overview of the relative frequency of each category of hate crimes happened in NY states from 2010 to 2018.
 
-It is notable that unlike anti-religion hate crimes and anit-age hate crimes, crimes against persons are more common among other types of hate crimes. Anti-Sexual-Minority hate crimes are particularly high in proportion of crimes against persons.
+The most common type of hate crime is Anti.Religion, and more than half of this type were conducted against property.Then is the Anti.Race, Anti.Sexual.Minority, Anti.Gender and Anti.Disability. The least common type of hate crime is Anti.Age, and it is composed of almost crimes against property.
 
-After having a general picture of frequencies of different types of hate crimes happened in NY states, we continue to dive in to look at frequencies of sub-categories of each type of hate crimes.
+It is notable that unlike Anti.Religion hate crimes and Anti.Age hate crimes, crimes against persons are more common among other types of hate crimes. Anti.Sexual.Minority hate crimes have a particularly high value for the proportion of crimes against persons.
+
+After having a general picture of frequencies of different types of hate crimes happened in NY state, we continue to dive in to look at frequencies of subcategories of each type of hate crimes.
 
 ```{r}
 g1<- dataset %>% 
   filter(Type=='Anti.Gender') %>% 
   ggplot(aes(x= reorder(Subtype,Count), y = Count,fill=Crime.Type))+
   geom_col()+
-  theme(text = element_text(size=8))+
+  theme(text = element_text(size=8),legend.position = "none")+
   coord_flip()+
-  labs(x= 'Subtype of Anti-Gender',y='Number of incidents', fill= 'Type of Crime')+
-  ggtitle('Stacked Bar Chart','Anti-Gender')+
+  labs(y='Number of incidents', fill= 'Type of Crime')+
+  ggtitle('Stacked Bar Chart','Anti.Gender')+
   plot_theme
 ```
 
-We also used stacked bar chart here to not only indicate the counts of subcatories of Anti-Gender but also demonstate the its division in crimes against person or property. Similar code was applied to other types of hate crimes. Eventually, we gained 6 stacked bar charts.
+We also use stacked bar chart here to not only indicate the counts of subcategories of Anti.Gender but also demonstrate their divisions in crimes against person or property. Similar code was applied to other types of hate crimes. Eventually, we gained 6 stacked bar charts.
 
 ```{r echo=FALSE}
 g2<- dataset %>% filter(Type=='Anti.Age') %>% 
   ggplot(aes(x=reorder(Subtype,Count),y=Count,fill=Crime.Type))+
   geom_col()+
-  theme(text = element_text(size=8))+
+  theme(text = element_text(size=8),legend.position = "none")+
   coord_flip()+
-  labs(x= 'Subtype of Anti-Age',y='Number of incidents', fill= 'Type of Crime')+
-  ggtitle('Stacked Bar Chart','Anti-Age')+
+  labs(y='Number of incidents', fill= 'Type of Crime')+
+  ggtitle('Stacked Bar Chart','Anti.Age')+
   plot_theme
 
 g3 <- dataset %>% filter(Type=='Anti.Race') %>% 
   ggplot(aes(x=reorder(Subtype,Count),y=Count,fill=Crime.Type))+
   geom_col()+
-  theme(text = element_text(size=8))+
+  theme(text = element_text(size=8),legend.position = "none")+
   coord_flip()+
-  labs(x= 'Subtype of Anti-Race',y='Number of incidents', fill= 'Type of Crime')+
-  ggtitle('Stacked Bar Chart','Anti-Race')+
+  labs(y='Number of incidents', fill= 'Type of Crime')+
+  ggtitle('Stacked Bar Chart','Anti.Race')+
   plot_theme
 
 g4 <- dataset %>% filter(Type=='Anti.Religion') %>% ggplot(aes(x=reorder(Subtype,Count),y=Count,fill=Crime.Type))+
   geom_col()+
-  theme(text = element_text(size=7))+
+  theme(text = element_text(size=7),legend.position = "none")+
   coord_flip()+
-  labs(x= 'Subtype of Anti-Religion',y='Number of incidents', fill= 'Type of Crime')+
-  ggtitle('Stacked Bar Chart','Anti-Religion')+
+  labs(y='Number of incidents', fill= 'Type of Crime')+
+  ggtitle('Stacked Bar Chart','Anti.Religion')+
   plot_theme
 
 
 g5 <- dataset %>% filter(Type=='Anti.Disability') %>% ggplot(aes(x=reorder(Subtype,Count),y=Count,fill=Crime.Type))+
   geom_col()+
-  theme(text = element_text(size=8))+
+  theme(text = element_text(size=8),legend.position = "none")+
   coord_flip()+
-  labs(x= 'Subtype of Anti-Disability',y='Number of incidents', fill= 'Type of Crime')+
-  ggtitle('Stacked Bar Chart','Anti-Disability')+
+  labs(y='Number of incidents', fill= 'Type of Crime')+
+  ggtitle('Stacked Bar Chart','Anti.Disability')+
   plot_theme
 
 g6 <- dataset %>% filter(Type=='Anti.Sexual.Minority') %>%
   ggplot(aes(x=reorder(Subtype,Count),y=Count,fill=Crime.Type))+
   geom_col()+
-  theme(text = element_text(size=8))+
+  theme(text = element_text(size=8),legend.position = "bottom")+
   coord_flip()+
-  labs(x= 'Subtype of Anti-Sexual-Minority',y='Number of incidents', fill= 'Type of Crime')+
-  ggtitle('Stacked Bar Chart','Anti-Sexual-Minority')+
+  labs(y='Number of incidents', fill= 'Type of Crime')+
+  ggtitle('Stacked Bar Chart','Anti.Sexual.Minority')+
   plot_theme
-
-g1<- g1 + theme(legend.position = "none") + xlab(NULL)
-g2<- g2 + theme(legend.position = "none")+ xlab(NULL)
-g3<- g3 + theme(legend.position = "none")+ xlab(NULL)
-g4<- g4 + theme(legend.position = "none")+ xlab(NULL)
-g5<- g5 + theme(legend.position = "none")+ xlab(NULL)
-g6<- g6 + theme(legend.position = "bottom")+ xlab(NULL)
 
 plot_grid(g1,g2, nrow = 2,align = "hv",axis = 'l' )
 plot_grid(g3,g4,nrow = 2,align = "hv",axis = 'l' )
 plot_grid(g5,g6, nrow = 2,align = "hv",axis = 'l' )
 ```
 
-What religions, races, gender.etc are most susceptible to Hate Crimes? We answer this questions by investigating into each sub-type of hate crimes. 
+What religions, races, gender.etc are most susceptible to hate crimes? We answer this question by investigating into each subtype of hate crimes. 
 
-Within the Anti-Gender group, hate crimes against gender identity expression are of the most frequent.There's very small number of hate crimes against male. 
+Within the Anti.Gender group, hate crimes against gender identity expression are of the most frequent.There's a very small number of hate crimes against male. 
 
-There are only less then 30 incidences of Anti-Age hate crimes during the 9 year period from 2010 to 2018, and almost all are property crimes. 
+There are only less then 30 incidents of Anti.Age hate crimes during the 9 year period from 2010 to 2018, and about 70% are property crimes. 
 
-Within the Anti-Race category, vast majority of the hate crimes are against African Americans. It is notable that anti-white hate crimes are ranked 2nd most frequent. 
+Within the Anti.Race category, vast majority of the hate crimes are against African Americans. It is notable that Anti.White hate crimes are ranked 2nd most frequent. 
 
-Within the Anti-Religion category, vast majority of the hate crimes are against Jewish, within which, vast majority are crimes against property, rather than against persons. 
+Within the Anti.Religion category, vast majority of the hate crimes are against Jewish, within which, vast majority are crimes against property, rather than against persons. 
 
-The total incidences of Anti-Disability crimes is also very small, with only one incident against property. 
+The number of total incidents of Anti.Disability crimes is also very small, with only one incident against property. 
 
-Anti-Gay Male hate crimes are most common among the Anti-Sexual Minority group, and the majority of these crimes are against persons.
+Anti.Gay.Male hate crimes are most common among the Anti.Sexual.Minority group, and the majority of these crimes are against persons.
 
 ## Question 2
 ***
