@@ -168,25 +168,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="results" class="section level1">
 <h1><span class="header-section-number">Chapter 5</span> Results</h1>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">library</span>(cowplot)</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="kw">library</span>(ggpubr)</a>
-<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="kw">library</span>(forcats)</a>
-<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="kw">library</span>(maps)</a>
-<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="kw">library</span>(gridExtra)</a>
-<a class="sourceLine" id="cb7-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb7-9" data-line-number="9">dataset &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Hate_Crimes_data_Tidy.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb7-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb7-11" data-line-number="11">plot_theme&lt;-<span class="kw">theme</span>(<span class="dt">panel.grid.major.y =</span> <span class="kw">element_line</span>(),</a>
-<a class="sourceLine" id="cb7-12" data-line-number="12">        <span class="dt">panel.grid.major.x =</span> <span class="kw">element_line</span>(),</a>
-<a class="sourceLine" id="cb7-13" data-line-number="13">        <span class="dt">panel.background =</span> <span class="kw">element_blank</span>(),,</a>
-<a class="sourceLine" id="cb7-14" data-line-number="14">        <span class="dt">panel.grid.minor =</span> <span class="kw">element_line</span>(),</a>
-<a class="sourceLine" id="cb7-15" data-line-number="15">        <span class="dt">plot.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill=</span><span class="st">&#39;#FAFAFA&#39;</span>),</a>
-<a class="sourceLine" id="cb7-16" data-line-number="16">        <span class="dt">axis.line =</span> <span class="kw">element_line</span>(<span class="dt">color=</span><span class="st">&#39;black&#39;</span>),</a>
-<a class="sourceLine" id="cb7-17" data-line-number="17">        <span class="dt">legend.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">&#39;#FAFAFA&#39;</span>),</a>
-<a class="sourceLine" id="cb7-18" data-line-number="18">        <span class="dt">legend.text=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="fl">6.5</span>))</a></code></pre></div>
-<p>These are the packages, data and the main theme that we are going to apply in the following exploratory data analysis.</p>
 <div id="general-picture-of-hate-crimes" class="section level2">
 <h2><span class="header-section-number">5.1</span> General Picture of Hate Crimes</h2>
 <hr />

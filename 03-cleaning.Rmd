@@ -1,6 +1,6 @@
 # Data transformation
 
-```{r echo=FALSE}
+```{r}
 library(tidyverse)
 ```
 
@@ -11,7 +11,7 @@ To get the tidy data, we first dropped the last three columns namely *Total.Inci
 Then we regarded columns *County*, *Year* and *Crime.Type* as ID columns, which means we don't make changes on them. We used the pivot_longer method to gather the rest of columns to create two columns *Subtype* and *Count*. Here Subtype means each small class of hate crimes such as *Anti.Male*, *Anti.Female* etc. *Count* is the corresponding number of cases for each small class. After that, we created a new column *Type*, containing six general classes that are *Anti.Gender*, *Anti.Age*, *Anti.Race*, *Anti.Religion*, *Anti.Sexual.Minority* and *Anti.Disability*. For each Subtype, it has a corresponding type. For example, the Subtype *Anti.Female* is related with the type *Anti.Gender* and the Subtype *Anti.White* is related with the type *Anti.Race'*. We use the for-loop to fill in the *Type* column for all rows.
 
 
-```{r echo=TRUE}
+```{r}
 dataset <- read.csv("Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv")
 dataset <- subset(dataset, select=-c(42,43,44))
 names(dataset)[1] <- "County"

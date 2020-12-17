@@ -171,42 +171,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We saved the original data as a csv file called ‘Hate_Crimes_by_County_and_Bias_Type_Beginning_2010.csv’.</p>
 <p>To get the tidy data, we first dropped the last three columns namely <em>Total.Incidents</em>, <em>Total.Victims</em>, <em>Total.Offenders</em>, as we can still calculate them using the remaining data.</p>
 <p>Then we regarded columns <em>County</em>, <em>Year</em> and <em>Crime.Type</em> as ID columns, which means we don’t make changes on them. We used the pivot_longer method to gather the rest of columns to create two columns <em>Subtype</em> and <em>Count</em>. Here Subtype means each small class of hate crimes such as <em>Anti.Male</em>, <em>Anti.Female</em> etc. <em>Count</em> is the corresponding number of cases for each small class. After that, we created a new column <em>Type</em>, containing six general classes that are <em>Anti.Gender</em>, <em>Anti.Age</em>, <em>Anti.Race</em>, <em>Anti.Religion</em>, <em>Anti.Sexual.Minority</em> and <em>Anti.Disability</em>. For each Subtype, it has a corresponding type. For example, the Subtype <em>Anti.Female</em> is related with the type <em>Anti.Gender</em> and the Subtype <em>Anti.White</em> is related with the type <em>Anti.Race’</em>. We use the for-loop to fill in the <em>Type</em> column for all rows.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">dataset &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Hate_Crimes_by_County_and_Bias_Type__Beginning_2010.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">dataset &lt;-<span class="st"> </span><span class="kw">subset</span>(dataset, <span class="dt">select=</span><span class="op">-</span><span class="kw">c</span>(<span class="dv">42</span>,<span class="dv">43</span>,<span class="dv">44</span>))</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">names</span>(dataset)[<span class="dv">1</span>] &lt;-<span class="st"> &quot;County&quot;</span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">data&lt;-<span class="st"> </span>dataset <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="op">!</span>(<span class="kw">colnames</span>(dataset)[<span class="dv">1</span>] <span class="op">|</span><span class="st"> </span><span class="kw">colnames</span>(dataset)[<span class="dv">2</span>] <span class="op">|</span><span class="st"> </span><span class="kw">colnames</span>(dataset)[<span class="dv">3</span>]), <span class="dt">names_to =</span> <span class="st">&quot;Subtype&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;Count&quot;</span>)</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">anti_gender =<span class="st"> </span><span class="kw">colnames</span>(dataset)[<span class="dv">4</span><span class="op">:</span><span class="dv">7</span>]</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">anti_age =<span class="st"> </span><span class="kw">colnames</span>(dataset)[<span class="dv">8</span>]</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">anti_race =<span class="st"> </span><span class="kw">colnames</span>(dataset)[<span class="dv">9</span><span class="op">:</span><span class="dv">15</span>]</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">anti_religion =<span class="st"> </span><span class="kw">colnames</span>(dataset)[<span class="dv">16</span><span class="op">:</span><span class="dv">34</span>]</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">anti_sexual_minority =<span class="st"> </span><span class="kw">colnames</span>(dataset)[<span class="dv">35</span><span class="op">:</span><span class="dv">39</span>]</a>
-<a class="sourceLine" id="cb1-12" data-line-number="12">anti_disability =<span class="st"> </span><span class="kw">colnames</span>(dataset)[<span class="dv">40</span><span class="op">:</span><span class="dv">41</span>]</a>
-<a class="sourceLine" id="cb1-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb1-14" data-line-number="14">vec =<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">0</span>,<span class="kw">nrow</span>(data)))</a>
-<a class="sourceLine" id="cb1-15" data-line-number="15">data &lt;-<span class="st"> </span><span class="kw">cbind</span>(data, <span class="dt">Type =</span> vec)</a>
-<a class="sourceLine" id="cb1-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="cf">for</span>( i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(data)){</a>
-<a class="sourceLine" id="cb1-18" data-line-number="18">  <span class="cf">if</span>(data<span class="op">$</span><span class="st">`</span><span class="dt">Subtype</span><span class="st">`</span>[i] <span class="op">%in%</span><span class="st"> </span>anti_gender){</a>
-<a class="sourceLine" id="cb1-19" data-line-number="19">    data<span class="op">$</span>Type[i] =<span class="st"> &quot;Anti.Gender&quot;</span></a>
-<a class="sourceLine" id="cb1-20" data-line-number="20">  }</a>
-<a class="sourceLine" id="cb1-21" data-line-number="21">  <span class="cf">if</span>(data<span class="op">$</span><span class="st">`</span><span class="dt">Subtype</span><span class="st">`</span>[i] <span class="op">%in%</span><span class="st"> </span>anti_age){</a>
-<a class="sourceLine" id="cb1-22" data-line-number="22">    data<span class="op">$</span>Type[i] =<span class="st"> &quot;Anti.Age&quot;</span></a>
-<a class="sourceLine" id="cb1-23" data-line-number="23">  }</a>
-<a class="sourceLine" id="cb1-24" data-line-number="24">  <span class="cf">if</span>(data<span class="op">$</span><span class="st">`</span><span class="dt">Subtype</span><span class="st">`</span>[i] <span class="op">%in%</span><span class="st"> </span>anti_race){</a>
-<a class="sourceLine" id="cb1-25" data-line-number="25">    data<span class="op">$</span>Type[i] =<span class="st"> &quot;Anti.Race&quot;</span></a>
-<a class="sourceLine" id="cb1-26" data-line-number="26">  }</a>
-<a class="sourceLine" id="cb1-27" data-line-number="27">  <span class="cf">if</span>(data<span class="op">$</span><span class="st">`</span><span class="dt">Subtype</span><span class="st">`</span>[i] <span class="op">%in%</span><span class="st"> </span>anti_religion){</a>
-<a class="sourceLine" id="cb1-28" data-line-number="28">    data<span class="op">$</span>Type[i] =<span class="st"> &quot;Anti.Religion&quot;</span></a>
-<a class="sourceLine" id="cb1-29" data-line-number="29">  }</a>
-<a class="sourceLine" id="cb1-30" data-line-number="30">  <span class="cf">if</span>(data<span class="op">$</span><span class="st">`</span><span class="dt">Subtype</span><span class="st">`</span>[i] <span class="op">%in%</span><span class="st"> </span>anti_sexual_minority){</a>
-<a class="sourceLine" id="cb1-31" data-line-number="31">    data<span class="op">$</span>Type[i] =<span class="st"> &quot;Anti.Sexual.Minority&quot;</span></a>
-<a class="sourceLine" id="cb1-32" data-line-number="32">  }</a>
-<a class="sourceLine" id="cb1-33" data-line-number="33">  <span class="cf">if</span>(data<span class="op">$</span><span class="st">`</span><span class="dt">Subtype</span><span class="st">`</span>[i] <span class="op">%in%</span><span class="st"> </span>anti_disability){</a>
-<a class="sourceLine" id="cb1-34" data-line-number="34">    data<span class="op">$</span>Type[i] =<span class="st"> &quot;Anti.Disability&quot;</span></a>
-<a class="sourceLine" id="cb1-35" data-line-number="35">  }</a>
-<a class="sourceLine" id="cb1-36" data-line-number="36">}</a></code></pre></div>
 <p>Here are first few rows of our modified data. And we save our modified data as a csv file called ‘Hate_Crimes_data_Tidy.csv’.</p>
 <pre><code>##   County Year             Crime.Type                         Subtype
 ## 1 Albany 2018 Crimes Against Persons                       Anti.Male

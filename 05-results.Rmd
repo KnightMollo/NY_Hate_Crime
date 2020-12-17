@@ -1,6 +1,6 @@
 # Results
 
-```{r message=FALSE, warning=FALSE, echo=TRUE}
+```{r}
 library(tidyverse)
 library(cowplot)
 library(ggplot2)
@@ -20,8 +20,6 @@ plot_theme<-theme(panel.grid.major.y = element_line(),
         legend.background = element_rect(fill = '#FAFAFA'),
         legend.text=element_text(size=6.5))
 ```
-
-These are the packages, data and the main theme that we are going to apply in the following exploratory data analysis.
 
 ## General Picture of Hate Crimes
 ***
@@ -332,7 +330,8 @@ dataset %>% filter(Type=='Anti.Gender') %>%
   geom_line()+
   geom_point()+
   labs(y='Number of Incidents', color='Subtype of Anti.Gender')+
-  ggtitle("Time Series Line Chart","Year VS Subtype of Anti.Gender")
+  ggtitle("Time Series Line Chart","Year VS Subtype of Anti.Gender")+
+  plot_theme
 
 ```
 
