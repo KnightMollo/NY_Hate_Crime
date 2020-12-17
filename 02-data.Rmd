@@ -10,9 +10,9 @@ The definition of hate crime is as followed:
     
 *Under New York State’s Hate Crime Law (Penal Law Article 485), a person commits a hate crime when one of a specified set of offenses is committed targeting a victim because of a perception or belief about their race, color, national origin, ancestry, gender, religion, religious practice, age, disability, or sexual orientation, or when such an act is committed as a result of that type of perception or belief. These types of crimes can target an individual, a group of individuals, or public or private property.*
 
-The dataset has 44 columns and 548 rows. The variable *County* and *Crime Type* are strings and all others are integers. Most of columns are names of hate crimes, including *Anti-Male*, *Anti-female* and so on. 
+The dataset has 44 columns and 548 rows. The variable *County* and *Crime Type* are strings and all others are integers. Most of columns are names of hate crimes, including *Anti.Male*, *Anti.Female* and so on. 
 
-The problem with this dataset is that many columns are purely names of hate crimes within the same category. For example, *Anti-White*, *Anti-Black*, *Anti-American Indian/Alaskan Native*, *Anti-Asian* and so on are all hate crimes against specific race. And there are many hate crimes against different religions. When handling this dataset, we will need to do some summary about kinds of hate crimes to have better understanding of this dataset. 
+The problem with this dataset is that many columns are purely names of hate crimes within the same category. For example, *Anti.White*, *Anti.Black*, *Anti.American Indian/Alaskan Native*, *Anti.Asian* and so on are all hate crimes against specific race. And there are many hate crimes against different religions. When handling this dataset, we will need to do some summary about kinds of hate crimes to have better understanding of this dataset. 
 
 
 ## Problems with data source
