@@ -23,7 +23,7 @@ plot_theme<-theme(panel.grid.major.y = element_line(),
 
 These are the packages, data and the main theme that we are going to apply in the following exploratory data analysis.
 
-## Question 1
+## General Picture of Hate Crimes
 ***
 How many hate crimes are taking place in NY state? Who are the people most affected? The stacked bar chart below provides us with a clear initial view.
 
@@ -133,7 +133,7 @@ The number of total incidents of Anti.Disability crimes is also very small, with
 
 Anti.Gay.Male hate crimes are most common among the Anti.Sexual.Minority group, and the majority of these crimes are against persons.
 
-## Question 2
+## Hate Crimes in Counties
 ***
 
 After investigating the overall distribution of all kinds of hate crimes, we now consider the distribution of different types of hate crimes in different counties. That is, we want to know if for some certain type of hate crimes, the total number of incicents corresponding to it vary in counties or not. Also, it is worth checking whether the distribution in counties changes among various kinds of hate crimes. Here total number of incidents of some type of hate crimes includes the whole time period from 2010 to 2018 and both crime types which are person and property.
@@ -239,7 +239,7 @@ We also annotate the location of New York city with text 'NYC' on six plots. We 
 
 There is a point that some counties in the heatmaps don't have any value (or color). In the Missing Value chapter, we know these counties are Wyoming county and Yates county.
 
-## Question 3
+## Hate Crimes across Time
 ***
 
 After examing the distributions of hate crimes in different counties, we know take time factor into consideration. In other words, we want to see if total incidents of each type of hate crimes vary cross time. And what's more, we aim to integrate both county and time factors into the inspection of distribution of hate crimes in New York State.
